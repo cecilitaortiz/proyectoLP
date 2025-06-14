@@ -1,10 +1,44 @@
 import tkinter as tk
 from tkinter import ttk
+from ply import lex, yacc
+
+#Código Cecilia Ortiz
+
+tokens = (
+    'ID', 'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
+    'EQUALS', 'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'SEMICOLON', 'STRING',
+)
+
+reserved = {
+    'int': 'INT',
+    'double': 'DOUBLE',
+    'float': 'FLOAT',
+    'bool': 'BOOL',
+    'string': 'STRINGTYPE',
+    'char': 'CHAR',
+    'var': 'VAR',
+    'List': 'LIST',
+
+    'for': 'FOR',
+    'if': 'IF',
+    'else': 'ELSE',
+
+    'class': 'CLASS',
+    'public': 'PUBLIC',
+    'private': 'PRIVATE',
+    'protected': 'PROTECTED',
+    'static': 'STATIC',
+    'new': 'NEW',
+    'this': 'THIS',
+    
+    'return': 'RETURN',
+    'void': 'VOID',
+}
+
+
 
 def analizar_codigo():
     return
-
-
 # Ventana principal
 ventana = tk.Tk()
 ventana.title("Analizador Léxico y Semántico C#")
