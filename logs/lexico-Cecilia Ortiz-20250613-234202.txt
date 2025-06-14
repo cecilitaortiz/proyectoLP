@@ -1,0 +1,24 @@
+Tokens reconocidos:
+Línea 5: INT -> int
+Línea 5: ID -> x
+Línea 5: EQUALS -> =
+Línea 5: INT -> 10
+Línea 5: SEMICOLON -> ;
+Línea 6: FLOAT -> float
+Línea 6: ID -> y
+Línea 6: EQUALS -> =
+Línea 6: FLOAT -> 5.25
+Línea 6: ID -> f
+Línea 6: SEMICOLON -> ;
+Línea 7: DOUBLE -> double
+Línea 7: ID -> z
+Línea 7: EQUALS -> =
+Línea 7: ID -> x
+Línea 7: PLUS -> +
+Línea 7: ID -> y
+Línea 7: SEMICOLON -> ;
+Línea 8: STRINGTYPE -> string
+Línea 8: ID -> mensaje
+Línea 8: EQUALS -> =
+Línea 8: STRING -> Resultado:
+Línea 8: SEMICOLON -> ;

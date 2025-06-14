@@ -1,0 +1,22 @@
+Tokens reconocidos:
+Línea 1: INT -> int
+Línea 1: ID -> edad
+Línea 1: EQUALS -> =
+Línea 1: INT -> 30
+Línea 1: SEMICOLON -> ;
+Línea 2: FLOAT -> float
+Línea 2: ID -> peso
+Línea 2: EQUALS -> =
+Línea 2: FLOAT -> 65.5
+Línea 2: ID -> f
+Línea 2: SEMICOLON -> ;
+Línea 3: DOUBLE -> double
+Línea 3: ID -> altura
+Línea 3: EQUALS -> =
+Línea 3: FLOAT -> 1.75
+Línea 3: SEMICOLON -> ;
+Línea 4: STRINGTYPE -> string
+Línea 4: ID -> nombre
+Línea 4: EQUALS -> =
+Línea 4: STRING -> Carlos
+Línea 4: SEMICOLON -> ;
