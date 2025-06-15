@@ -158,7 +158,7 @@ def t_STRING(t):
     return t
 
 def t_ignore_whitespace(t):
-    r'\s+'
+    r'[ \t]+'
     pass
 
 def t_newline(t):
@@ -191,6 +191,7 @@ lexer = lex.lex()
 def analizar_codigo():
     """Analiza el código ingresado en la interfaz y muestra los tokens."""
     entrada = text_entrada.get("1.0", tk.END)
+    lexer.lineno = 1  # <-- Inicializar el número de línea antes de analizar
     lexer.input(entrada)
     resultado = []
     while True:
@@ -245,6 +246,7 @@ def analizar_archivo_prueba():
         with open(ruta, "r", encoding="utf-8") as f:
             entrada = f.read()
         contenido_total += f"// Archivo: {ruta}\n{entrada}\n\n"
+        lexer.lineno = 1  # <-- Inicializar el número de línea antes de analizar cada archivo
         lexer.input(entrada)
         resultado_total.append(f"--- Tokens para {ruta} ---")
         while True:
