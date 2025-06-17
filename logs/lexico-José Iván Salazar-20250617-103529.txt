@@ -1,0 +1,24 @@
+Tokens reconocidos:
+Línea 1: INT -> int
+Línea 1: ID -> numero
+Línea 1: EQUALS -> =
+Línea 1: INT -> 5
+Línea 1: SEMICOLON -> ;
+Línea 2: INT -> int
+Línea 2: SEMICOLON -> ;
+Línea 3: ID -> numero
+Línea 3: EQUALS -> =
+Línea 3: INT -> 5
+Línea 3: SEMICOLON -> ;
+Línea 4: ID -> numero
+Línea 4: INT -> 5
+Línea 4: SEMICOLON -> ;
+Línea 5: INT -> int
+Línea 5: ID -> numero
+Línea 5: INT -> 5
+Línea 5: SEMICOLON -> ;
+
+Errores de sintaxis encontrados:
+Línea 2: Error de sintaxis - Declaración de variable sin nombre.
+Error de estructura: No se encontró ninguna declaración de clase en el código.
+Semántica básica correcta.

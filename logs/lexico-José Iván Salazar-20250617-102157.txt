@@ -1,0 +1,7 @@
+Tokens reconocidos:
+Línea 1: ID -> dgdgd
+
+Errores de sintaxis encontrados:
+Línea 1: Error de sintaxis - Sentencia no válida o incompleta: 'dgdgd'
+Error de estructura: No se encontró ninguna declaración de clase en el código.
+Semántica básica correcta.

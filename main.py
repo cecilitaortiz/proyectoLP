@@ -4,6 +4,8 @@ from datetime import datetime
 from ply import lex
 import os
 import re
+from analizador_sintactico import analizar_sintaxis_basica
+from analizador_semantico import analizar_semantica
 
 # ---------------------------
 # Definición de tokens y lexer para C#
@@ -177,9 +179,13 @@ def t_ignore_unicode(t):
     r'[^\x00-\x7F]'
     pass
 
+errores_lexicos = []  # Lista global para almacenar errores léxicos
+
 def t_error(t):
     if not re.match(r'\s', t.value[0]):
-        print(f"Error de análisis en la línea {t.lineno}: {t.value[0]}")
+        mensaje = f"Error de análisis en la línea {t.lineno}: {t.value[0]}"
+        errores_lexicos.append(mensaje)
+        print(mensaje)
     t.lexer.skip(1)
 
 lexer = lex.lex()
@@ -203,6 +209,132 @@ def analizar_codigo():
     for linea in resultado:
         text_resultado.insert(tk.END, linea + "\n")
     guardar_log(resultado)
+
+def analizar_lexico_y_sintaxis():
+    """
+    Analiza el código ingresado en la interfaz y muestra los tokens y errores sintácticos.
+    """
+    entrada = text_entrada.get("1.0", tk.END)
+    # --- Análisis Léxico ---
+    lexer.lineno = 1
+    lexer.input(entrada)
+    resultado_lexico = []
+    errores_lexicos.clear()
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break
+        resultado_lexico.append(f"Línea {tok.lineno}: {tok.type} -> {tok.value}")
+
+    # --- Análisis Sintáctico Básico ---
+    lineas = entrada.splitlines()
+    pila_llaves = []
+    pila_parentesis = []
+    clase_abierta = False
+    metodo_abierta = False
+
+    for idx, linea in enumerate(lineas, start=1):
+        stripped = linea.strip()
+        if not stripped or stripped.startswith("//"):
+            continue
+        if re.match(r'(public|private|protected)?\s*class\s+\w+', stripped):
+            clase_abierta = True
+            if '{' not in stripped:
+                errores_lexicos.append(f"Línea {idx}: Error de sintaxis - Falta '{{' en declaración de clase")
+            continue
+        for i, c in enumerate(linea):
+            if c == '{':
+                pila_llaves.append((idx, i))
+            elif c == '}':
+                if pila_llaves:
+                    pila_llaves.pop()
+                else:
+                    errores_lexicos.append(f"Línea {idx}: Error de sintaxis - Llave de cierre '}}' sin abrir")
+        for i, c in enumerate(linea):
+            if c == '(':
+                pila_parentesis.append((idx, i))
+            elif c == ')':
+                if pila_parentesis:
+                    pila_parentesis.pop()
+                else:
+                    errores_lexicos.append(f"Línea {idx}: Error de sintaxis - Paréntesis de cierre ')' sin abrir")
+        if re.match(r'(public|private|protected|static|\s)*\s*\w+\s+\w+\s*\(.*\)\s*', stripped):
+            metodo_abierta = True
+            if '{' not in stripped:
+                errores_lexicos.append(f"Línea {idx}: Error de sintaxis - Falta '{{' en declaración de método")
+            continue
+        if (not stripped.endswith(';') and
+            not stripped.endswith('{') and
+            not stripped.endswith('}') and
+            not re.match(r'(public|private|protected)?\s*class\s+\w+', stripped) and
+            not re.match(r'(public|private|protected|static|\s)*\s*\w+\s+\w+\s*\(.*\)\s*', stripped)):
+            if ('=' in stripped or '(' in stripped or ')' in stripped) and not stripped.startswith("//"):
+                errores_lexicos.append(f"Línea {idx}: Error de sintaxis - Falta punto y coma ';'")
+    for idx, _ in pila_llaves:
+        errores_lexicos.append(f"Línea {idx}: Error de sintaxis - Llave de apertura '{{' sin cerrar")
+    for idx, _ in pila_parentesis:
+        errores_lexicos.append(f"Línea {idx}: Error de sintaxis - Paréntesis de apertura '(' sin cerrar")
+    if not clase_abierta:
+        errores_lexicos.append("Error de estructura: No se encontró ninguna declaración de clase en el código.")
+
+    # --- Mostrar resultados ---
+    text_resultado.delete("1.0", tk.END)
+    text_resultado.insert(tk.END, "Tokens reconocidos:\n")
+    for linea in resultado_lexico:
+        text_resultado.insert(tk.END, linea + "\n")
+    if errores_lexicos:
+        text_resultado.insert(tk.END, "\nErrores de sintaxis encontrados:\n")
+        for err in errores_lexicos:
+            text_resultado.insert(tk.END, err + "\n")
+    else:
+        text_resultado.insert(tk.END, "\nEstructura sintáctica básica correcta.\n")
+    guardar_log(resultado_lexico + ([""] if resultado_lexico else []) + (["Errores de sintaxis encontrados:"] + errores_lexicos if errores_lexicos else ["Estructura sintáctica básica correcta."]))
+
+def analizar_lexico_sintaxis_semantica():
+    """
+    Analiza el código ingresado en la interfaz y muestra tokens, errores sintácticos y semánticos.
+    """
+    entrada = text_entrada.get("1.0", tk.END)
+    # --- Análisis Léxico ---
+    lexer.lineno = 1
+    lexer.input(entrada)
+    resultado_lexico = []
+    errores_lexicos.clear()
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break
+        resultado_lexico.append(f"Línea {tok.lineno}: {tok.type} -> {tok.value}")
+
+    # --- Análisis Sintáctico ---
+    errores_sintacticos = analizar_sintaxis_basica(entrada)
+
+    # --- Análisis Semántico ---
+    errores_semanticos = analizar_semantica(entrada)
+
+    # --- Mostrar resultados ---
+    text_resultado.delete("1.0", tk.END)
+    text_resultado.insert(tk.END, "Tokens reconocidos:\n")
+    for linea in resultado_lexico:
+        text_resultado.insert(tk.END, linea + "\n")
+    if errores_sintacticos:
+        text_resultado.insert(tk.END, "\nErrores de sintaxis encontrados:\n")
+        for err in errores_sintacticos:
+            text_resultado.insert(tk.END, err + "\n")
+    else:
+        text_resultado.insert(tk.END, "\nEstructura sintáctica básica correcta.\n")
+    if errores_semanticos:
+        text_resultado.insert(tk.END, "\nErrores semánticos encontrados:\n")
+        for err in errores_semanticos:
+            text_resultado.insert(tk.END, err + "\n")
+    else:
+        text_resultado.insert(tk.END, "\nSemántica básica correcta.\n")
+    guardar_log(
+        resultado_lexico +
+        ([""] if resultado_lexico else []) +
+        (["Errores de sintaxis encontrados:"] + errores_sintacticos if errores_sintacticos else ["Estructura sintáctica básica correcta."]) +
+        (["Errores semánticos encontrados:"] + errores_semanticos if errores_semanticos else ["Semántica básica correcta."])
+    )
 
 def guardar_log(resultado):
     """Guarda el resultado del análisis en un archivo de log."""
@@ -263,9 +395,75 @@ def analizar_archivo_prueba():
     guardar_log(resultado_total)
     print("Análisis completado. Revisa el archivo log generado en la carpeta logs.")
 
+def cargar_archivo_prueba():
+    """
+    Carga el contenido de los archivos de prueba Thomas_prueba.cs y Cecilia_prueba.cs en el área de entrada.
+    No realiza análisis, solo muestra el contenido.
+    """
+    archivos = ["Thomas_prueba.cs", "Cecilia_prueba.cs"]
+    contenido_total = ""
+    for ruta in archivos:
+        if not os.path.exists(ruta):
+            continue
+        with open(ruta, "r", encoding="utf-8") as f:
+            entrada = f.read()
+        contenido_total += f"// Archivo: {ruta}\n{entrada}\n\n"
+    text_entrada.delete("1.0", tk.END)
+    text_entrada.insert(tk.END, contenido_total)
+    text_resultado.delete("1.0", tk.END)
+
 # ---------------------------
 # Interfaz gráfica principal
 # ---------------------------
+
+class TextWithLineNumbers(tk.Frame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master)
+        self.text = tk.Text(self, **kwargs)
+        self.linenumbers = tk.Canvas(self, width=40, background='lightgray', highlightthickness=0)
+        self.linenumbers.pack(side="left", fill="y")
+        self.text.pack(side="right", fill="both", expand=True)
+        self.text.bind("<KeyRelease>", self._on_change)
+        self.text.bind("<MouseWheel>", self._on_change)
+        self.text.bind("<Button-1>", self._on_change)
+        self.text.bind("<Configure>", self._on_change)
+        self.text.bind("<FocusIn>", self._on_change)
+        self.text.bind("<ButtonRelease-1>", self._on_change)
+        self.text['yscrollcommand'] = self._on_textscroll
+        self._on_change()
+
+    def _on_change(self, event=None):
+        self._update_line_numbers()
+
+    def _on_textscroll(self, *args):
+        # Solo pasar los argumentos válidos a yview
+        if args and args[0] in ("moveto", "scroll"):
+            self.linenumbers.yview(*args)
+        self._update_line_numbers()
+
+    def _update_line_numbers(self):
+        self.linenumbers.delete("all")
+        i = self.text.index("@0,0")
+        while True:
+            dline = self.text.dlineinfo(i)
+            if dline is None:
+                break
+            y = dline[1]
+            linenum = str(i).split(".")[0]
+            self.linenumbers.create_text(35, y, anchor="ne", text=linenum, font=self.text['font'], fill="black")
+            i = self.text.index(f"{i}+1line")
+
+    def get(self, *args, **kwargs):
+        return self.text.get(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        return self.text.delete(*args, **kwargs)
+
+    def insert(self, *args, **kwargs):
+        return self.text.insert(*args, **kwargs)
+
+    def bind(self, *args, **kwargs):
+        return self.text.bind(*args, **kwargs)
 
 ventana = tk.Tk()
 ventana.title("Analizador Léxico de C# ")
@@ -279,22 +477,27 @@ frame.rowconfigure(1, weight=1)
 
 label_entrada = ttk.Label(frame, text="Código C#:")
 label_entrada.grid(column=0, row=0, sticky=tk.W)
-text_entrada = tk.Text(frame, wrap=tk.NONE)
-text_entrada.grid(column=0, row=1, padx=5, pady=5, sticky="nsew")
+
+# Reemplazar text_entrada por widget con numeración de líneas
+text_entrada_widget = TextWithLineNumbers(frame, wrap=tk.NONE)
+text_entrada_widget.grid(column=0, row=1, padx=5, pady=5, sticky="nsew")
+text_entrada = text_entrada_widget.text  # para compatibilidad con el resto del código
 
 label_resultado = ttk.Label(frame, text="Tokens:")
 label_resultado.grid(column=1, row=0, sticky=tk.W)
 text_resultado = tk.Text(frame, wrap=tk.NONE, foreground="blue")
 text_resultado.grid(column=1, row=1, padx=5, pady=5, sticky="nsew")
 
-# Distribuir los botones horizontalmente en la parte inferior
-boton_analizar = ttk.Button(frame, text="Analizar", command=analizar_codigo)
+# Botón Analizar: ahora hace análisis léxico, sintáctico y semántico juntos
+boton_analizar = ttk.Button(frame, text="Analizar", command=analizar_lexico_sintaxis_semantica)
 boton_analizar.grid(column=0, row=2, padx=5, pady=10, sticky="ew")
 
-boton_archivo = ttk.Button(frame, text="Analizar archivo de prueba", command=analizar_archivo_prueba)
+# Botón Cargar Archivo de Prueba (solo carga el contenido)
+boton_archivo = ttk.Button(frame, text="Cargar Archivo de Prueba", command=cargar_archivo_prueba)
 boton_archivo.grid(column=1, row=2, padx=5, pady=10, sticky="ew")
 
+# Botón Limpiar
 boton_limpiar = ttk.Button(frame, text="Limpiar", command=limpiar_campos)
-boton_limpiar.grid(column=0, row=3, columnspan=2, padx=5, pady=5, sticky="ew")
+boton_limpiar.grid(column=0, row=3, columnspan=1, padx=5, pady=5, sticky="ew")
 
 ventana.mainloop()

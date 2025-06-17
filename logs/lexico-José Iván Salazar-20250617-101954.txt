@@ -1,0 +1,6 @@
+Tokens reconocidos:
+Línea 1: ID -> sdfsfsf
+
+Errores de sintaxis encontrados:
+Error de estructura: No se encontró ninguna declaración de clase en el código.
+Semántica básica correcta.

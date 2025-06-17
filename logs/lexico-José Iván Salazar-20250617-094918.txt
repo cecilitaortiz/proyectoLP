@@ -1,0 +1,2 @@
+Tokens reconocidos:
+Error de estructura: No se encontró ninguna declaración de clase en el código.

@@ -1,0 +1,217 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> function
+Rule 1     function -> type ID LPAREN RPAREN LBRACE RBRACE
+Rule 2     function -> type ID LPAREN RPAREN LBRACE body RBRACE
+Rule 3     type -> INT
+Rule 4     type -> DOUBLE
+Rule 5     type -> FLOAT
+Rule 6     type -> BOOL
+Rule 7     type -> STRINGTYPE
+Rule 8     type -> VOID
+Rule 9     body -> statement_list
+Rule 10    statement_list -> statement
+Rule 11    statement_list -> statement_list statement
+Rule 12    statement -> SEMICOLON
+
+Terminals, with rules where they appear
+
+BOOL                 : 6
+DOUBLE               : 4
+FLOAT                : 5
+ID                   : 1 2
+INT                  : 3
+LBRACE               : 1 2
+LPAREN               : 1 2
+RBRACE               : 1 2
+RPAREN               : 1 2
+SEMICOLON            : 12
+STRINGTYPE           : 7
+VOID                 : 8
+error                : 
+
+Nonterminals, with rules where they appear
+
+body                 : 2
+function             : 0
+statement            : 10 11
+statement_list       : 9 11
+type                 : 1 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . function
+    (1) function -> . type ID LPAREN RPAREN LBRACE RBRACE
+    (2) function -> . type ID LPAREN RPAREN LBRACE body RBRACE
+    (3) type -> . INT
+    (4) type -> . DOUBLE
+    (5) type -> . FLOAT
+    (6) type -> . BOOL
+    (7) type -> . STRINGTYPE
+    (8) type -> . VOID
+
+    INT             shift and go to state 3
+    DOUBLE          shift and go to state 4
+    FLOAT           shift and go to state 5
+    BOOL            shift and go to state 6
+    STRINGTYPE      shift and go to state 7
+    VOID            shift and go to state 8
+
+    function                       shift and go to state 1
+    type                           shift and go to state 2
+
+state 1
+
+    (0) S' -> function .
+
+
+
+state 2
+
+    (1) function -> type . ID LPAREN RPAREN LBRACE RBRACE
+    (2) function -> type . ID LPAREN RPAREN LBRACE body RBRACE
+
+    ID              shift and go to state 9
+
+
+state 3
+
+    (3) type -> INT .
+
+    ID              reduce using rule 3 (type -> INT .)
+
+
+state 4
+
+    (4) type -> DOUBLE .
+
+    ID              reduce using rule 4 (type -> DOUBLE .)
+
+
+state 5
+
+    (5) type -> FLOAT .
+
+    ID              reduce using rule 5 (type -> FLOAT .)
+
+
+state 6
+
+    (6) type -> BOOL .
+
+    ID              reduce using rule 6 (type -> BOOL .)
+
+
+state 7
+
+    (7) type -> STRINGTYPE .
+
+    ID              reduce using rule 7 (type -> STRINGTYPE .)
+
+
+state 8
+
+    (8) type -> VOID .
+
+    ID              reduce using rule 8 (type -> VOID .)
+
+
+state 9
+
+    (1) function -> type ID . LPAREN RPAREN LBRACE RBRACE
+    (2) function -> type ID . LPAREN RPAREN LBRACE body RBRACE
+
+    LPAREN          shift and go to state 10
+
+
+state 10
+
+    (1) function -> type ID LPAREN . RPAREN LBRACE RBRACE
+    (2) function -> type ID LPAREN . RPAREN LBRACE body RBRACE
+
+    RPAREN          shift and go to state 11
+
+
+state 11
+
+    (1) function -> type ID LPAREN RPAREN . LBRACE RBRACE
+    (2) function -> type ID LPAREN RPAREN . LBRACE body RBRACE
+
+    LBRACE          shift and go to state 12
+
+
+state 12
+
+    (1) function -> type ID LPAREN RPAREN LBRACE . RBRACE
+    (2) function -> type ID LPAREN RPAREN LBRACE . body RBRACE
+    (9) body -> . statement_list
+    (10) statement_list -> . statement
+    (11) statement_list -> . statement_list statement
+    (12) statement -> . SEMICOLON
+
+    RBRACE          shift and go to state 13
+    SEMICOLON       shift and go to state 17
+
+    body                           shift and go to state 14
+    statement_list                 shift and go to state 15
+    statement                      shift and go to state 16
+
+state 13
+
+    (1) function -> type ID LPAREN RPAREN LBRACE RBRACE .
+
+    $end            reduce using rule 1 (function -> type ID LPAREN RPAREN LBRACE RBRACE .)
+
+
+state 14
+
+    (2) function -> type ID LPAREN RPAREN LBRACE body . RBRACE
+
+    RBRACE          shift and go to state 18
+
+
+state 15
+
+    (9) body -> statement_list .
+    (11) statement_list -> statement_list . statement
+    (12) statement -> . SEMICOLON
+
+    RBRACE          reduce using rule 9 (body -> statement_list .)
+    SEMICOLON       shift and go to state 17
+
+    statement                      shift and go to state 19
+
+state 16
+
+    (10) statement_list -> statement .
+
+    SEMICOLON       reduce using rule 10 (statement_list -> statement .)
+    RBRACE          reduce using rule 10 (statement_list -> statement .)
+
+
+state 17
+
+    (12) statement -> SEMICOLON .
+
+    SEMICOLON       reduce using rule 12 (statement -> SEMICOLON .)
+    RBRACE          reduce using rule 12 (statement -> SEMICOLON .)
+
+
+state 18
+
+    (2) function -> type ID LPAREN RPAREN LBRACE body RBRACE .
+
+    $end            reduce using rule 2 (function -> type ID LPAREN RPAREN LBRACE body RBRACE .)
+
+
+state 19
+
+    (11) statement_list -> statement_list statement .
+
+    SEMICOLON       reduce using rule 11 (statement_list -> statement_list statement .)
+    RBRACE          reduce using rule 11 (statement_list -> statement_list statement .)
+

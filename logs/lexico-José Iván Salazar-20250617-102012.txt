@@ -1,0 +1,11 @@
+Tokens reconocidos:
+Línea 1: ID -> sdfsfsf
+Línea 2: INT -> int
+Línea 2: ID -> cedula
+Línea 2: EQUALS -> =
+Línea 2: INT -> 951105436
+
+Errores de sintaxis encontrados:
+Línea 2: Error de sintaxis - Falta punto y coma ';'
+Error de estructura: No se encontró ninguna declaración de clase en el código.
+Semántica básica correcta.

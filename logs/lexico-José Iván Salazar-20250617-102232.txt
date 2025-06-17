@@ -1,0 +1,17 @@
+Tokens reconocidos:
+Línea 1: ID -> dgdgd
+Línea 2: INT -> int
+Línea 2: ID -> numero
+Línea 2: EQUALS -> =
+Línea 2: INT -> 4
+Línea 2: SEMICOLON -> ;
+Línea 3: FLOAT -> float
+Línea 3: ID -> numero
+Línea 3: EQUALS -> =
+Línea 3: INT -> 3
+
+Errores de sintaxis encontrados:
+Línea 1: Error de sintaxis - Sentencia no válida o incompleta: 'dgdgd'
+Línea 3: Error de sintaxis - Falta punto y coma ';'
+Error de estructura: No se encontró ninguna declaración de clase en el código.
+Semántica básica correcta.

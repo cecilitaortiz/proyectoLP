@@ -1,0 +1,37 @@
+Tokens reconocidos:
+Línea 1: INT -> int
+Línea 1: ID -> numero
+Línea 1: EQUALS -> =
+Línea 1: FLOAT -> 4.0
+Línea 1: SEMICOLON -> ;
+Línea 2: INT -> int
+Línea 2: SEMICOLON -> ;
+Línea 3: INT -> int
+Línea 3: ID -> numero
+Línea 4: INT -> int
+Línea 4: ID -> numero
+Línea 4: EQUALS -> =
+Línea 4: INT -> 4
+Línea 5: INT -> int
+Línea 5: ID -> numero
+Línea 5: EQUALS -> =
+Línea 5: INT -> 4
+Línea 5: SEMICOLON -> ;
+Línea 6: ID -> numero
+Línea 6: EQUALS -> =
+Línea 6: INT -> 4
+Línea 6: SEMICOLON -> ;
+Línea 7: ID -> numero
+Línea 7: INT -> 4
+Línea 7: SEMICOLON -> ;
+Línea 8: INT -> int
+Línea 8: ID -> numero
+Línea 8: INT -> 4
+Línea 8: SEMICOLON -> ;
+
+Errores de sintaxis encontrados:
+Línea 2: Error de sintaxis - Declaración de variable sin nombre.
+Línea 3: Error de sintaxis - Sentencia no válida: 'int numero'
+Línea 4: Error de sintaxis - Falta punto y coma ';'
+Error de estructura: No se encontró ninguna declaración de clase en el código.
+Semántica básica correcta.
