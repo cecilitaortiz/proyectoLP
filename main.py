@@ -483,18 +483,25 @@ text_entrada_widget = TextWithLineNumbers(frame, wrap=tk.NONE)
 text_entrada_widget.grid(column=0, row=1, padx=5, pady=5, sticky="nsew")
 text_entrada = text_entrada_widget.text  # para compatibilidad con el resto del código
 
-label_resultado = ttk.Label(frame, text="Tokens:")
+label_resultado = ttk.Label(frame, text="Resultados del análisis:")
 label_resultado.grid(column=1, row=0, sticky=tk.W)
 text_resultado = tk.Text(frame, wrap=tk.NONE, foreground="blue")
 text_resultado.grid(column=1, row=1, padx=5, pady=5, sticky="nsew")
 
-# Botón Analizar: ahora hace análisis léxico, sintáctico y semántico juntos
-boton_analizar = ttk.Button(frame, text="Analizar", command=analizar_lexico_sintaxis_semantica)
-boton_analizar.grid(column=0, row=2, padx=5, pady=10, sticky="ew")
+# Botones para mostrar resultados separados
+frame_botones = ttk.Frame(frame)
+frame_botones.grid(column=1, row=2, padx=5, pady=5, sticky="ew")
+
+boton_lexico = ttk.Button(frame_botones, text="Léxico", command=analizar_lexico)
+boton_lexico.pack(side=tk.LEFT, padx=2)
+boton_sintactico = ttk.Button(frame_botones, text="Sintáctico", command=analizar_sintactico)
+boton_sintactico.pack(side=tk.LEFT, padx=2)
+boton_semantico = ttk.Button(frame_botones, text="Semántico", command=analizar_semantico)
+boton_semantico.pack(side=tk.LEFT, padx=2)
 
 # Botón Cargar Archivo de Prueba (solo carga el contenido)
 boton_archivo = ttk.Button(frame, text="Cargar Archivo de Prueba", command=cargar_archivo_prueba)
-boton_archivo.grid(column=1, row=2, padx=5, pady=10, sticky="ew")
+boton_archivo.grid(column=0, row=2, padx=5, pady=10, sticky="ew")
 
 # Botón Limpiar
 boton_limpiar = ttk.Button(frame, text="Limpiar", command=limpiar_campos)
