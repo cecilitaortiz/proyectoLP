@@ -1,17 +1,11 @@
 import os
-import subprocess
-import tkinter as tk
-from tkinter import ttk, filedialog, messagebox
-from tkinter.scrolledtext import ScrolledText
+from PyQt5.QtWidgets import (
+    QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QPushButton,
+    QLabel, QFileDialog, QMessageBox, QTextEdit
+)
+from PyQt5.Qsci import QsciScintilla, QsciLexerCSharp
 from lexer import lexer
 from main import analizar_codigo, guardar_log
-from tkcode import CodeEditor
-
-# Obtener nombre de usuario de Git
-try:
-    usuario_git = subprocess.check_output(["git", "config", "user.name"]).strip().decode('utf-8')
-except subprocess.CalledProcessError:
-    usuario_git = "desconocido"
 
 def listar_archivos_test():
     carpeta = "test"
@@ -24,163 +18,134 @@ def cargar_archivo_test(nombre_archivo):
     with open(ruta, "r", encoding="utf-8") as f:
         return f.read()
 
-class ModalArchivos(tk.Toplevel):
-    def __init__(self, master, callback_cargar):
-        super().__init__(master)
-        self.title("Selecciona o sube un archivo de prueba (.cs)")
-        self.callback_cargar = callback_cargar
-        self.geometry("400x200")
-        self.resizable(False, False)
-        self.transient(master)
-        self.grab_set()
-
-        ttk.Label(self, text="Archivos en test/").pack(pady=(10, 2))
-        self.archivos_var = tk.StringVar()
-        self.archivos_dropdown = ttk.Combobox(self, textvariable=self.archivos_var, values=listar_archivos_test(), state="readonly")
-        self.archivos_dropdown.pack(fill="x", padx=20)
-        ttk.Button(self, text="Cargar archivo seleccionado", command=self.cargar_archivo).pack(pady=5)
-
-        ttk.Label(self, text="Subir archivo .cs").pack(pady=(10, 2))
-        ttk.Button(self, text="Seleccionar archivo...", command=self.subir_archivo).pack()
-        ttk.Button(self, text="Cerrar", command=self.destroy).pack(pady=10)
-
-    def cargar_archivo(self):
-        nombre = self.archivos_var.get()
-        if nombre:
-            self.callback_cargar(nombre)
-            self.destroy()
-
-    def subir_archivo(self):
-        ruta = filedialog.askopenfilename(filetypes=[("Archivos C#", "*.cs")])
-        if ruta:
-            destino = os.path.join("test", os.path.basename(ruta))
-            with open(ruta, "rb") as src, open(destino, "wb") as dst:
-                dst.write(src.read())
-            self.archivos_dropdown['values'] = listar_archivos_test()
-
-class AnalizadorApp(tk.Tk):
+class AnalizadorApp(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.title("Analizador Léxico de C#")
-        self.geometry("1100x600")
-        self.resizable(True, True)
+        self.setWindowTitle("Analizador Léxico de C#")
+        self.setGeometry(100, 100, 1100, 600)
 
-        # Título
-        ttk.Label(self, text="Analizador Léxico de C#", font=("Arial", 18, "bold")).pack(pady=10)
+        # Layout principal
+        central_widget = QWidget()
+        self.setCentralWidget(central_widget)
+        main_layout = QHBoxLayout(central_widget)
 
-        main_frame = ttk.Frame(self)
-        main_frame.pack(fill="both", expand=True, padx=10, pady=5)
+        # Panel izquierdo: Editor
+        editor_layout = QVBoxLayout()
+        main_layout.addLayout(editor_layout, 2)
 
-        # Editor de código con numeración de líneas y resaltado para C#
-        editor_frame = ttk.Frame(main_frame)
-        editor_frame.pack(side="left", fill="both", expand=True)
-        ttk.Label(editor_frame, text="Código fuente:").pack(anchor="w")
-        self.editor = CodeEditor(
-            editor_frame,
-            width=60,
-            height=25,
-            language="csharp",  # <-- Cambia aquí a "csharp"
-            font=("Consolas", 12),
-            blockcursor=True,
-            background="white",
-            highlighter="dracula"
-        )
-        self.editor.pack(fill="both", expand=True)
+        label = QLabel("Código fuente:")
+        editor_layout.addWidget(label)
 
-        # Panel de resultados y botones
-        right_frame = ttk.Frame(main_frame)
-        right_frame.pack(side="left", fill="y", padx=(10,0))
+        self.editor = QsciScintilla()
+        self.editor.setUtf8(True)
+        self.editor.setMarginType(0, QsciScintilla.NumberMargin)
+        self.editor.setMarginWidth(0, "0000")
+        lexer = QsciLexerCSharp()
+        lexer.setDefaultFont(self.editor.font())
+        self.editor.setLexer(lexer)
+        editor_layout.addWidget(self.editor)
 
-        # Botones de selección de resultado
-        botones_frame = ttk.Frame(right_frame)
-        botones_frame.pack(fill="x", pady=(0,5))
-        self.btn_tokens = ttk.Button(botones_frame, text="Tokens", command=self.mostrar_tokens)
-        self.btn_tokens.grid(row=0, column=0, padx=2)
-        self.btn_semantico = ttk.Button(botones_frame, text="Semántico", command=self.mostrar_semantico)
-        self.btn_semantico.grid(row=0, column=1, padx=2)
-        self.btn_sintactico = ttk.Button(botones_frame, text="Sintáctico", command=self.mostrar_sintactico)
-        self.btn_sintactico.grid(row=0, column=2, padx=2)
+        # Panel derecho: Resultados y controles
+        right_layout = QVBoxLayout()
+        main_layout.addLayout(right_layout, 1)
+
+        # Botones de resultado
+        botones_layout = QHBoxLayout()
+        self.btn_tokens = QPushButton("Tokens")
+        self.btn_tokens.clicked.connect(self.mostrar_tokens)
+        self.btn_semantico = QPushButton("Semántico")
+        self.btn_semantico.clicked.connect(self.mostrar_semantico)
+        self.btn_sintactico = QPushButton("Sintáctico")
+        self.btn_sintactico.clicked.connect(self.mostrar_sintactico)
+        botones_layout.addWidget(self.btn_tokens)
+        botones_layout.addWidget(self.btn_semantico)
+        botones_layout.addWidget(self.btn_sintactico)
+        right_layout.addLayout(botones_layout)
 
         # Áreas de resultados
-        self.resultado_tokens = ScrolledText(right_frame, width=50, height=15, font=("Consolas", 11), state="normal")
-        self.resultado_tokens.pack(fill="x")
-        self.resultado_semantico = ScrolledText(right_frame, width=50, height=15, font=("Consolas", 11), state="normal")
-        self.resultado_semantico.pack(fill="x")
-        self.resultado_sintactico = ScrolledText(right_frame, width=50, height=15, font=("Consolas", 11), state="normal")
-        self.resultado_sintactico.pack(fill="x")
-        self.resultado_semantico.pack_forget()
-        self.resultado_sintactico.pack_forget()
+        self.resultado_tokens = QTextEdit()
+        self.resultado_tokens.setReadOnly(True)
+        self.resultado_semantico = QTextEdit()
+        self.resultado_semantico.setReadOnly(True)
+        self.resultado_sintactico = QTextEdit()
+        self.resultado_sintactico.setReadOnly(True)
+        right_layout.addWidget(self.resultado_tokens)
+        right_layout.addWidget(self.resultado_semantico)
+        right_layout.addWidget(self.resultado_sintactico)
+        self.resultado_semantico.hide()
+        self.resultado_sintactico.hide()
 
         # Mensaje de log
-        self.mensaje_log = ttk.Label(right_frame, text="", foreground="green")
-        self.mensaje_log.pack(pady=5)
+        self.mensaje_log = QLabel("")
+        right_layout.addWidget(self.mensaje_log)
 
         # Botones de acción
-        acciones_frame = ttk.Frame(self)
-        acciones_frame.pack(pady=5)
-        ttk.Button(acciones_frame, text="Analizar", command=self.analizar).pack(side="left", padx=5)
-        ttk.Button(acciones_frame, text="Analizar archivo de prueba", command=self.abrir_modal_archivos).pack(side="left", padx=5)
-        ttk.Button(acciones_frame, text="Limpiar", command=self.limpiar).pack(side="left", padx=5)
+        acciones_layout = QHBoxLayout()
+        btn_analizar = QPushButton("Analizar")
+        btn_analizar.clicked.connect(self.analizar)
+        btn_archivo = QPushButton("Analizar archivo de prueba")
+        btn_archivo.clicked.connect(self.abrir_modal_archivos)
+        btn_limpiar = QPushButton("Limpiar")
+        btn_limpiar.clicked.connect(self.limpiar)
+        acciones_layout.addWidget(btn_analizar)
+        acciones_layout.addWidget(btn_archivo)
+        acciones_layout.addWidget(btn_limpiar)
+        right_layout.addLayout(acciones_layout)
 
     def mostrar_tokens(self):
-        self.resultado_tokens.pack(fill="x")
-        self.resultado_semantico.pack_forget()
-        self.resultado_sintactico.pack_forget()
+        self.resultado_tokens.show()
+        self.resultado_semantico.hide()
+        self.resultado_sintactico.hide()
 
     def mostrar_semantico(self):
-        self.resultado_tokens.pack_forget()
-        self.resultado_semantico.pack(fill="x")
-        self.resultado_sintactico.pack_forget()
+        self.resultado_tokens.hide()
+        self.resultado_semantico.show()
+        self.resultado_sintactico.hide()
 
     def mostrar_sintactico(self):
-        self.resultado_tokens.pack_forget()
-        self.resultado_semantico.pack_forget()
-        self.resultado_sintactico.pack(fill="x")
+        self.resultado_tokens.hide()
+        self.resultado_semantico.hide()
+        self.resultado_sintactico.show()
 
     def analizar(self):
-        entrada = self.editor.get("1.0", "end-1c")
+        entrada = self.editor.text()
         try:
             resultado = analizar_codigo(entrada)
-            self.resultado_tokens.config(state="normal")
-            self.resultado_tokens.delete("1.0", "end")
-            self.resultado_tokens.insert("1.0", "\n".join(resultado))
-            self.resultado_tokens.config(state="disabled")
+            self.resultado_tokens.setPlainText("\n".join(resultado))
             log_path = guardar_log(resultado)
-            self.mensaje_log.config(text=f"✅ Log guardado exitosamente en '{log_path}'", foreground="green")
+            self.mensaje_log.setText(f"✅ Log guardado exitosamente en '{log_path}'")
             self.mostrar_tokens()
         except Exception as e:
-            self.mensaje_log.config(text=f"❌ Error: {str(e)}", foreground="red")
+            self.mensaje_log.setText(f"❌ Error: {str(e)}")
 
     def limpiar(self):
-        self.editor.delete("1.0", "end")
-        for area in [self.resultado_tokens, self.resultado_semantico, self.resultado_sintactico]:
-            area.config(state="normal")
-            area.delete("1.0", "end")
-            area.config(state="disabled")
-        self.mensaje_log.config(text="")
+        self.editor.setText("")
+        self.resultado_tokens.clear()
+        self.resultado_semantico.clear()
+        self.resultado_sintactico.clear()
+        self.mensaje_log.setText("")
         self.mostrar_tokens()
 
     def abrir_modal_archivos(self):
-        ModalArchivos(self, self.cargar_archivo_test)
+        archivos = listar_archivos_test()
+        if not archivos:
+            QMessageBox.warning(self, "Sin archivos", "No hay archivos de prueba en la carpeta 'test'.")
+            return
+        archivo, _ = QFileDialog.getOpenFileName(self, "Selecciona un archivo de prueba (.cs)", "test", "Archivos C# (*.cs)")
+        if archivo:
+            self.cargar_archivo_test(os.path.basename(archivo))
 
     def cargar_archivo_test(self, nombre_archivo):
         try:
             contenido = cargar_archivo_test(nombre_archivo)
-            self.editor.delete("1.0", "end")
-            self.editor.insert("1.0", contenido)
+            self.editor.setText(contenido)
             self.analizar()
         except Exception as e:
-            messagebox.showerror("Error", f"No se pudo cargar el archivo: {e}")
+            QMessageBox.critical(self, "Error", f"No se pudo cargar el archivo: {e}")
 
 if __name__ == "__main__":
-    # Solo intenta lanzar la GUI si hay entorno gráfico disponible
-    if os.environ.get("DISPLAY") or os.name == "nt":
-        app = AnalizadorApp()
-        app.mainloop()
-    else:
-        print("No se detectó entorno gráfico. Ejecuta este programa en un entorno con GUI.")
-
-
-# Nota:
-# El componente gr.Code ya incluye scroll automático y numeración de líneas por defecto.
-# No es necesario ni posible agregar 'autoscroll=True' como argumento.
+    import sys
+    app = QApplication(sys.argv)
+    ventana = AnalizadorApp()
+    ventana.show()
+    sys.exit(app.exec_())
