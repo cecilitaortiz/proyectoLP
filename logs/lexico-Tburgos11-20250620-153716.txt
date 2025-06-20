@@ -1,0 +1,3 @@
+Tokens reconocidos:
+Línea 1: ID -> hola
+Línea 2: ID -> asdf

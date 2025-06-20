@@ -1,0 +1,2 @@
+Tokens reconocidos:
+Línea 1: ID -> hola
