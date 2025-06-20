@@ -1,24 +1,16 @@
 import os
-import gradio as gr
 import subprocess
+import tkinter as tk
+from tkinter import ttk, filedialog, messagebox
+from tkinter.scrolledtext import ScrolledText
 from lexer import lexer
 from main import analizar_codigo, guardar_log
-
 
 # Obtener nombre de usuario de Git
 try:
     usuario_git = subprocess.check_output(["git", "config", "user.name"]).strip().decode('utf-8')
 except subprocess.CalledProcessError:
     usuario_git = "desconocido"
-
-def gr_analizar_codigo(entrada):
-    try:
-        resultado = analizar_codigo(entrada)
-        log_path = guardar_log(resultado)
-        mensaje = f"✅ Log guardado exitosamente en '{log_path}'"
-        return gr.update(value="\n".join(resultado)), gr.update(value=mensaje, visible=True)
-    except Exception as e:
-        return gr.update(value=""), gr.update(value=f"❌ Error: {str(e)}", visible=True)
 
 def listar_archivos_test():
     carpeta = "test"
@@ -31,157 +23,153 @@ def cargar_archivo_test(nombre_archivo):
     with open(ruta, "r", encoding="utf-8") as f:
         return f.read()
 
-def gr_analizar_archivo_seleccionado(nombre_archivo):
-    try:
-        contenido = cargar_archivo_test(nombre_archivo)
-        resultado = analizar_codigo(contenido)
-        log_path = guardar_log(resultado)
-        mensaje = f"✅ Log guardado exitosamente en '{log_path}'"
-        return contenido, "\n".join(resultado), mensaje
-    except Exception as e:
-        return "", "", f"❌ Error: {str(e)}"
+class ModalArchivos(tk.Toplevel):
+    def __init__(self, master, callback_cargar):
+        super().__init__(master)
+        self.title("Selecciona o sube un archivo de prueba (.cs)")
+        self.callback_cargar = callback_cargar
+        self.geometry("400x200")
+        self.resizable(False, False)
+        self.transient(master)
+        self.grab_set()
 
-def gr_subir_archivo(archivo):
-    if archivo is not None:
-        ruta_destino = os.path.join("test", os.path.basename(archivo.name))
-        with open(ruta_destino, "wb") as f:
-            f.write(archivo.read())
-    return gr.Dropdown.update(choices=listar_archivos_test())
+        ttk.Label(self, text="Archivos en test/").pack(pady=(10, 2))
+        self.archivos_var = tk.StringVar()
+        self.archivos_dropdown = ttk.Combobox(self, textvariable=self.archivos_var, values=listar_archivos_test(), state="readonly")
+        self.archivos_dropdown.pack(fill="x", padx=20)
+        ttk.Button(self, text="Cargar archivo seleccionado", command=self.cargar_archivo).pack(pady=5)
 
-custom_css = """
-#editor {
-    font-size: 14px;
-    min-height: 350px;
-    max-height: 350px;
-    height: 350px;
-}
-.svelte-1ipelgc > .gr-box {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-.gr-row {
-    gap: 0 !important;
-}
-"""
+        ttk.Label(self, text="Subir archivo .cs").pack(pady=(10, 2))
+        ttk.Button(self, text="Seleccionar archivo...", command=self.subir_archivo).pack()
+        ttk.Button(self, text="Cerrar", command=self.destroy).pack(pady=10)
 
-with gr.Blocks(title="Analizador Léxico de C#", css=custom_css) as demo:
-    gr.Markdown("# Analizador Léxico de C#")
+    def cargar_archivo(self):
+        nombre = self.archivos_var.get()
+        if nombre:
+            self.callback_cargar(nombre)
+            self.destroy()
 
-    with gr.Row():
-        editor = gr.Code(
-            language="python",  # Cambia 'csharp' por 'python' o 'text' para evitar el error
-            lines=15,
-            elem_id="editor",
-            value="",
-            show_label=False
-        )
-        with gr.Column():
-            with gr.Row():
-                boton_tokens = gr.Button("Tokens", elem_id="btn_tokens")
-                boton_semantico = gr.Button("Semántico", elem_id="btn_semantico")
-                boton_sintactico = gr.Button("Sintáctico", elem_id="btn_sintactico")
-            resultado_tokens = gr.Textbox(lines=15, label="Tokens", elem_id="resultado_tokens", visible=True, max_lines=15, min_width=400)
-            resultado_semantico = gr.Textbox(lines=15, label="Semántico", elem_id="resultado_semantico", visible=False, max_lines=15, min_width=400)
-            resultado_sintactico = gr.Textbox(lines=15, label="Sintáctico", elem_id="resultado_sintactico", visible=False, max_lines=15, min_width=400)
+    def subir_archivo(self):
+        ruta = filedialog.askopenfilename(filetypes=[("Archivos C#", "*.cs")])
+        if ruta:
+            destino = os.path.join("test", os.path.basename(ruta))
+            with open(ruta, "rb") as src, open(destino, "wb") as dst:
+                dst.write(src.read())
+            self.archivos_dropdown['values'] = listar_archivos_test()
 
-    mensaje_log = gr.Markdown(visible=False)
+class AnalizadorApp(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Analizador Léxico de C#")
+        self.geometry("1100x600")
+        self.resizable(True, True)
 
-    with gr.Row():
-        boton_analizar = gr.Button("Analizar")
-        boton_archivo = gr.Button("Analizar archivo de prueba")
-        boton_limpiar = gr.Button("Limpiar")
+        # Título
+        ttk.Label(self, text="Analizador Léxico de C#", font=("Arial", 18, "bold")).pack(pady=10)
 
-    # Modal para seleccionar y subir archivos
-    with gr.Row(visible=False) as modal:
-        gr.Markdown("### Selecciona o sube un archivo de prueba (.cs)")
-        archivos_dropdown = gr.Dropdown(choices=listar_archivos_test(), label="Archivos en test/")
-        boton_cargar = gr.Button("Cargar archivo seleccionado")
-        subir_archivo = gr.File(label="Subir archivo .cs", file_types=[".cs"])
-        boton_cerrar = gr.Button("Cerrar")
+        main_frame = ttk.Frame(self)
+        main_frame.pack(fill="both", expand=True, padx=10, pady=5)
 
-    def mostrar_modal():
-        return gr.Row.update(visible=True)
+        # Editor de código
+        editor_frame = ttk.Frame(main_frame)
+        editor_frame.pack(side="left", fill="both", expand=True)
+        ttk.Label(editor_frame, text="Código fuente:").pack(anchor="w")
+        self.editor = ScrolledText(editor_frame, width=60, height=25, font=("Consolas", 12))
+        self.editor.pack(fill="both", expand=True)
 
-    def ocultar_modal():
-        return gr.Row.update(visible=False)
+        # Panel de resultados y botones
+        right_frame = ttk.Frame(main_frame)
+        right_frame.pack(side="left", fill="y", padx=(10,0))
 
-    boton_archivo.click(
-        fn=mostrar_modal,
-        inputs=None,
-        outputs=modal
-    )
+        # Botones de selección de resultado
+        botones_frame = ttk.Frame(right_frame)
+        botones_frame.pack(fill="x", pady=(0,5))
+        self.btn_tokens = ttk.Button(botones_frame, text="Tokens", command=self.mostrar_tokens)
+        self.btn_tokens.grid(row=0, column=0, padx=2)
+        self.btn_semantico = ttk.Button(botones_frame, text="Semántico", command=self.mostrar_semantico)
+        self.btn_semantico.grid(row=0, column=1, padx=2)
+        self.btn_sintactico = ttk.Button(botones_frame, text="Sintáctico", command=self.mostrar_sintactico)
+        self.btn_sintactico.grid(row=0, column=2, padx=2)
 
-    boton_cerrar.click(
-        fn=ocultar_modal,
-        inputs=None,
-        outputs=modal
-    )
+        # Áreas de resultados
+        self.resultado_tokens = ScrolledText(right_frame, width=50, height=15, font=("Consolas", 11), state="normal")
+        self.resultado_tokens.pack(fill="x")
+        self.resultado_semantico = ScrolledText(right_frame, width=50, height=15, font=("Consolas", 11), state="normal")
+        self.resultado_semantico.pack(fill="x")
+        self.resultado_sintactico = ScrolledText(right_frame, width=50, height=15, font=("Consolas", 11), state="normal")
+        self.resultado_sintactico.pack(fill="x")
+        self.resultado_semantico.pack_forget()
+        self.resultado_sintactico.pack_forget()
 
-    # Cargar archivo seleccionado de la lista
-    def gr_analizar_archivo_seleccionado(nombre_archivo):
+        # Mensaje de log
+        self.mensaje_log = ttk.Label(right_frame, text="", foreground="green")
+        self.mensaje_log.pack(pady=5)
+
+        # Botones de acción
+        acciones_frame = ttk.Frame(self)
+        acciones_frame.pack(pady=5)
+        ttk.Button(acciones_frame, text="Analizar", command=self.analizar).pack(side="left", padx=5)
+        ttk.Button(acciones_frame, text="Analizar archivo de prueba", command=self.abrir_modal_archivos).pack(side="left", padx=5)
+        ttk.Button(acciones_frame, text="Limpiar", command=self.limpiar).pack(side="left", padx=5)
+
+    def mostrar_tokens(self):
+        self.resultado_tokens.pack(fill="x")
+        self.resultado_semantico.pack_forget()
+        self.resultado_sintactico.pack_forget()
+
+    def mostrar_semantico(self):
+        self.resultado_tokens.pack_forget()
+        self.resultado_semantico.pack(fill="x")
+        self.resultado_sintactico.pack_forget()
+
+    def mostrar_sintactico(self):
+        self.resultado_tokens.pack_forget()
+        self.resultado_semantico.pack_forget()
+        self.resultado_sintactico.pack(fill="x")
+
+    def analizar(self):
+        entrada = self.editor.get("1.0", "end-1c")
+        try:
+            resultado = analizar_codigo(entrada)
+            self.resultado_tokens.config(state="normal")
+            self.resultado_tokens.delete("1.0", "end")
+            self.resultado_tokens.insert("1.0", "\n".join(resultado))
+            self.resultado_tokens.config(state="disabled")
+            log_path = guardar_log(resultado)
+            self.mensaje_log.config(text=f"✅ Log guardado exitosamente en '{log_path}'", foreground="green")
+            self.mostrar_tokens()
+        except Exception as e:
+            self.mensaje_log.config(text=f"❌ Error: {str(e)}", foreground="red")
+
+    def limpiar(self):
+        self.editor.delete("1.0", "end")
+        for area in [self.resultado_tokens, self.resultado_semantico, self.resultado_sintactico]:
+            area.config(state="normal")
+            area.delete("1.0", "end")
+            area.config(state="disabled")
+        self.mensaje_log.config(text="")
+        self.mostrar_tokens()
+
+    def abrir_modal_archivos(self):
+        ModalArchivos(self, self.cargar_archivo_test)
+
+    def cargar_archivo_test(self, nombre_archivo):
         try:
             contenido = cargar_archivo_test(nombre_archivo)
-            resultado = analizar_codigo(contenido)
-            log_path = guardar_log(resultado)
-            mensaje = f"✅ Log guardado exitosamente en '{log_path}'"
-            return contenido, "\n".join(resultado), mensaje
+            self.editor.delete("1.0", "end")
+            self.editor.insert("1.0", contenido)
+            self.analizar()
         except Exception as e:
-            return "", "", f"❌ Error: {str(e)}"
-
-    boton_cargar.click(
-        fn=gr_analizar_archivo_seleccionado,
-        inputs=archivos_dropdown,
-        outputs=[editor, resultado_tokens, mensaje_log]
-    )
-
-    # Subir archivo .cs desde el sistema de archivos
-    subir_archivo.upload(
-        fn=gr_subir_archivo,
-        inputs=subir_archivo,
-        outputs=archivos_dropdown
-    )
-
-    # Analizar código ingresado manualmente
-    boton_analizar.click(
-        fn=gr_analizar_codigo,
-        inputs=editor,
-        outputs=[resultado_tokens, mensaje_log]
-    )
-
-    # Limpiar todos los campos y resultados
-    boton_limpiar.click(
-        fn=lambda: ("", "", "", "", gr.update(value="", visible=False)),
-        inputs=None,
-        outputs=[editor, resultado_tokens, resultado_semantico, resultado_sintactico, mensaje_log]
-    )
-
-    # Lógica para mostrar solo el recuadro seleccionado
-    def mostrar_tokens():
-        return gr.update(visible=True), gr.update(visible=False), gr.update(visible=False)
-    def mostrar_semantico():
-        return gr.update(visible=False), gr.update(visible=True), gr.update(visible=False)
-    def mostrar_sintactico():
-        return gr.update(visible=False), gr.update(visible=False), gr.update(visible=True)
-
-    boton_tokens.click(
-        fn=mostrar_tokens,
-        inputs=None,
-        outputs=[resultado_tokens, resultado_semantico, resultado_sintactico]
-    )
-    boton_semantico.click(
-        fn=mostrar_semantico,
-        inputs=None,
-        outputs=[resultado_tokens, resultado_semantico, resultado_sintactico]
-    )
-    boton_sintactico.click(
-        fn=mostrar_sintactico,
-        inputs=None,
-        outputs=[resultado_tokens, resultado_semantico, resultado_sintactico]
-    )
+            messagebox.showerror("Error", f"No se pudo cargar el archivo: {e}")
 
 if __name__ == "__main__":
-    demo.launch()
- 
+    # Solo intenta lanzar la GUI si hay entorno gráfico disponible
+    if os.environ.get("DISPLAY") or os.name == "nt":
+        app = AnalizadorApp()
+        app.mainloop()
+    else:
+        print("No se detectó entorno gráfico. Ejecuta este programa en un entorno con GUI.")
+
 
 # Nota:
 # El componente gr.Code ya incluye scroll automático y numeración de líneas por defecto.
