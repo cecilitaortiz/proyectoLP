@@ -5,6 +5,7 @@ from tkinter import ttk, filedialog, messagebox
 from tkinter.scrolledtext import ScrolledText
 from lexer import lexer
 from main import analizar_codigo, guardar_log
+from tkcode import CodeEditor
 
 # Obtener nombre de usuario de Git
 try:
@@ -70,11 +71,20 @@ class AnalizadorApp(tk.Tk):
         main_frame = ttk.Frame(self)
         main_frame.pack(fill="both", expand=True, padx=10, pady=5)
 
-        # Editor de código
+        # Editor de código con numeración de líneas y resaltado para C#
         editor_frame = ttk.Frame(main_frame)
         editor_frame.pack(side="left", fill="both", expand=True)
         ttk.Label(editor_frame, text="Código fuente:").pack(anchor="w")
-        self.editor = ScrolledText(editor_frame, width=60, height=25, font=("Consolas", 12))
+        self.editor = CodeEditor(
+            editor_frame,
+            width=60,
+            height=25,
+            language="csharp",  # <-- Cambia aquí a "csharp"
+            font=("Consolas", 12),
+            blockcursor=True,
+            background="white",
+            highlighter="dracula"
+        )
         self.editor.pack(fill="both", expand=True)
 
         # Panel de resultados y botones
