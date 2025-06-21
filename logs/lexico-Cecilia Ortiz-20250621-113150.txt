@@ -112,3 +112,4 @@ Línea 28: RPAREN -> )
 Línea 28: SEMICOLON -> ;
 Línea 29: RBRACE -> }
 Línea 30: RBRACE -> }
+Línea 32: ID -> Q

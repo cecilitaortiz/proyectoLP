@@ -1,3 +1,0 @@
-Tokens reconocidos:
-El archivo Thomas_prueba.cs no existe. Crea tu algoritmo de prueba en ese archivo.
-El archivo Cecilia_prueba.cs no existe. Crea tu algoritmo de prueba en ese archivo.

@@ -1,7 +1,0 @@
-Tokens reconocidos:
-Línea 1: INT -> int
-Línea 1: ID -> numero
-Línea 1: EQUALS -> =
-Línea 1: INT -> 4
-Línea 1: SEMICOLON -> ;
-Línea 1: FLOAT -> 4.9

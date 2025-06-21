@@ -1,9 +1,0 @@
-Tokens reconocidos:
-Línea 1: INT -> 1
-Línea 1: DOT -> .
-Línea 1: ID -> d
-Línea 2: INT -> 2
-Línea 2: DOT -> .
-Línea 2: INT -> 23
-Línea 3: INT -> 3
-Línea 3: DOT -> .

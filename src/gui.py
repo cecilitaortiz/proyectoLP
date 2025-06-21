@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.Qsci import QsciScintilla, QsciLexerCSharp
 from lexer import lexer
+from syntax import parser
 from main import analizar_codigo, guardar_log
 
 def listar_archivos_test():
@@ -106,6 +107,7 @@ class AnalizadorApp(QMainWindow):
         self.resultado_tokens.hide()
         self.resultado_semantico.hide()
         self.resultado_sintactico.show()
+        
 
     def analizar(self):
         entrada = self.editor.text()
