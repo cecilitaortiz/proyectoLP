@@ -6,7 +6,12 @@ from PyQt5.QtWidgets import (
 from PyQt5.Qsci import QsciScintilla, QsciLexerCSharp
 from lexer import lexer
 from syntax import parser
-from main import analizar_codigo, guardar_log
+from main import (
+    analizar_lexico,
+    guardar_log_lexico,
+    analizar_sintactico,
+    guardar_log_sintactico,
+)
 
 def listar_archivos_test():
     carpeta = "test"
@@ -107,15 +112,27 @@ class AnalizadorApp(QMainWindow):
         self.resultado_tokens.hide()
         self.resultado_semantico.hide()
         self.resultado_sintactico.show()
-        
+        # Analiza sintácticamente el código y muestra el resultado
+        entrada = self.editor.text()
+        resultado_sintactico = analizar_sintactico(entrada)
+        self.resultado_sintactico.setPlainText("\n".join(resultado_sintactico))
+        # Guarda el log sintáctico
+        guardar_log_sintactico(resultado_sintactico)
 
     def analizar(self):
         entrada = self.editor.text()
         try:
-            resultado = analizar_codigo(entrada)
-            self.resultado_tokens.setPlainText("\n".join(resultado))
-            log_path = guardar_log(resultado)
-            self.mensaje_log.setText(f"✅ Log guardado exitosamente en '{log_path}'")
+            # Análisis léxico
+            resultado_lexico = analizar_lexico(entrada)
+            self.resultado_tokens.setPlainText("\n".join(resultado_lexico))
+            log_path_lexico = guardar_log_lexico(resultado_lexico)
+            # Análisis sintáctico
+            resultado_sintactico = analizar_sintactico(entrada)
+            self.resultado_sintactico.setPlainText("\n".join(resultado_sintactico))
+            log_path_sintactico = guardar_log_sintactico(resultado_sintactico)
+            self.mensaje_log.setText(
+                f"✅ Logs guardados:\nLéxico: '{log_path_lexico}'\nSintáctico: '{log_path_sintactico}'"
+            )
             self.mostrar_tokens()
         except Exception as e:
             self.mensaje_log.setText(f"❌ Error: {str(e)}")
