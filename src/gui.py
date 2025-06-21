@@ -162,9 +162,4 @@ class AnalizadorApp(QMainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"No se pudo cargar el archivo: {e}")
 
-if __name__ == "__main__":
-    import sys
-    app = QApplication(sys.argv)
-    ventana = AnalizadorApp()
-    ventana.show()
-    sys.exit(app.exec_())
+
