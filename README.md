@@ -1,1 +1,3 @@
 # proyectoLP
+
+Archivo de documentación.
