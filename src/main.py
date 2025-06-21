@@ -94,3 +94,12 @@ def analizar_archivo_prueba():
     return contenido_total, resultado_total
 
 # Nota: Ya no hay interfaz gráfica
+
+if __name__ == "__main__":
+    from PyQt5.QtWidgets import QApplication
+    from gui import AnalizadorApp
+    import sys
+    app = QApplication(sys.argv)
+    ventana = AnalizadorApp()
+    ventana.show()
+    sys.exit(app.exec_())
