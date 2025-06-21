@@ -36,58 +36,41 @@ reserved = {
     'return': 'RETURN',
     'void': 'VOID',
     'using': 'USING',
-    'namespace': 'NAMESPACE',
-    'switch': 'SWITCH',
-    'case': 'CASE',
+     'switch': 'SWITCH',           # No usado
+     'case': 'CASE',               # No usado
     'break': 'BREAK',
     'continue': 'CONTINUE',
     'do': 'DO',
     'while': 'WHILE',
-    'try': 'TRY',
-    'catch': 'CATCH',
-    'finally': 'FINALLY',
-    'throw': 'THROW',
+    'try': 'TRY',                 # No usado
+     'catch': 'CATCH',             # No usado
+    'finally': 'FINALLY',         # No usado
+    'throw': 'THROW',             # No usado
     'true': 'TRUE',
     'false': 'FALSE',
     'null': 'NULL',
-    'enum': 'ENUM',
-    'const': 'CONST',
-    'readonly': 'READONLY',
-    'interface': 'INTERFACE',
-    'override': 'OVERRIDE',
-    'abstract': 'ABSTRACT',
-    'virtual': 'VIRTUAL',
-    'base': 'BASE',
-    'object': 'OBJECT',
-    'decimal': 'DECIMAL',
-    'byte': 'BYTE',
-    'short': 'SHORT',
-    'long': 'LONG',
-    'foreach': 'FOREACH',
-    'out': 'OUT',
-    'ref': 'REF',
-    'params': 'PARAMS',
-    'get': 'GET',
-    'set': 'SET',
-    'operator': 'OPERATOR',
-    'event': 'EVENT',
-    'delegate': 'DELEGATE',
-    'struct': 'STRUCT',
-    'sizeof': 'SIZEOF',
-    'typeof': 'TYPEOF',
-    'is': 'IS',
-    'lock': 'LOCK',
-    'checked': 'CHECKED',
-    'unchecked': 'UNCHECKED',
-    'fixed': 'FIXED',
-    'stackalloc': 'STACKALLOC',
-    'implicit': 'IMPLICIT',
-    'explicit': 'EXPLICIT',
-    'extern': 'EXTERN',
-    'partial': 'PARTIAL',
-    'yield': 'YIELD',
-    'add': 'ADD',
-    'remove': 'REMOVE'
+     'enum': 'ENUM',               # No usado
+     'const': 'CONST',             # No usado
+     'readonly': 'READONLY',       # No usado
+     'interface': 'INTERFACE',     # No usado
+     'override': 'OVERRIDE',       # No usado
+     'abstract': 'ABSTRACT',       # No usado
+     'virtual': 'VIRTUAL',         # No usado
+     'base': 'BASE',               # No usado
+     'object': 'OBJECT',           # No usado
+
+     'foreach': 'FOREACH',         # No usado
+     'out': 'OUT',                 # No usado
+     'ref': 'REF',                 # No usado
+     'params': 'PARAMS',           # No usado
+     'get': 'GET',                 # No usado
+     'set': 'SET',                 # No usado
+     'operator': 'OPERATOR',       # No usado
+     'event': 'EVENT',             # No usado
+    # 'sizeof': 'SIZEOF',           # No usado
+    # 'typeof': 'TYPEOF',           # No usado
+     'add': 'ADD',                 # No usado
+    'remove': 'REMOVE'            # No usado
 }
 
 tokens += tuple(reserved.values())
