@@ -2,6 +2,7 @@ from datetime import datetime
 import os
 import subprocess
 from lexer import lexer  # Importa el lexer desde lexer.py
+from syntax import parser  # Importa el parser desde syntax.py
 
 # ---------------------------
 # Obtener nombre de usuario de Git
@@ -16,8 +17,8 @@ except subprocess.CalledProcessError:
 # Funciones de análisis y log
 # ---------------------------
 
-def guardar_log(resultado):
-    """Guarda el resultado del análisis en un archivo de log."""
+def guardar_log_lexico(resultado):
+    """Guarda el resultado del análisis léxico en un archivo de log."""
     if not os.path.exists("logs"):
         os.makedirs("logs")
     fecha_hora = datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -27,7 +28,7 @@ def guardar_log(resultado):
         f.write("\n".join(resultado))
     return nombre_archivo
 
-def analizar_codigo(entrada):
+def analizar_lexico(entrada):
     """Analiza el código ingresado y retorna los tokens."""
     lexer.lineno = 1
     lexer.input(entrada)
@@ -37,6 +38,34 @@ def analizar_codigo(entrada):
         if not tok:
             break
         resultado.append(f"Línea {tok.lineno}: {tok.type} -> {tok.value}")
+    return resultado
+
+def guardar_log_sintactico(resultado):
+    """Guarda el resultado del análisis sintáctico en un archivo de log."""
+    if not os.path.exists("logs"):
+        os.makedirs("logs")
+    fecha_hora = datetime.now().strftime("%Y%m%d-%H%M%S")
+    nombre_archivo = f"logs/sintactico-{usuario_git}-{fecha_hora}.txt"
+    with open(nombre_archivo, "w", encoding="utf-8") as f:
+        f.write("Sintaxis:\n")
+        f.write("\n".join(resultado))
+    return nombre_archivo
+
+def analizar_sintactico(entrada):
+    """Analiza la sintaxis del código ingresado y retorna los errores o éxito."""
+    resultado = []
+    def custom_error(p):
+        if p:
+            resultado.append(f"Error de sintaxis en '{p.value}' línea {p.lineno}")
+        else:
+            resultado.append("Error de sintaxis al final del archivo")
+    parser.errorfunc = custom_error
+    try:
+        parser.parse(entrada, lexer=lexer)
+        if not resultado:
+            resultado.append("Análisis sintáctico exitoso.")
+    except Exception as e:
+        resultado.append(f"Excepción: {e}")
     return resultado
 
 def analizar_archivo_prueba():
@@ -64,4 +93,4 @@ def analizar_archivo_prueba():
         resultado_total.append("")
     return contenido_total, resultado_total
 
-# Nota: Ya no hay interfaz gráfica aquí.
+# Nota: Ya no hay interfaz gráfica
