@@ -102,34 +102,69 @@ class AnalizadorApp(QMainWindow):
         self.resultado_tokens.show()
         self.resultado_semantico.hide()
         self.resultado_sintactico.hide()
+        if hasattr(self, "_ultimo_resultado_lexico"):
+            # Usa setHtml para mostrar HTML (colores)
+            # Si algún resultado contiene HTML, usa setHtml, si no, usa setPlainText
+            texto = "\n".join(self._ultimo_resultado_lexico)
+            if "<span style='color:red;'>" in texto or "<span style=\"color:red;\">" in texto:
+                self.resultado_tokens.setHtml(texto.replace("\n", "<br>"))
+            else:
+                self.resultado_tokens.setPlainText(texto)
 
     def mostrar_semantico(self):
         self.resultado_tokens.hide()
         self.resultado_semantico.show()
         self.resultado_sintactico.hide()
+        if hasattr(self, "_ultimo_resultado_semantico"):
+            texto = "\n".join(self._ultimo_resultado_semantico)
+            self.resultado_semantico.setHtml(self._resaltar_errores(texto))
 
     def mostrar_sintactico(self):
         self.resultado_tokens.hide()
         self.resultado_semantico.hide()
         self.resultado_sintactico.show()
-        # Analiza sintácticamente el código y muestra el resultado
-        entrada = self.editor.text()
-        resultado_sintactico = analizar_sintactico(entrada)
-        self.resultado_sintactico.setPlainText("\n".join(resultado_sintactico))
-        # Guarda el log sintáctico
-        guardar_log_sintactico(resultado_sintactico)
+        if hasattr(self, "_ultimo_resultado_sintactico"):
+            texto = "\n".join(self._ultimo_resultado_sintactico)
+            self.resultado_sintactico.setHtml(self._resaltar_errores(texto))
+
+    def _resaltar_errores(self, texto):
+        # Resalta líneas que contienen 'error' o 'Este caracter no está definido' en rojo
+        lineas = texto.splitlines()
+        resaltadas = []
+        for linea in lineas:
+            if "error" in linea.lower() or "Este caracter no está definido" in linea:
+                resaltadas.append(f'<span style="color:red;">{linea}</span>')
+            elif linea.strip().startswith("<span style='color:red;'>"):
+                # Si ya viene con HTML, solo la agregamos
+                resaltadas.append(linea)
+            else:
+                resaltadas.append(linea)
+        return "<br>".join(resaltadas)
 
     def analizar(self):
         entrada = self.editor.text()
         try:
+            from lexer import lexer
+            lexer.lineno = 1
+            self._ultimo_resultado_lexico = []
+            self._ultimo_resultado_sintactico = []
+            self._ultimo_resultado_semantico = []
             # Análisis léxico
             resultado_lexico = analizar_lexico(entrada)
-            self.resultado_tokens.setPlainText("\n".join(resultado_lexico))
+            # Si algún resultado contiene HTML, usa setHtml, si no, usa setPlainText
+            self._ultimo_resultado_lexico = resultado_lexico
+            if any("<span style='color:red;'>" in linea or "<span style=\"color:red;\">" in linea for linea in resultado_lexico):
+                self.resultado_tokens.setHtml("<br>".join(resultado_lexico))
+            else:
+                self.resultado_tokens.setPlainText("\n".join(resultado_lexico))
             log_path_lexico = guardar_log_lexico(resultado_lexico)
             # Análisis sintáctico
             resultado_sintactico = analizar_sintactico(entrada)
+            self._ultimo_resultado_sintactico = resultado_sintactico
             self.resultado_sintactico.setPlainText("\n".join(resultado_sintactico))
             log_path_sintactico = guardar_log_sintactico(resultado_sintactico)
+            self._ultimo_resultado_semantico = []  # O el resultado real si tienes análisis semántico
+            self.resultado_semantico.setPlainText("\n".join(self._ultimo_resultado_semantico))
             self.mensaje_log.setText(
                 f"✅ Logs guardados:\nLéxico: '{log_path_lexico}'\nSintáctico: '{log_path_sintactico}'"
             )
@@ -143,6 +178,10 @@ class AnalizadorApp(QMainWindow):
         self.resultado_semantico.clear()
         self.resultado_sintactico.clear()
         self.mensaje_log.setText("")
+        # Limpia los resultados previos para evitar mostrar resultados viejos
+        self._ultimo_resultado_lexico = []
+        self._ultimo_resultado_sintactico = []
+        self._ultimo_resultado_semantico = []
         self.mostrar_tokens()
 
     def abrir_modal_archivos(self):

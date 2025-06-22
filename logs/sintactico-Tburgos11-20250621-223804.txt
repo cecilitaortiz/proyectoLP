@@ -1,0 +1,2 @@
+Sintaxis:
+Error de sintaxis en 'Hola' línea 16

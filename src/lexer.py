@@ -5,13 +5,16 @@ from ply import lex
 # Definición de tokens y lexer para C#
 # ---------------------------
 
+# Solo define los tokens que realmente usas en las reglas del parser
 tokens = (
     'ID', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
     'EQUALS', 'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'SEMICOLON', 'STRING', 'LT', 'GT',
-    'INCREMENT', 'DECREMENT', 'AND', 'OR', 'ARROW', 'LBRACKET', 'RBRACKET', 'DOT',
-    'COMMA', 'COLON', 'QUESTION', 'AMPERSAND', 'PIPE', 'MOD', 'NOT', 'QUOTE', 'APOSTROPHE', 'COMMENT',
-    'LE', 'GE', 'EQ', 'NE',  # <=, >=, ==, !=
-    'PLUSEQ', 'MINUSEQ', 'TIMESEQ', 'DIVEQ', 'MODEQ',  # +=, -=, *=, /=, %=
+    'COMMA', 'MOD', 'NOT', 'DOT',
+    'LE', 'GE', 'EQ', 'NE',
+    'CONSOLE', 'WRITELINE', 'READLINE',
+    'INT', 'DOUBLE', 'FLOAT', 'BOOL', 'STRINGTYPE', 'CHAR', 'VAR', 'LIST',
+    'FOR', 'IF', 'ELSE', 'CLASS', 'PUBLIC', 'RETURN', 'VOID', 'USING', 'GET', 'SET', 'TRUE', 'FALSE',
+    'AND', 'OR'
 )
 
 reserved = {
@@ -28,59 +31,20 @@ reserved = {
     'else': 'ELSE',
     'class': 'CLASS',
     'public': 'PUBLIC',
-    'private': 'PRIVATE',
-    'protected': 'PROTECTED',
-    'static': 'STATIC',
-    'new': 'NEW',
-    'this': 'THIS',
     'return': 'RETURN',
     'void': 'VOID',
     'using': 'USING',
-     'switch': 'SWITCH',           # No usado
-     'case': 'CASE',               # No usado
-    'break': 'BREAK',
-    'continue': 'CONTINUE',
-    'do': 'DO',
-    'while': 'WHILE',
-    'try': 'TRY',                 # No usado
-     'catch': 'CATCH',             # No usado
-    'finally': 'FINALLY',         # No usado
-    'throw': 'THROW',             # No usado
+    'get': 'GET',
+    'set': 'SET',
     'true': 'TRUE',
     'false': 'FALSE',
-    'null': 'NULL',
-     'enum': 'ENUM',               # No usado
-     'const': 'CONST',             # No usado
-     'readonly': 'READONLY',       # No usado
-     'interface': 'INTERFACE',     # No usado
-     'override': 'OVERRIDE',       # No usado
-     'abstract': 'ABSTRACT',       # No usado
-     'virtual': 'VIRTUAL',         # No usado
-     'base': 'BASE',               # No usado
-     'object': 'OBJECT',           # No usado
-
-     'foreach': 'FOREACH',         # No usado
-     'out': 'OUT',                 # No usado
-     'ref': 'REF',                 # No usado
-     'params': 'PARAMS',           # No usado
-     'get': 'GET',                 # No usado
-     'set': 'SET',                 # No usado
-     'operator': 'OPERATOR',       # No usado
-     'event': 'EVENT',             # No usado
-    # 'sizeof': 'SIZEOF',           # No usado
-    # 'typeof': 'TYPEOF',           # No usado
-     'add': 'ADD',                 # No usado
-    'remove': 'REMOVE'            # No usado
+    'Console': 'CONSOLE',
+    'WriteLine': 'WRITELINE',
+    'ReadLine': 'READLINE'
 }
 
-tokens += tuple(reserved.values())
+# No sumes los tokens de reserved, ya están incluidos arriba
 
-# Expresiones regulares para los tokens (orden: primero los de mayor longitud)
-t_INCREMENT   = r'\+\+'
-t_DECREMENT   = r'--'
-t_AND         = r'&&'
-t_OR          = r'\|\|'
-t_ARROW       = r'->'
 t_PLUS        = r'\+'
 t_MINUS       = r'-'
 t_TIMES       = r'\*'
@@ -90,21 +54,19 @@ t_LPAREN      = r'\('
 t_RPAREN      = r'\)'
 t_LBRACE      = r'\{'
 t_RBRACE      = r'\}'
-t_LBRACKET    = r'\['
-t_RBRACKET    = r'\]'
 t_SEMICOLON   = r';'
 t_COMMA       = r','
-t_COLON       = r':'
-t_QUESTION    = r'\?'
-t_AMPERSAND   = r'&'
-t_PIPE        = r'\|'
 t_DOT         = r'\.'
 t_LT          = r'<'
 t_GT          = r'>'
 t_MOD         = r'%'
 t_NOT         = r'!'
-t_QUOTE       = r'"'
-t_APOSTROPHE  = r"'"
+t_LE          = r'<='
+t_GE          = r'>='
+t_EQ          = r'=='
+t_NE          = r'!='
+t_AND         = r'&&'
+t_OR          = r'\|\|'
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
@@ -131,6 +93,11 @@ def t_STRING(t):
     t.value = t.value[1:-1]
     return t
 
+def t_CHAR(t):
+    r"\'([^\\']|\\.)\'"
+    t.value = t.value[1:-1]  # Quita las comillas simples
+    return t
+
 def t_ignore_whitespace(t):
     r'[ \t]+'
     pass
@@ -153,7 +120,7 @@ def t_ignore_unicode(t):
 
 def t_error(t):
     if not re.match(r'\s', t.value[0]):
-        print(f"Error de análisis en la línea {t.lineno}: {t.value[0]}")
+        print(f"Este caracter no está definido: '{t.value[0]}' en la línea {t.lineno}")
     t.lexer.skip(1)
 
 lexer = lex.lex()

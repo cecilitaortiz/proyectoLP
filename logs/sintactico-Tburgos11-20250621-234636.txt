@@ -1,0 +1,5 @@
+Sintaxis:
+Este caracter no está definido: '@' en la línea 1
+Este caracter no está definido: '$' en la línea 2
+Este caracter no está definido: '$' en la línea 2
+Error de sintaxis: Fin de entrada inesperado.

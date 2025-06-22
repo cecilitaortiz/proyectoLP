@@ -1,0 +1,2 @@
+Sintaxis:
+Análisis sintáctico exitoso.

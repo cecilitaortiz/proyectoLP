@@ -1,0 +1,2 @@
+Sintaxis:
+Error de sintaxis en 'char' línea 3

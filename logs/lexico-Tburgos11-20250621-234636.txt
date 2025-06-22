@@ -1,0 +1,4 @@
+Tokens reconocidos:
+<span style='color:red;'>Este caracter no está definido: '@' en la línea 2</span>
+<span style='color:red;'>Este caracter no está definido: '$' en la línea 4</span>
+<span style='color:red;'>Este caracter no está definido: '$' en la línea 4</span>

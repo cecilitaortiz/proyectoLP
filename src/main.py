@@ -33,11 +33,22 @@ def analizar_lexico(entrada):
     lexer.lineno = 1
     lexer.input(entrada)
     resultado = []
-    while True:
+    pos = 0
+    length = len(entrada)
+    while pos < length:
         tok = lexer.token()
-        if not tok:
-            break
-        resultado.append(f"Línea {tok.lineno}: {tok.type} -> {tok.value}")
+        if tok:
+            resultado.append(f"Línea {tok.lineno}: {tok.type} -> {tok.value}")
+            pos = lexer.lexpos
+        else:
+            # Si hay un carácter no reconocido, repórtalo y avanza uno
+            if pos < length and not entrada[pos].isspace():
+                linea_actual = entrada.count('\n', 0, pos) + 1
+                resultado.append(f"<span style='color:red;'>Este caracter no está definido: '{entrada[pos]}' en la línea {linea_actual}</span>")
+            pos += 1
+            lexer.lexpos = pos
+            # Reinicia el lexer para continuar desde el nuevo pos
+            lexer.input(entrada[pos:])
     return resultado
 
 def guardar_log_sintactico(resultado):
@@ -54,18 +65,27 @@ def guardar_log_sintactico(resultado):
 def analizar_sintactico(entrada):
     """Analiza la sintaxis del código ingresado y retorna los errores o éxito."""
     resultado = []
-    def custom_error(p):
-        if p:
-            resultado.append(f"Error de sintaxis en '{p.value}' línea {p.lineno}")
-        else:
-            resultado.append("Error de sintaxis al final del archivo")
-    parser.errorfunc = custom_error
+    from lexer import lexer
+    lexer.lineno = 1  # Reinicia el contador de líneas antes de analizar
+    # Limpia el buffer del lexer si existe
+    if hasattr(lexer, 'input'):
+        lexer.input('')
+    import io
+    import sys
+    old_stdout = sys.stdout
+    sys.stdout = mystdout = io.StringIO()
     try:
         parser.parse(entrada, lexer=lexer)
-        if not resultado:
-            resultado.append("Análisis sintáctico exitoso.")
     except Exception as e:
         resultado.append(f"Excepción: {e}")
+    sys.stdout = old_stdout
+    salida = mystdout.getvalue().splitlines()
+    # Filtra mensajes de error de caracter no definido para que NO aparezcan en sintáctico
+    for linea in salida:
+        if "Este caracter no está definido" not in linea:
+            resultado.append(linea)
+    if not resultado:
+        resultado.append("Análisis sintáctico exitoso.")
     return resultado
 
 def analizar_archivo_prueba():
@@ -103,3 +123,9 @@ if __name__ == "__main__":
     ventana = AnalizadorApp()
     ventana.show()
     sys.exit(app.exec_())
+
+    with open("archivo.cs") as f:
+        data = f.read()
+
+    lexer.lineno = 1  # Reinicia el contador de líneas antes de analizar
+    parser.parse(data, lexer=lexer)

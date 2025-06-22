@@ -1,0 +1,17 @@
+Sintaxis:
+Reconocido tipo: int
+Reconocido expr: 10
+Regla: var_decl -> int numero = 10;
+Reconocido tipo: double
+Reconocido expr: 3.14
+Regla: var_decl -> double pi = 3.14;
+Reconocido tipo: bool
+Reconocido expr: true
+Regla: var_decl -> bool activo = true;
+Reconocido tipo: char
+Reconocido expr: a
+Regla: var_decl -> char letra = a;
+Reconocido tipo: List
+Reconocido expr: null
+Regla: var_decl -> List lista = null;
+Regla: start -> var_decls

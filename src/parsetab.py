@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftORleftANDleftEQNEleftLTLEGTGEleftPLUSMINUSleftTIMESDIVIDEMODrightNOTrightUMINUSABSTRACT ADD AMPERSAND AND APOSTROPHE ARROW BASE BOOL BREAK CASE CATCH CHAR CLASS COLON COMMA COMMENT CONST CONTINUE DECREMENT DIVEQ DIVIDE DO DOT DOUBLE ELSE ENUM EQ EQUALS EVENT FALSE FINALLY FLOAT FOR FOREACH GE GET GT ID IF INCREMENT INT INTERFACE LBRACE LBRACKET LE LIST LPAREN LT MINUS MINUSEQ MOD MODEQ NE NEW NOT NULL OBJECT OPERATOR OR OUT OVERRIDE PARAMS PIPE PLUS PLUSEQ PRIVATE PROTECTED PUBLIC QUESTION QUOTE RBRACE RBRACKET READONLY REF REMOVE RETURN RPAREN SEMICOLON SET STATIC STRING STRINGTYPE SWITCH THIS THROW TIMES TIMESEQ TRUE TRY USING VAR VIRTUAL VOID WHILEprogram : using_list class_listusing_list : using_list using_stmt\n| emptyusing_stmt : USING ID SEMICOLONclass_list : class_list class_decl\n| class_declclass_decl : PUBLIC CLASS ID LBRACE member_list RBRACEmember_list : member_list member\n| emptymember : method_decl\n| var_declmethod_decl : PUBLIC type ID LPAREN param_list RPAREN LBRACE stmt_list RBRACEvar_decl : type ID EQUALS expr SEMICOLON\n| type ID SEMICOLONparam_list : param_list COMMA param\n| param\n| emptyparam : type IDtype : INT\n| FLOAT\n| DOUBLE\n| STRINGTYPE\n| BOOL\n| CHAR\n| VOID\n| VARtype : LIST LT type GTstmt_list : stmt_list stmt\n| emptystmt : var_decl\n| assign_stmt\n| if_stmt\n| return_stmt\n| for_stmtassign_stmt : ID EQUALS expr SEMICOLONif_stmt : IF LPAREN expr RPAREN LBRACE stmt_list RBRACE else_partelse_part : ELSE LBRACE stmt_list RBRACE\n| emptyreturn_stmt : RETURN expr SEMICOLONfor_stmt : FOR LPAREN assign_stmt expr SEMICOLON assign_stmt RPAREN LBRACE stmt_list RBRACEexpr : LPAREN type RPAREN exprexpr : expr PLUS expr\n| expr MINUS expr\n| expr TIMES expr\n| expr DIVIDE expr\n| expr MOD expr\n| expr EQ expr\n| expr NE expr\n| expr LT expr\n| expr LE expr\n| expr GT expr\n| expr GE expr\n| expr AND expr\n| expr OR exprexpr : LPAREN expr RPARENexpr : NOT exprexpr : MINUS expr %prec UMINUSexpr : IDexpr : INT\n| FLOAT\n| DOUBLE\n| STRING\n| TRUE\n| FALSE\n| CHARempty :'
+_lr_signature = 'startAND BOOL CHAR CLASS COMMA CONSOLE DIVIDE DOT DOUBLE ELSE EQ EQUALS FALSE FLOAT FOR GE GET GT ID IF INT LBRACE LE LIST LPAREN LT MINUS MOD NE NOT OR PLUS PUBLIC RBRACE READLINE RETURN RPAREN SEMICOLON SET STRING STRINGTYPE TIMES TRUE USING VAR VOID WRITELINEstart : var_declsvar_decls : var_decls var_decl\n                 | var_decltype : INT\n            | DOUBLE\n            | FLOAT\n            | BOOL\n            | STRINGTYPE\n            | CHAR\n            | VAR\n            | LISTexpr : INTexpr : FLOATexpr : DOUBLEexpr : STRINGexpr : CHARexpr : TRUEexpr : FALSEexpr : IDvar_decl : type ID EQUALS expr SEMICOLON\n                | type ID SEMICOLON'
     
-_lr_action_items = {'USING':([0,2,3,5,12,],[-66,7,-3,-2,-4,]),'PUBLIC':([0,2,3,4,5,6,9,12,14,15,16,18,19,20,21,37,57,103,],[-66,8,-3,8,-2,-6,-5,-4,-66,17,-9,-7,-8,-10,-11,-14,-13,-12,]),'$end':([1,4,6,9,18,],[0,-1,-6,-5,-7,]),'ID':([7,11,22,23,24,25,26,27,28,29,30,32,36,37,42,43,44,52,53,57,58,59,60,61,62,63,64,65,66,67,68,69,70,95,97,100,101,104,105,106,107,108,109,111,113,114,116,119,120,121,124,125,126,128,130,132,133,134,135,136,137,138,],[10,13,33,-19,-20,-21,-22,-23,-24,-25,-26,35,40,-14,40,40,40,-27,79,-13,40,40,40,40,40,40,40,40,40,40,40,40,40,40,-66,102,-29,-28,-30,-31,-32,-33,-34,40,40,40,102,-39,40,-35,-66,102,102,-66,-36,-38,-66,-66,102,102,-40,-37,]),'CLASS':([8,],[11,]),'SEMICOLON':([10,33,40,41,45,46,47,48,49,50,51,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,96,99,115,117,123,],[12,37,-58,57,-59,-60,-61,-62,-63,-64,-65,-57,-56,-42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-41,119,121,125,]),'LBRACE':([13,80,122,129,131,],[14,97,124,133,134,]),'RBRACE':([14,15,16,19,20,21,37,57,97,100,101,103,104,105,106,107,108,109,119,121,124,126,128,130,132,133,134,135,136,137,138,],[-66,18,-9,-8,-10,-11,-14,-13,-66,103,-29,-12,-28,-30,-31,-32,-33,-34,-39,-35,-66,128,-66,-36,-38,-66,-66,137,138,-40,-37,]),'INT':([14,15,16,17,19,20,21,34,36,37,39,42,43,44,57,58,59,60,61,62,63,64,65,66,67,68,69,70,81,95,97,100,101,103,104,105,106,107,108,109,111,113,114,119,120,121,124,126,128,130,132,133,134,135,136,137,138,],[-66,23,-9,23,-8,-10,-11,23,45,-14,23,73,45,45,-13,45,45,45,45,45,45,45,45,45,45,45,45,45,23,45,-66,23,-29,-12,-28,-30,-31,-32,-33,-34,45,45,45,-39,45,-35,-66,23,-66,-36,-38,-66,-66,23,23,-40,-37,]),'FLOAT':([14,15,16,17,19,20,21,34,36,37,39,42,43,44,57,58,59,60,61,62,63,64,65,66,67,68,69,70,81,95,97,100,101,103,104,105,106,107,108,109,111,113,114,119,120,121,124,126,128,130,132,133,134,135,136,137,138,],[-66,24,-9,24,-8,-10,-11,24,46,-14,24,74,46,46,-13,46,46,46,46,46,46,46,46,46,46,46,46,46,24,46,-66,24,-29,-12,-28,-30,-31,-32,-33,-34,46,46,46,-39,46,-35,-66,24,-66,-36,-38,-66,-66,24,24,-40,-37,]),'DOUBLE':([14,15,16,17,19,20,21,34,36,37,39,42,43,44,57,58,59,60,61,62,63,64,65,66,67,68,69,70,81,95,97,100,101,103,104,105,106,107,108,109,111,113,114,119,120,121,124,126,128,130,132,133,134,135,136,137,138,],[-66,25,-9,25,-8,-10,-11,25,47,-14,25,75,47,47,-13,47,47,47,47,47,47,47,47,47,47,47,47,47,25,47,-66,25,-29,-12,-28,-30,-31,-32,-33,-34,47,47,47,-39,47,-35,-66,25,-66,-36,-38,-66,-66,25,25,-40,-37,]),'STRINGTYPE':([14,15,16,17,19,20,21,34,37,39,42,57,81,97,100,101,103,104,105,106,107,108,109,119,121,124,126,128,130,132,133,134,135,136,137,138,],[-66,26,-9,26,-8,-10,-11,26,-14,26,26,-13,26,-66,26,-29,-12,-28,-30,-31,-32,-33,-34,-39,-35,-66,26,-66,-36,-38,-66,-66,26,26,-40,-37,]),'BOOL':([14,15,16,17,19,20,21,34,37,39,42,57,81,97,100,101,103,104,105,106,107,108,109,119,121,124,126,128,130,132,133,134,135,136,137,138,],[-66,27,-9,27,-8,-10,-11,27,-14,27,27,-13,27,-66,27,-29,-12,-28,-30,-31,-32,-33,-34,-39,-35,-66,27,-66,-36,-38,-66,-66,27,27,-40,-37,]),'CHAR':([14,15,16,17,19,20,21,34,36,37,39,42,43,44,57,58,59,60,61,62,63,64,65,66,67,68,69,70,81,95,97,100,101,103,104,105,106,107,108,109,111,113,114,119,120,121,124,126,128,130,132,133,134,135,136,137,138,],[-66,28,-9,28,-8,-10,-11,28,51,-14,28,76,51,51,-13,51,51,51,51,51,51,51,51,51,51,51,51,51,28,51,-66,28,-29,-12,-28,-30,-31,-32,-33,-34,51,51,51,-39,51,-35,-66,28,-66,-36,-38,-66,-66,28,28,-40,-37,]),'VOID':([14,15,16,17,19,20,21,34,37,39,42,57,81,97,100,101,103,104,105,106,107,108,109,119,121,124,126,128,130,132,133,134,135,136,137,138,],[-66,29,-9,29,-8,-10,-11,29,-14,29,29,-13,29,-66,29,-29,-12,-28,-30,-31,-32,-33,-34,-39,-35,-66,29,-66,-36,-38,-66,-66,29,29,-40,-37,]),'VAR':([14,15,16,17,19,20,21,34,37,39,42,57,81,97,100,101,103,104,105,106,107,108,109,119,121,124,126,128,130,132,133,134,135,136,137,138,],[-66,30,-9,30,-8,-10,-11,30,-14,30,30,-13,30,-66,30,-29,-12,-28,-30,-31,-32,-33,-34,-39,-35,-66,30,-66,-36,-38,-66,-66,30,30,-40,-37,]),'LIST':([14,15,16,17,19,20,21,34,37,39,42,57,81,97,100,101,103,104,105,106,107,108,109,119,121,124,126,128,130,132,133,134,135,136,137,138,],[-66,31,-9,31,-8,-10,-11,31,-14,31,31,-13,31,-66,31,-29,-12,-28,-30,-31,-32,-33,-34,-39,-35,-66,31,-66,-36,-38,-66,-66,31,31,-40,-37,]),'GT':([23,24,25,26,27,28,29,30,38,40,41,45,46,47,48,49,50,51,52,72,73,74,75,76,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,96,99,115,117,118,123,],[-19,-20,-21,-22,-23,-24,-25,-26,52,-58,67,-59,-60,-61,-62,-63,-64,-65,-27,67,-59,-60,-61,-65,-57,-56,-42,-43,-44,-45,-46,67,67,-49,-50,-51,-52,67,67,-55,67,67,67,67,67,]),'RPAREN':([26,27,29,30,39,40,45,46,47,48,49,50,51,52,54,55,56,71,72,73,74,75,76,77,78,79,82,83,84,85,86,87,88,89,90,91,92,93,94,96,98,99,118,121,127,],[-22,-23,-25,-26,-66,-58,-59,-60,-61,-62,-63,-64,-65,-27,80,-16,-17,95,96,-19,-20,-21,-24,-57,-56,-18,-42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-15,-41,122,-35,129,]),'LT':([31,40,41,45,46,47,48,49,50,51,72,73,74,75,76,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,96,99,115,117,118,123,],[34,-58,65,-59,-60,-61,-62,-63,-64,-65,65,-59,-60,-61,-65,-57,-56,-42,-43,-44,-45,-46,65,65,-49,-50,-51,-52,65,65,-55,65,65,65,65,65,]),'EQUALS':([33,102,],[36,113,]),'LPAREN':([35,36,42,43,44,58,59,60,61,62,63,64,65,66,67,68,69,70,95,110,111,112,113,114,120,121,],[39,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,114,42,116,42,42,42,-35,]),'NOT':([36,42,43,44,58,59,60,61,62,63,64,65,66,67,68,69,70,95,111,113,114,120,121,],[44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,-35,]),'MINUS':([36,40,41,42,43,44,45,46,47,48,49,50,51,58,59,60,61,62,63,64,65,66,67,68,69,70,72,73,74,75,76,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,99,111,113,114,115,117,118,120,121,123,],[43,-58,59,43,43,43,-59,-60,-61,-62,-63,-64,-65,43,43,43,43,43,43,43,43,43,43,43,43,43,59,-59,-60,-61,-65,-57,-56,-42,-43,-44,-45,-46,59,59,59,59,59,59,59,59,43,-55,59,43,43,43,59,59,59,43,-35,59,]),'STRING':([36,42,43,44,58,59,60,61,62,63,64,65,66,67,68,69,70,95,111,113,114,120,121,],[48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,-35,]),'TRUE':([36,42,43,44,58,59,60,61,62,63,64,65,66,67,68,69,70,95,111,113,114,120,121,],[49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,-35,]),'FALSE':([36,42,43,44,58,59,60,61,62,63,64,65,66,67,68,69,70,95,111,113,114,120,121,],[50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,-35,]),'IF':([37,57,97,100,101,104,105,106,107,108,109,119,121,124,126,128,130,132,133,134,135,136,137,138,],[-14,-13,-66,110,-29,-28,-30,-31,-32,-33,-34,-39,-35,-66,110,-66,-36,-38,-66,-66,110,110,-40,-37,]),'RETURN':([37,57,97,100,101,104,105,106,107,108,109,119,121,124,126,128,130,132,133,134,135,136,137,138,],[-14,-13,-66,111,-29,-28,-30,-31,-32,-33,-34,-39,-35,-66,111,-66,-36,-38,-66,-66,111,111,-40,-37,]),'FOR':([37,57,97,100,101,104,105,106,107,108,109,119,121,124,126,128,130,132,133,134,135,136,137,138,],[-14,-13,-66,112,-29,-28,-30,-31,-32,-33,-34,-39,-35,-66,112,-66,-36,-38,-66,-66,112,112,-40,-37,]),'COMMA':([39,54,55,56,79,98,],[-66,81,-16,-17,-18,-15,]),'PLUS':([40,41,45,46,47,48,49,50,51,72,73,74,75,76,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,96,99,115,117,118,123,],[-58,58,-59,-60,-61,-62,-63,-64,-65,58,-59,-60,-61,-65,-57,-56,-42,-43,-44,-45,-46,58,58,58,58,58,58,58,58,-55,58,58,58,58,58,]),'TIMES':([40,41,45,46,47,48,49,50,51,72,73,74,75,76,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,96,99,115,117,118,123,],[-58,60,-59,-60,-61,-62,-63,-64,-65,60,-59,-60,-61,-65,-57,-56,60,60,-44,-45,-46,60,60,60,60,60,60,60,60,-55,60,60,60,60,60,]),'DIVIDE':([40,41,45,46,47,48,49,50,51,72,73,74,75,76,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,96,99,115,117,118,123,],[-58,61,-59,-60,-61,-62,-63,-64,-65,61,-59,-60,-61,-65,-57,-56,61,61,-44,-45,-46,61,61,61,61,61,61,61,61,-55,61,61,61,61,61,]),'MOD':([40,41,45,46,47,48,49,50,51,72,73,74,75,76,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,96,99,115,117,118,123,],[-58,62,-59,-60,-61,-62,-63,-64,-65,62,-59,-60,-61,-65,-57,-56,62,62,-44,-45,-46,62,62,62,62,62,62,62,62,-55,62,62,62,62,62,]),'EQ':([40,41,45,46,47,48,49,50,51,72,73,74,75,76,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,96,99,115,117,118,123,],[-58,63,-59,-60,-61,-62,-63,-64,-65,63,-59,-60,-61,-65,-57,-56,-42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,63,63,-55,63,63,63,63,63,]),'NE':([40,41,45,46,47,48,49,50,51,72,73,74,75,76,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,96,99,115,117,118,123,],[-58,64,-59,-60,-61,-62,-63,-64,-65,64,-59,-60,-61,-65,-57,-56,-42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,64,64,-55,64,64,64,64,64,]),'LE':([40,41,45,46,47,48,49,50,51,72,73,74,75,76,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,96,99,115,117,118,123,],[-58,66,-59,-60,-61,-62,-63,-64,-65,66,-59,-60,-61,-65,-57,-56,-42,-43,-44,-45,-46,66,66,-49,-50,-51,-52,66,66,-55,66,66,66,66,66,]),'GE':([40,41,45,46,47,48,49,50,51,72,73,74,75,76,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,96,99,115,117,118,123,],[-58,68,-59,-60,-61,-62,-63,-64,-65,68,-59,-60,-61,-65,-57,-56,-42,-43,-44,-45,-46,68,68,-49,-50,-51,-52,68,68,-55,68,68,68,68,68,]),'AND':([40,41,45,46,47,48,49,50,51,72,73,74,75,76,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,96,99,115,117,118,123,],[-58,69,-59,-60,-61,-62,-63,-64,-65,69,-59,-60,-61,-65,-57,-56,-42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,-53,69,-55,69,69,69,69,69,]),'OR':([40,41,45,46,47,48,49,50,51,72,73,74,75,76,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,96,99,115,117,118,123,],[-58,70,-59,-60,-61,-62,-63,-64,-65,70,-59,-60,-61,-65,-57,-56,-42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,70,70,70,70,70,]),'ELSE':([128,],[131,]),}
+_lr_action_items = {'INT':([0,2,3,13,15,16,26,],[5,5,-3,-2,19,-21,-20,]),'DOUBLE':([0,2,3,13,15,16,26,],[6,6,-3,-2,21,-21,-20,]),'FLOAT':([0,2,3,13,15,16,26,],[7,7,-3,-2,20,-21,-20,]),'BOOL':([0,2,3,13,16,26,],[8,8,-3,-2,-21,-20,]),'STRINGTYPE':([0,2,3,13,16,26,],[9,9,-3,-2,-21,-20,]),'CHAR':([0,2,3,13,15,16,26,],[10,10,-3,-2,23,-21,-20,]),'VAR':([0,2,3,13,16,26,],[11,11,-3,-2,-21,-20,]),'LIST':([0,2,3,13,16,26,],[12,12,-3,-2,-21,-20,]),'$end':([1,2,3,13,16,26,],[0,-1,-3,-2,-21,-20,]),'ID':([4,5,6,7,8,9,10,11,12,15,],[14,-4,-5,-6,-7,-8,-9,-10,-11,17,]),'EQUALS':([14,],[15,]),'SEMICOLON':([14,17,18,19,20,21,22,23,24,25,],[16,-19,26,-12,-13,-14,-15,-16,-17,-18,]),'STRING':([15,],[22,]),'TRUE':([15,],[24,]),'FALSE':([15,],[25,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'using_list':([0,],[2,]),'empty':([0,14,39,97,124,128,133,134,],[3,16,56,101,101,132,101,101,]),'class_list':([2,],[4,]),'using_stmt':([2,],[5,]),'class_decl':([2,4,],[6,9,]),'member_list':([14,],[15,]),'member':([15,],[19,]),'method_decl':([15,],[20,]),'var_decl':([15,100,126,135,136,],[21,105,105,105,105,]),'type':([15,17,34,39,42,81,100,126,135,136,],[22,32,38,53,71,53,22,22,22,22,]),'expr':([36,42,43,44,58,59,60,61,62,63,64,65,66,67,68,69,70,95,111,113,114,120,],[41,72,77,78,82,83,84,85,86,87,88,89,90,91,92,93,94,99,115,117,118,123,]),'param_list':([39,],[54,]),'param':([39,81,],[55,98,]),'stmt_list':([97,124,133,134,],[100,126,135,136,]),'stmt':([100,126,135,136,],[104,104,104,104,]),'assign_stmt':([100,116,125,126,135,136,],[106,120,127,106,106,106,]),'if_stmt':([100,126,135,136,],[107,107,107,107,]),'return_stmt':([100,126,135,136,],[108,108,108,108,]),'for_stmt':([100,126,135,136,],[109,109,109,109,]),'else_part':([128,],[130,]),}
+_lr_goto_items = {'start':([0,],[1,]),'var_decls':([0,],[2,]),'var_decl':([0,2,],[3,13,]),'type':([0,2,],[4,4,]),'expr':([15,],[18,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,71 +26,26 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> program","S'",1,None,None,None),
-  ('program -> using_list class_list','program',2,'p_program','syntax.py',16),
-  ('using_list -> using_list using_stmt','using_list',2,'p_using_list','syntax.py',20),
-  ('using_list -> empty','using_list',1,'p_using_list','syntax.py',21),
-  ('using_stmt -> USING ID SEMICOLON','using_stmt',3,'p_using_stmt','syntax.py',25),
-  ('class_list -> class_list class_decl','class_list',2,'p_class_list','syntax.py',29),
-  ('class_list -> class_decl','class_list',1,'p_class_list','syntax.py',30),
-  ('class_decl -> PUBLIC CLASS ID LBRACE member_list RBRACE','class_decl',6,'p_class_decl','syntax.py',34),
-  ('member_list -> member_list member','member_list',2,'p_member_list','syntax.py',38),
-  ('member_list -> empty','member_list',1,'p_member_list','syntax.py',39),
-  ('member -> method_decl','member',1,'p_member','syntax.py',43),
-  ('member -> var_decl','member',1,'p_member','syntax.py',44),
-  ('method_decl -> PUBLIC type ID LPAREN param_list RPAREN LBRACE stmt_list RBRACE','method_decl',9,'p_method_decl','syntax.py',48),
-  ('var_decl -> type ID EQUALS expr SEMICOLON','var_decl',5,'p_var_decl','syntax.py',52),
-  ('var_decl -> type ID SEMICOLON','var_decl',3,'p_var_decl','syntax.py',53),
-  ('param_list -> param_list COMMA param','param_list',3,'p_param_list','syntax.py',57),
-  ('param_list -> param','param_list',1,'p_param_list','syntax.py',58),
-  ('param_list -> empty','param_list',1,'p_param_list','syntax.py',59),
-  ('param -> type ID','param',2,'p_param','syntax.py',63),
-  ('type -> INT','type',1,'p_type','syntax.py',67),
-  ('type -> FLOAT','type',1,'p_type','syntax.py',68),
-  ('type -> DOUBLE','type',1,'p_type','syntax.py',69),
-  ('type -> STRINGTYPE','type',1,'p_type','syntax.py',70),
-  ('type -> BOOL','type',1,'p_type','syntax.py',71),
-  ('type -> CHAR','type',1,'p_type','syntax.py',72),
-  ('type -> VOID','type',1,'p_type','syntax.py',73),
-  ('type -> VAR','type',1,'p_type','syntax.py',74),
-  ('type -> LIST LT type GT','type',4,'p_type_list','syntax.py',78),
-  ('stmt_list -> stmt_list stmt','stmt_list',2,'p_stmt_list','syntax.py',82),
-  ('stmt_list -> empty','stmt_list',1,'p_stmt_list','syntax.py',83),
-  ('stmt -> var_decl','stmt',1,'p_stmt','syntax.py',87),
-  ('stmt -> assign_stmt','stmt',1,'p_stmt','syntax.py',88),
-  ('stmt -> if_stmt','stmt',1,'p_stmt','syntax.py',89),
-  ('stmt -> return_stmt','stmt',1,'p_stmt','syntax.py',90),
-  ('stmt -> for_stmt','stmt',1,'p_stmt','syntax.py',91),
-  ('assign_stmt -> ID EQUALS expr SEMICOLON','assign_stmt',4,'p_assign_stmt','syntax.py',95),
-  ('if_stmt -> IF LPAREN expr RPAREN LBRACE stmt_list RBRACE else_part','if_stmt',8,'p_if_stmt','syntax.py',99),
-  ('else_part -> ELSE LBRACE stmt_list RBRACE','else_part',4,'p_else_part','syntax.py',103),
-  ('else_part -> empty','else_part',1,'p_else_part','syntax.py',104),
-  ('return_stmt -> RETURN expr SEMICOLON','return_stmt',3,'p_return_stmt','syntax.py',108),
-  ('for_stmt -> FOR LPAREN assign_stmt expr SEMICOLON assign_stmt RPAREN LBRACE stmt_list RBRACE','for_stmt',10,'p_for_stmt','syntax.py',112),
-  ('expr -> LPAREN type RPAREN expr','expr',4,'p_expr_cast','syntax.py',116),
-  ('expr -> expr PLUS expr','expr',3,'p_expr_binop','syntax.py',120),
-  ('expr -> expr MINUS expr','expr',3,'p_expr_binop','syntax.py',121),
-  ('expr -> expr TIMES expr','expr',3,'p_expr_binop','syntax.py',122),
-  ('expr -> expr DIVIDE expr','expr',3,'p_expr_binop','syntax.py',123),
-  ('expr -> expr MOD expr','expr',3,'p_expr_binop','syntax.py',124),
-  ('expr -> expr EQ expr','expr',3,'p_expr_binop','syntax.py',125),
-  ('expr -> expr NE expr','expr',3,'p_expr_binop','syntax.py',126),
-  ('expr -> expr LT expr','expr',3,'p_expr_binop','syntax.py',127),
-  ('expr -> expr LE expr','expr',3,'p_expr_binop','syntax.py',128),
-  ('expr -> expr GT expr','expr',3,'p_expr_binop','syntax.py',129),
-  ('expr -> expr GE expr','expr',3,'p_expr_binop','syntax.py',130),
-  ('expr -> expr AND expr','expr',3,'p_expr_binop','syntax.py',131),
-  ('expr -> expr OR expr','expr',3,'p_expr_binop','syntax.py',132),
-  ('expr -> LPAREN expr RPAREN','expr',3,'p_expr_group','syntax.py',136),
-  ('expr -> NOT expr','expr',2,'p_expr_not','syntax.py',140),
-  ('expr -> MINUS expr','expr',2,'p_expr_uminus','syntax.py',144),
-  ('expr -> ID','expr',1,'p_expr_id','syntax.py',148),
-  ('expr -> INT','expr',1,'p_expr_literal','syntax.py',152),
-  ('expr -> FLOAT','expr',1,'p_expr_literal','syntax.py',153),
-  ('expr -> DOUBLE','expr',1,'p_expr_literal','syntax.py',154),
-  ('expr -> STRING','expr',1,'p_expr_literal','syntax.py',155),
-  ('expr -> TRUE','expr',1,'p_expr_literal','syntax.py',156),
-  ('expr -> FALSE','expr',1,'p_expr_literal','syntax.py',157),
-  ('expr -> CHAR','expr',1,'p_expr_literal','syntax.py',158),
-  ('empty -> <empty>','empty',0,'p_empty','syntax.py',162),
+  ("S' -> start","S'",1,None,None,None),
+  ('start -> var_decls','start',1,'p_start','syntax.py',5),
+  ('var_decls -> var_decls var_decl','var_decls',2,'p_var_decls','syntax.py',9),
+  ('var_decls -> var_decl','var_decls',1,'p_var_decls','syntax.py',10),
+  ('type -> INT','type',1,'p_type','syntax.py',14),
+  ('type -> DOUBLE','type',1,'p_type','syntax.py',15),
+  ('type -> FLOAT','type',1,'p_type','syntax.py',16),
+  ('type -> BOOL','type',1,'p_type','syntax.py',17),
+  ('type -> STRINGTYPE','type',1,'p_type','syntax.py',18),
+  ('type -> CHAR','type',1,'p_type','syntax.py',19),
+  ('type -> VAR','type',1,'p_type','syntax.py',20),
+  ('type -> LIST','type',1,'p_type','syntax.py',21),
+  ('expr -> INT','expr',1,'p_expr_int','syntax.py',26),
+  ('expr -> FLOAT','expr',1,'p_expr_float','syntax.py',31),
+  ('expr -> DOUBLE','expr',1,'p_expr_double','syntax.py',36),
+  ('expr -> STRING','expr',1,'p_expr_string','syntax.py',41),
+  ('expr -> CHAR','expr',1,'p_expr_char','syntax.py',46),
+  ('expr -> TRUE','expr',1,'p_expr_true','syntax.py',51),
+  ('expr -> FALSE','expr',1,'p_expr_false','syntax.py',56),
+  ('expr -> ID','expr',1,'p_expr_id','syntax.py',61),
+  ('var_decl -> type ID EQUALS expr SEMICOLON','var_decl',5,'p_var_decl','syntax.py',66),
+  ('var_decl -> type ID SEMICOLON','var_decl',3,'p_var_decl','syntax.py',67),
 ]

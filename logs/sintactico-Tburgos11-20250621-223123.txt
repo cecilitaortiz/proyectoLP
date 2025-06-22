@@ -1,0 +1,5 @@
+Sintaxis:
+Error de sintaxis en 'double' línea 9
+Error de sintaxis en 'bool' línea 11
+Error de sintaxis en 'char' línea 13
+Error de sintaxis en 'List' línea 15
