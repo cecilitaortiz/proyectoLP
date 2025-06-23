@@ -1,0 +1,47 @@
+Sintaxis:
+Línea 1: using_statement : USING System SEMICOLON
+Línea 7: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 8: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 9: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 10: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 11: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 12: expresion : CHAR
+Línea 12: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 13: creacion_objeto : ('tipo_primitivo', 'var') lista = new ('tipo_generico', 'List', ('tipo_primitivo', 'int'))
+Línea 14: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 15: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 18: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 19: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 20: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 21: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 22: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 23: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 24: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 25: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 28: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 29: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 30: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 31: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 32: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 33: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 36: expresion : x ++
+Línea 36: expresion_instruccion : expresion SEMICOLON
+Línea 37: expresion : y --
+Línea 37: expresion_instruccion : expresion SEMICOLON
+Línea 38: expresion : ++ x
+Línea 38: expresion_instruccion : expresion SEMICOLON
+Línea 39: expresion : -- y
+Línea 39: expresion_instruccion : expresion SEMICOLON
+Línea 42: expresion : x += ...
+Línea 42: expresion_instruccion : expresion SEMICOLON
+Línea 43: expresion : y -= ...
+Línea 43: expresion_instruccion : expresion SEMICOLON
+Línea 46: expresion : Saludar(...)
+Error de sintaxis en token CONSOLE ('Console') línea 47
+Error de sintaxis en token CONSOLE ('Console') línea 76
+Línea 80: bloque : LBRACE instrucciones_opt RBRACE
+Línea 79: declaracion_funcion : private ('tipo_primitivo', 'int') Sumar(...) ...
+Línea 85: bloque : LBRACE instrucciones_opt RBRACE
+Línea 84: declaracion_funcion : protected void MetodoProtegido(...) ...
+Línea 89: clase : Interna { ... }
+Error de sintaxis en token RBRACE ('}') línea 93

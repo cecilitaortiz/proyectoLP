@@ -1,0 +1,8 @@
+Sintaxis:
+Línea 1: using_statement : USING System SEMICOLON
+Error de sintaxis en token NUMBER ('10') línea 7
+Línea 91: atributo : public ('tipo_primitivo', 'int') valor ;
+Línea 0: miembro_clase : atrib
+Línea 89: clase : Interna { ... }
+Error de sintaxis en token RBRACE ('}') línea 93
+Línea 0: program : usings_opt clases_opt

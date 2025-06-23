@@ -1,0 +1,7 @@
+Sintaxis:
+Excepción: can only concatenate tuple (not "list") to tuple
+Línea 1: using_statement : USING System SEMICOLON
+Error de sintaxis en token VOID ('void') línea 5
+Error de sintaxis en token LBRACE ('{') línea 6
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON

@@ -1,0 +1,6 @@
+Tokens reconocidos:
+Línea 1: INT -> int
+Línea 1: ID -> numero
+Línea 1: EQUALS -> =
+Línea 1: NUMBER -> 4
+Línea 1: SEMICOLON -> ;

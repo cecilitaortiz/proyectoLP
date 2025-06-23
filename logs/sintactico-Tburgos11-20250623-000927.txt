@@ -1,0 +1,58 @@
+Sintaxis:
+Línea 1: using_statement : USING System SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: creacion_objeto : ('tipo_primitivo', 'var') lista = new ('tipo_generico', 'List', ('tipo_primitivo', 'int'))(...)
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 0: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Error de sintaxis en token PLUSPLUS ('++') línea 36
+Línea 0: expresion_instruccion : expresion SEMICOLON
+Error de sintaxis en token PLUSEQUAL ('+=') línea 42
+Línea 0: expresion_instruccion : expresion SEMICOLON
+Error de sintaxis en token MINUSEQUAL ('-=') línea 43
+Línea 0: expresion_instruccion : expresion SEMICOLON
+Línea 46: expresion : Saludar(...)
+Línea 0: expresion_instruccion : expresion SEMICOLON
+Línea 47: impresion : CONSOLE DOT WRITELINE LPAREN contenido RPAREN SEMICOLON
+Línea 48: impresion : CONSOLE DOT WRITELINE LPAREN contenido RPAREN SEMICOLON
+Línea 51: expresion : i ++
+Línea 53: impresion : CONSOLE DOT WRITELINE LPAREN contenido RPAREN SEMICOLON
+Línea 52: bloque : LBRACE instrucciones_opt RBRACE
+Línea 51: estructura_for : FOR ... (línea 51)
+Línea 59: impresion : CONSOLE DOT WRITELINE LPAREN contenido RPAREN SEMICOLON
+Línea 58: bloque : LBRACE instrucciones_opt RBRACE
+Línea 63: impresion : CONSOLE DOT WRITELINE LPAREN contenido RPAREN SEMICOLON
+Línea 62: bloque : LBRACE instrucciones_opt RBRACE
+Línea 57: estructura_if : IF ...
+Error de sintaxis en token CONSOLE ('Console') línea 67
+Error de sintaxis en token INT ('int') línea 68
+Línea 71: retorno : RETURN SEMICOLON
+Línea 76: impresion : CONSOLE DOT WRITELINE LPAREN contenido RPAREN SEMICOLON
+Línea 75: bloque : LBRACE instrucciones_opt RBRACE
+Línea 0: declaracion_funcion : public ('tipo_primitivo', 'void') Saludar(...) ...
+Línea 81: retorno : RETURN expresion SEMICOLON
+Línea 80: bloque : LBRACE instrucciones_opt RBRACE
+Línea 0: declaracion_funcion : private ('tipo_primitivo', 'int') Sumar(...) ...
+Línea 85: bloque : LBRACE instrucciones_opt RBRACE
+Línea 0: declaracion_funcion : protected ('tipo_primitivo', 'void') MetodoProtegido(...) ...
+Línea 0: atributo : public ('tipo_primitivo', 'int') valor ;
+Línea 89: clase : Interna { ... }
+Error de sintaxis en token RBRACE ('}') línea 93

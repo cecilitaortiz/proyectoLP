@@ -1,0 +1,8 @@
+Sintaxis:
+Línea 2: expresion : b ++
+Línea 2: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 3: expresion : i --
+Línea 4: incremento : ++
+Error de sintaxis en token FOR ('for') línea 5
+Línea 5: expresion_instruccion : expresion SEMICOLON
+Error de sintaxis en token PLUSEQUAL ('+=') línea 5

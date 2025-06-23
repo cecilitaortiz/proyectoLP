@@ -1,0 +1,8 @@
+Sintaxis:
+Línea 1: incremento : ++
+Línea 1: bloque : LBRACE instrucciones_opt RBRACE
+Línea 1: estructura_for : FOR ... (línea 1)
+Línea 4: incremento : +=
+Línea 4: bloque : LBRACE instrucciones_opt RBRACE
+Línea 4: estructura_for : FOR ... (línea 4)
+Análisis sintáctico exitoso.

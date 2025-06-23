@@ -2,406 +2,629 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
+    ADD
     AND
+    CHAR
     CLASS
+    COLON
     COMMA
     CONSOLE
-    DIVIDE
     DOT
+    DOUBLE
     ELSE
     EQ
     FOR
     GE
-    GET
     GT
     IF
     LBRACE
+    LBRACKET
     LE
-    LPAREN
+    LIST
     LT
-    MINUS
+    MINUSEQUAL
+    MINUSMINUS
     MOD
     NE
+    NEW
     NOT
     OR
-    PLUS
+    PARSE
+    PLUSEQUAL
+    PLUSPLUS
+    PRIVATE
+    PROTECTED
     PUBLIC
     RBRACE
+    RBRACKET
     READLINE
     RETURN
-    RPAREN
-    SET
-    TIMES
+    STRING
     USING
+    VAR
     VOID
     WRITELINE
 
 Grammar
 
-Rule 0     S' -> start
-Rule 1     start -> var_decls
-Rule 2     var_decls -> var_decls var_decl
-Rule 3     var_decls -> var_decl
-Rule 4     type -> INT
-Rule 5     type -> DOUBLE
-Rule 6     type -> FLOAT
-Rule 7     type -> BOOL
-Rule 8     type -> STRINGTYPE
-Rule 9     type -> CHAR
-Rule 10    type -> VAR
-Rule 11    type -> LIST
-Rule 12    expr -> INT
-Rule 13    expr -> FLOAT
-Rule 14    expr -> DOUBLE
-Rule 15    expr -> STRING
-Rule 16    expr -> CHAR
-Rule 17    expr -> TRUE
-Rule 18    expr -> FALSE
-Rule 19    expr -> ID
-Rule 20    var_decl -> type ID EQUALS expr SEMICOLON
-Rule 21    var_decl -> type ID SEMICOLON
+Rule 0     S' -> program
+Rule 1     program -> declarations
+Rule 2     declarations -> declarations declaration
+Rule 3     declarations -> declaration
+Rule 4     declaration -> type ID ASSIGN expression SEMICOLON
+Rule 5     declaration -> type ID SEMICOLON
+Rule 6     type -> INT
+Rule 7     type -> FLOAT
+Rule 8     type -> BOOL
+Rule 9     type -> STRINGTYPE
+Rule 10    expression -> expression PLUS expression
+Rule 11    expression -> expression MINUS expression
+Rule 12    expression -> expression TIMES expression
+Rule 13    expression -> expression DIVIDE expression
+Rule 14    expression -> LPAREN expression RPAREN
+Rule 15    expression -> INT_CONST
+Rule 16    expression -> FLOAT_CONST
+Rule 17    expression -> TRUE
+Rule 18    expression -> FALSE
+Rule 19    expression -> STRING_CONST
+Rule 20    expression -> ID
 
 Terminals, with rules where they appear
 
+ADD                  : 
 AND                  : 
-BOOL                 : 7
-CHAR                 : 9 16
+ASSIGN               : 4
+BOOL                 : 8
+CHAR                 : 
 CLASS                : 
+COLON                : 
 COMMA                : 
 CONSOLE              : 
-DIVIDE               : 
+DIVIDE               : 13
 DOT                  : 
-DOUBLE               : 5 14
+DOUBLE               : 
 ELSE                 : 
 EQ                   : 
-EQUALS               : 20
 FALSE                : 18
-FLOAT                : 6 13
+FLOAT                : 7
+FLOAT_CONST          : 16
 FOR                  : 
 GE                   : 
-GET                  : 
 GT                   : 
-ID                   : 19 20 21
+ID                   : 4 5 20
 IF                   : 
-INT                  : 4 12
+INT                  : 6
+INT_CONST            : 15
 LBRACE               : 
+LBRACKET             : 
 LE                   : 
-LIST                 : 11
-LPAREN               : 
+LIST                 : 
+LPAREN               : 14
 LT                   : 
-MINUS                : 
+MINUS                : 11
+MINUSEQUAL           : 
+MINUSMINUS           : 
 MOD                  : 
 NE                   : 
+NEW                  : 
 NOT                  : 
 OR                   : 
-PLUS                 : 
+PARSE                : 
+PLUS                 : 10
+PLUSEQUAL            : 
+PLUSPLUS             : 
+PRIVATE              : 
+PROTECTED            : 
 PUBLIC               : 
 RBRACE               : 
+RBRACKET             : 
 READLINE             : 
 RETURN               : 
-RPAREN               : 
-SEMICOLON            : 20 21
-SET                  : 
-STRING               : 15
-STRINGTYPE           : 8
-TIMES                : 
+RPAREN               : 14
+SEMICOLON            : 4 5
+STRING               : 
+STRINGTYPE           : 9
+STRING_CONST         : 19
+TIMES                : 12
 TRUE                 : 17
 USING                : 
-VAR                  : 10
+VAR                  : 
 VOID                 : 
 WRITELINE            : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-expr                 : 20
-start                : 0
-type                 : 20 21
-var_decl             : 2 3
-var_decls            : 1 2
+declaration          : 2 3
+declarations         : 1 2
+expression           : 4 10 10 11 11 12 12 13 13 14
+program              : 0
+type                 : 4 5
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . start
-    (1) start -> . var_decls
-    (2) var_decls -> . var_decls var_decl
-    (3) var_decls -> . var_decl
-    (20) var_decl -> . type ID EQUALS expr SEMICOLON
-    (21) var_decl -> . type ID SEMICOLON
-    (4) type -> . INT
-    (5) type -> . DOUBLE
-    (6) type -> . FLOAT
-    (7) type -> . BOOL
-    (8) type -> . STRINGTYPE
-    (9) type -> . CHAR
-    (10) type -> . VAR
-    (11) type -> . LIST
+    (0) S' -> . program
+    (1) program -> . declarations
+    (2) declarations -> . declarations declaration
+    (3) declarations -> . declaration
+    (4) declaration -> . type ID ASSIGN expression SEMICOLON
+    (5) declaration -> . type ID SEMICOLON
+    (6) type -> . INT
+    (7) type -> . FLOAT
+    (8) type -> . BOOL
+    (9) type -> . STRINGTYPE
 
     INT             shift and go to state 5
-    DOUBLE          shift and go to state 6
-    FLOAT           shift and go to state 7
-    BOOL            shift and go to state 8
-    STRINGTYPE      shift and go to state 9
-    CHAR            shift and go to state 10
-    VAR             shift and go to state 11
-    LIST            shift and go to state 12
+    FLOAT           shift and go to state 6
+    BOOL            shift and go to state 7
+    STRINGTYPE      shift and go to state 8
 
-    start                          shift and go to state 1
-    var_decls                      shift and go to state 2
-    var_decl                       shift and go to state 3
+    program                        shift and go to state 1
+    declarations                   shift and go to state 2
+    declaration                    shift and go to state 3
     type                           shift and go to state 4
 
 state 1
 
-    (0) S' -> start .
+    (0) S' -> program .
 
 
 
 state 2
 
-    (1) start -> var_decls .
-    (2) var_decls -> var_decls . var_decl
-    (20) var_decl -> . type ID EQUALS expr SEMICOLON
-    (21) var_decl -> . type ID SEMICOLON
-    (4) type -> . INT
-    (5) type -> . DOUBLE
-    (6) type -> . FLOAT
-    (7) type -> . BOOL
-    (8) type -> . STRINGTYPE
-    (9) type -> . CHAR
-    (10) type -> . VAR
-    (11) type -> . LIST
+    (1) program -> declarations .
+    (2) declarations -> declarations . declaration
+    (4) declaration -> . type ID ASSIGN expression SEMICOLON
+    (5) declaration -> . type ID SEMICOLON
+    (6) type -> . INT
+    (7) type -> . FLOAT
+    (8) type -> . BOOL
+    (9) type -> . STRINGTYPE
 
-    $end            reduce using rule 1 (start -> var_decls .)
+    $end            reduce using rule 1 (program -> declarations .)
     INT             shift and go to state 5
-    DOUBLE          shift and go to state 6
-    FLOAT           shift and go to state 7
-    BOOL            shift and go to state 8
-    STRINGTYPE      shift and go to state 9
-    CHAR            shift and go to state 10
-    VAR             shift and go to state 11
-    LIST            shift and go to state 12
+    FLOAT           shift and go to state 6
+    BOOL            shift and go to state 7
+    STRINGTYPE      shift and go to state 8
 
-    var_decl                       shift and go to state 13
+    declaration                    shift and go to state 9
     type                           shift and go to state 4
 
 state 3
 
-    (3) var_decls -> var_decl .
+    (3) declarations -> declaration .
 
-    INT             reduce using rule 3 (var_decls -> var_decl .)
-    DOUBLE          reduce using rule 3 (var_decls -> var_decl .)
-    FLOAT           reduce using rule 3 (var_decls -> var_decl .)
-    BOOL            reduce using rule 3 (var_decls -> var_decl .)
-    STRINGTYPE      reduce using rule 3 (var_decls -> var_decl .)
-    CHAR            reduce using rule 3 (var_decls -> var_decl .)
-    VAR             reduce using rule 3 (var_decls -> var_decl .)
-    LIST            reduce using rule 3 (var_decls -> var_decl .)
-    $end            reduce using rule 3 (var_decls -> var_decl .)
+    INT             reduce using rule 3 (declarations -> declaration .)
+    FLOAT           reduce using rule 3 (declarations -> declaration .)
+    BOOL            reduce using rule 3 (declarations -> declaration .)
+    STRINGTYPE      reduce using rule 3 (declarations -> declaration .)
+    $end            reduce using rule 3 (declarations -> declaration .)
 
 
 state 4
 
-    (20) var_decl -> type . ID EQUALS expr SEMICOLON
-    (21) var_decl -> type . ID SEMICOLON
+    (4) declaration -> type . ID ASSIGN expression SEMICOLON
+    (5) declaration -> type . ID SEMICOLON
 
-    ID              shift and go to state 14
+    ID              shift and go to state 10
 
 
 state 5
 
-    (4) type -> INT .
+    (6) type -> INT .
 
-    ID              reduce using rule 4 (type -> INT .)
+    ID              reduce using rule 6 (type -> INT .)
 
 
 state 6
 
-    (5) type -> DOUBLE .
+    (7) type -> FLOAT .
 
-    ID              reduce using rule 5 (type -> DOUBLE .)
+    ID              reduce using rule 7 (type -> FLOAT .)
 
 
 state 7
 
-    (6) type -> FLOAT .
+    (8) type -> BOOL .
 
-    ID              reduce using rule 6 (type -> FLOAT .)
+    ID              reduce using rule 8 (type -> BOOL .)
 
 
 state 8
 
-    (7) type -> BOOL .
+    (9) type -> STRINGTYPE .
 
-    ID              reduce using rule 7 (type -> BOOL .)
+    ID              reduce using rule 9 (type -> STRINGTYPE .)
 
 
 state 9
 
-    (8) type -> STRINGTYPE .
+    (2) declarations -> declarations declaration .
 
-    ID              reduce using rule 8 (type -> STRINGTYPE .)
+    INT             reduce using rule 2 (declarations -> declarations declaration .)
+    FLOAT           reduce using rule 2 (declarations -> declarations declaration .)
+    BOOL            reduce using rule 2 (declarations -> declarations declaration .)
+    STRINGTYPE      reduce using rule 2 (declarations -> declarations declaration .)
+    $end            reduce using rule 2 (declarations -> declarations declaration .)
 
 
 state 10
 
-    (9) type -> CHAR .
+    (4) declaration -> type ID . ASSIGN expression SEMICOLON
+    (5) declaration -> type ID . SEMICOLON
 
-    ID              reduce using rule 9 (type -> CHAR .)
+    ASSIGN          shift and go to state 11
+    SEMICOLON       shift and go to state 12
 
 
 state 11
 
-    (10) type -> VAR .
+    (4) declaration -> type ID ASSIGN . expression SEMICOLON
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression TIMES expression
+    (13) expression -> . expression DIVIDE expression
+    (14) expression -> . LPAREN expression RPAREN
+    (15) expression -> . INT_CONST
+    (16) expression -> . FLOAT_CONST
+    (17) expression -> . TRUE
+    (18) expression -> . FALSE
+    (19) expression -> . STRING_CONST
+    (20) expression -> . ID
 
-    ID              reduce using rule 10 (type -> VAR .)
+    LPAREN          shift and go to state 15
+    INT_CONST       shift and go to state 16
+    FLOAT_CONST     shift and go to state 17
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 19
+    STRING_CONST    shift and go to state 20
+    ID              shift and go to state 13
 
+    expression                     shift and go to state 14
 
 state 12
 
-    (11) type -> LIST .
+    (5) declaration -> type ID SEMICOLON .
 
-    ID              reduce using rule 11 (type -> LIST .)
+    INT             reduce using rule 5 (declaration -> type ID SEMICOLON .)
+    FLOAT           reduce using rule 5 (declaration -> type ID SEMICOLON .)
+    BOOL            reduce using rule 5 (declaration -> type ID SEMICOLON .)
+    STRINGTYPE      reduce using rule 5 (declaration -> type ID SEMICOLON .)
+    $end            reduce using rule 5 (declaration -> type ID SEMICOLON .)
 
 
 state 13
 
-    (2) var_decls -> var_decls var_decl .
+    (20) expression -> ID .
 
-    INT             reduce using rule 2 (var_decls -> var_decls var_decl .)
-    DOUBLE          reduce using rule 2 (var_decls -> var_decls var_decl .)
-    FLOAT           reduce using rule 2 (var_decls -> var_decls var_decl .)
-    BOOL            reduce using rule 2 (var_decls -> var_decls var_decl .)
-    STRINGTYPE      reduce using rule 2 (var_decls -> var_decls var_decl .)
-    CHAR            reduce using rule 2 (var_decls -> var_decls var_decl .)
-    VAR             reduce using rule 2 (var_decls -> var_decls var_decl .)
-    LIST            reduce using rule 2 (var_decls -> var_decls var_decl .)
-    $end            reduce using rule 2 (var_decls -> var_decls var_decl .)
+    SEMICOLON       reduce using rule 20 (expression -> ID .)
+    PLUS            reduce using rule 20 (expression -> ID .)
+    MINUS           reduce using rule 20 (expression -> ID .)
+    TIMES           reduce using rule 20 (expression -> ID .)
+    DIVIDE          reduce using rule 20 (expression -> ID .)
+    RPAREN          reduce using rule 20 (expression -> ID .)
 
 
 state 14
 
-    (20) var_decl -> type ID . EQUALS expr SEMICOLON
-    (21) var_decl -> type ID . SEMICOLON
+    (4) declaration -> type ID ASSIGN expression . SEMICOLON
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . TIMES expression
+    (13) expression -> expression . DIVIDE expression
 
-    EQUALS          shift and go to state 15
-    SEMICOLON       shift and go to state 16
+    SEMICOLON       shift and go to state 21
+    PLUS            shift and go to state 22
+    MINUS           shift and go to state 23
+    TIMES           shift and go to state 24
+    DIVIDE          shift and go to state 25
 
 
 state 15
 
-    (20) var_decl -> type ID EQUALS . expr SEMICOLON
-    (12) expr -> . INT
-    (13) expr -> . FLOAT
-    (14) expr -> . DOUBLE
-    (15) expr -> . STRING
-    (16) expr -> . CHAR
-    (17) expr -> . TRUE
-    (18) expr -> . FALSE
-    (19) expr -> . ID
+    (14) expression -> LPAREN . expression RPAREN
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression TIMES expression
+    (13) expression -> . expression DIVIDE expression
+    (14) expression -> . LPAREN expression RPAREN
+    (15) expression -> . INT_CONST
+    (16) expression -> . FLOAT_CONST
+    (17) expression -> . TRUE
+    (18) expression -> . FALSE
+    (19) expression -> . STRING_CONST
+    (20) expression -> . ID
 
-    INT             shift and go to state 19
-    FLOAT           shift and go to state 20
-    DOUBLE          shift and go to state 21
-    STRING          shift and go to state 22
-    CHAR            shift and go to state 23
-    TRUE            shift and go to state 24
-    FALSE           shift and go to state 25
-    ID              shift and go to state 17
+    LPAREN          shift and go to state 15
+    INT_CONST       shift and go to state 16
+    FLOAT_CONST     shift and go to state 17
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 19
+    STRING_CONST    shift and go to state 20
+    ID              shift and go to state 13
 
-    expr                           shift and go to state 18
+    expression                     shift and go to state 26
 
 state 16
 
-    (21) var_decl -> type ID SEMICOLON .
+    (15) expression -> INT_CONST .
 
-    INT             reduce using rule 21 (var_decl -> type ID SEMICOLON .)
-    DOUBLE          reduce using rule 21 (var_decl -> type ID SEMICOLON .)
-    FLOAT           reduce using rule 21 (var_decl -> type ID SEMICOLON .)
-    BOOL            reduce using rule 21 (var_decl -> type ID SEMICOLON .)
-    STRINGTYPE      reduce using rule 21 (var_decl -> type ID SEMICOLON .)
-    CHAR            reduce using rule 21 (var_decl -> type ID SEMICOLON .)
-    VAR             reduce using rule 21 (var_decl -> type ID SEMICOLON .)
-    LIST            reduce using rule 21 (var_decl -> type ID SEMICOLON .)
-    $end            reduce using rule 21 (var_decl -> type ID SEMICOLON .)
+    SEMICOLON       reduce using rule 15 (expression -> INT_CONST .)
+    PLUS            reduce using rule 15 (expression -> INT_CONST .)
+    MINUS           reduce using rule 15 (expression -> INT_CONST .)
+    TIMES           reduce using rule 15 (expression -> INT_CONST .)
+    DIVIDE          reduce using rule 15 (expression -> INT_CONST .)
+    RPAREN          reduce using rule 15 (expression -> INT_CONST .)
 
 
 state 17
 
-    (19) expr -> ID .
+    (16) expression -> FLOAT_CONST .
 
-    SEMICOLON       reduce using rule 19 (expr -> ID .)
+    SEMICOLON       reduce using rule 16 (expression -> FLOAT_CONST .)
+    PLUS            reduce using rule 16 (expression -> FLOAT_CONST .)
+    MINUS           reduce using rule 16 (expression -> FLOAT_CONST .)
+    TIMES           reduce using rule 16 (expression -> FLOAT_CONST .)
+    DIVIDE          reduce using rule 16 (expression -> FLOAT_CONST .)
+    RPAREN          reduce using rule 16 (expression -> FLOAT_CONST .)
 
 
 state 18
 
-    (20) var_decl -> type ID EQUALS expr . SEMICOLON
+    (17) expression -> TRUE .
 
-    SEMICOLON       shift and go to state 26
+    SEMICOLON       reduce using rule 17 (expression -> TRUE .)
+    PLUS            reduce using rule 17 (expression -> TRUE .)
+    MINUS           reduce using rule 17 (expression -> TRUE .)
+    TIMES           reduce using rule 17 (expression -> TRUE .)
+    DIVIDE          reduce using rule 17 (expression -> TRUE .)
+    RPAREN          reduce using rule 17 (expression -> TRUE .)
 
 
 state 19
 
-    (12) expr -> INT .
+    (18) expression -> FALSE .
 
-    SEMICOLON       reduce using rule 12 (expr -> INT .)
+    SEMICOLON       reduce using rule 18 (expression -> FALSE .)
+    PLUS            reduce using rule 18 (expression -> FALSE .)
+    MINUS           reduce using rule 18 (expression -> FALSE .)
+    TIMES           reduce using rule 18 (expression -> FALSE .)
+    DIVIDE          reduce using rule 18 (expression -> FALSE .)
+    RPAREN          reduce using rule 18 (expression -> FALSE .)
 
 
 state 20
 
-    (13) expr -> FLOAT .
+    (19) expression -> STRING_CONST .
 
-    SEMICOLON       reduce using rule 13 (expr -> FLOAT .)
+    SEMICOLON       reduce using rule 19 (expression -> STRING_CONST .)
+    PLUS            reduce using rule 19 (expression -> STRING_CONST .)
+    MINUS           reduce using rule 19 (expression -> STRING_CONST .)
+    TIMES           reduce using rule 19 (expression -> STRING_CONST .)
+    DIVIDE          reduce using rule 19 (expression -> STRING_CONST .)
+    RPAREN          reduce using rule 19 (expression -> STRING_CONST .)
 
 
 state 21
 
-    (14) expr -> DOUBLE .
+    (4) declaration -> type ID ASSIGN expression SEMICOLON .
 
-    SEMICOLON       reduce using rule 14 (expr -> DOUBLE .)
+    INT             reduce using rule 4 (declaration -> type ID ASSIGN expression SEMICOLON .)
+    FLOAT           reduce using rule 4 (declaration -> type ID ASSIGN expression SEMICOLON .)
+    BOOL            reduce using rule 4 (declaration -> type ID ASSIGN expression SEMICOLON .)
+    STRINGTYPE      reduce using rule 4 (declaration -> type ID ASSIGN expression SEMICOLON .)
+    $end            reduce using rule 4 (declaration -> type ID ASSIGN expression SEMICOLON .)
 
 
 state 22
 
-    (15) expr -> STRING .
+    (10) expression -> expression PLUS . expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression TIMES expression
+    (13) expression -> . expression DIVIDE expression
+    (14) expression -> . LPAREN expression RPAREN
+    (15) expression -> . INT_CONST
+    (16) expression -> . FLOAT_CONST
+    (17) expression -> . TRUE
+    (18) expression -> . FALSE
+    (19) expression -> . STRING_CONST
+    (20) expression -> . ID
 
-    SEMICOLON       reduce using rule 15 (expr -> STRING .)
+    LPAREN          shift and go to state 15
+    INT_CONST       shift and go to state 16
+    FLOAT_CONST     shift and go to state 17
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 19
+    STRING_CONST    shift and go to state 20
+    ID              shift and go to state 13
 
+    expression                     shift and go to state 27
 
 state 23
 
-    (16) expr -> CHAR .
+    (11) expression -> expression MINUS . expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression TIMES expression
+    (13) expression -> . expression DIVIDE expression
+    (14) expression -> . LPAREN expression RPAREN
+    (15) expression -> . INT_CONST
+    (16) expression -> . FLOAT_CONST
+    (17) expression -> . TRUE
+    (18) expression -> . FALSE
+    (19) expression -> . STRING_CONST
+    (20) expression -> . ID
 
-    SEMICOLON       reduce using rule 16 (expr -> CHAR .)
+    LPAREN          shift and go to state 15
+    INT_CONST       shift and go to state 16
+    FLOAT_CONST     shift and go to state 17
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 19
+    STRING_CONST    shift and go to state 20
+    ID              shift and go to state 13
 
+    expression                     shift and go to state 28
 
 state 24
 
-    (17) expr -> TRUE .
+    (12) expression -> expression TIMES . expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression TIMES expression
+    (13) expression -> . expression DIVIDE expression
+    (14) expression -> . LPAREN expression RPAREN
+    (15) expression -> . INT_CONST
+    (16) expression -> . FLOAT_CONST
+    (17) expression -> . TRUE
+    (18) expression -> . FALSE
+    (19) expression -> . STRING_CONST
+    (20) expression -> . ID
 
-    SEMICOLON       reduce using rule 17 (expr -> TRUE .)
+    LPAREN          shift and go to state 15
+    INT_CONST       shift and go to state 16
+    FLOAT_CONST     shift and go to state 17
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 19
+    STRING_CONST    shift and go to state 20
+    ID              shift and go to state 13
 
+    expression                     shift and go to state 29
 
 state 25
 
-    (18) expr -> FALSE .
+    (13) expression -> expression DIVIDE . expression
+    (10) expression -> . expression PLUS expression
+    (11) expression -> . expression MINUS expression
+    (12) expression -> . expression TIMES expression
+    (13) expression -> . expression DIVIDE expression
+    (14) expression -> . LPAREN expression RPAREN
+    (15) expression -> . INT_CONST
+    (16) expression -> . FLOAT_CONST
+    (17) expression -> . TRUE
+    (18) expression -> . FALSE
+    (19) expression -> . STRING_CONST
+    (20) expression -> . ID
 
-    SEMICOLON       reduce using rule 18 (expr -> FALSE .)
+    LPAREN          shift and go to state 15
+    INT_CONST       shift and go to state 16
+    FLOAT_CONST     shift and go to state 17
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 19
+    STRING_CONST    shift and go to state 20
+    ID              shift and go to state 13
 
+    expression                     shift and go to state 30
 
 state 26
 
-    (20) var_decl -> type ID EQUALS expr SEMICOLON .
+    (14) expression -> LPAREN expression . RPAREN
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . TIMES expression
+    (13) expression -> expression . DIVIDE expression
 
-    INT             reduce using rule 20 (var_decl -> type ID EQUALS expr SEMICOLON .)
-    DOUBLE          reduce using rule 20 (var_decl -> type ID EQUALS expr SEMICOLON .)
-    FLOAT           reduce using rule 20 (var_decl -> type ID EQUALS expr SEMICOLON .)
-    BOOL            reduce using rule 20 (var_decl -> type ID EQUALS expr SEMICOLON .)
-    STRINGTYPE      reduce using rule 20 (var_decl -> type ID EQUALS expr SEMICOLON .)
-    CHAR            reduce using rule 20 (var_decl -> type ID EQUALS expr SEMICOLON .)
-    VAR             reduce using rule 20 (var_decl -> type ID EQUALS expr SEMICOLON .)
-    LIST            reduce using rule 20 (var_decl -> type ID EQUALS expr SEMICOLON .)
-    $end            reduce using rule 20 (var_decl -> type ID EQUALS expr SEMICOLON .)
+    RPAREN          shift and go to state 31
+    PLUS            shift and go to state 22
+    MINUS           shift and go to state 23
+    TIMES           shift and go to state 24
+    DIVIDE          shift and go to state 25
+
+
+state 27
+
+    (10) expression -> expression PLUS expression .
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . TIMES expression
+    (13) expression -> expression . DIVIDE expression
+
+    SEMICOLON       reduce using rule 10 (expression -> expression PLUS expression .)
+    PLUS            reduce using rule 10 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 10 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 10 (expression -> expression PLUS expression .)
+    TIMES           shift and go to state 24
+    DIVIDE          shift and go to state 25
+
+  ! TIMES           [ reduce using rule 10 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 10 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ shift and go to state 22 ]
+  ! MINUS           [ shift and go to state 23 ]
+
+
+state 28
+
+    (11) expression -> expression MINUS expression .
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . TIMES expression
+    (13) expression -> expression . DIVIDE expression
+
+    SEMICOLON       reduce using rule 11 (expression -> expression MINUS expression .)
+    PLUS            reduce using rule 11 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 11 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 11 (expression -> expression MINUS expression .)
+    TIMES           shift and go to state 24
+    DIVIDE          shift and go to state 25
+
+  ! TIMES           [ reduce using rule 11 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 11 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ shift and go to state 22 ]
+  ! MINUS           [ shift and go to state 23 ]
+
+
+state 29
+
+    (12) expression -> expression TIMES expression .
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . TIMES expression
+    (13) expression -> expression . DIVIDE expression
+
+    SEMICOLON       reduce using rule 12 (expression -> expression TIMES expression .)
+    PLUS            reduce using rule 12 (expression -> expression TIMES expression .)
+    MINUS           reduce using rule 12 (expression -> expression TIMES expression .)
+    TIMES           reduce using rule 12 (expression -> expression TIMES expression .)
+    DIVIDE          reduce using rule 12 (expression -> expression TIMES expression .)
+    RPAREN          reduce using rule 12 (expression -> expression TIMES expression .)
+
+  ! PLUS            [ shift and go to state 22 ]
+  ! MINUS           [ shift and go to state 23 ]
+  ! TIMES           [ shift and go to state 24 ]
+  ! DIVIDE          [ shift and go to state 25 ]
+
+
+state 30
+
+    (13) expression -> expression DIVIDE expression .
+    (10) expression -> expression . PLUS expression
+    (11) expression -> expression . MINUS expression
+    (12) expression -> expression . TIMES expression
+    (13) expression -> expression . DIVIDE expression
+
+    SEMICOLON       reduce using rule 13 (expression -> expression DIVIDE expression .)
+    PLUS            reduce using rule 13 (expression -> expression DIVIDE expression .)
+    MINUS           reduce using rule 13 (expression -> expression DIVIDE expression .)
+    TIMES           reduce using rule 13 (expression -> expression DIVIDE expression .)
+    DIVIDE          reduce using rule 13 (expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 13 (expression -> expression DIVIDE expression .)
+
+  ! PLUS            [ shift and go to state 22 ]
+  ! MINUS           [ shift and go to state 23 ]
+  ! TIMES           [ shift and go to state 24 ]
+  ! DIVIDE          [ shift and go to state 25 ]
+
+
+state 31
+
+    (14) expression -> LPAREN expression RPAREN .
+
+    SEMICOLON       reduce using rule 14 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 14 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 14 (expression -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 14 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 14 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 14 (expression -> LPAREN expression RPAREN .)
 

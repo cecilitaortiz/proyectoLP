@@ -8,13 +8,16 @@ from ply import lex
 # Solo define los tokens que realmente usas en las reglas del parser
 tokens = (
     'ID', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
-    'EQUALS', 'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'SEMICOLON', 'STRING', 'LT', 'GT',
+    'ASSIGN', 'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'SEMICOLON', 'STRING', 'LT', 'GT',
     'COMMA', 'MOD', 'NOT', 'DOT',
     'LE', 'GE', 'EQ', 'NE',
     'CONSOLE', 'WRITELINE', 'READLINE',
     'INT', 'DOUBLE', 'FLOAT', 'BOOL', 'STRINGTYPE', 'CHAR', 'VAR', 'LIST',
-    'FOR', 'IF', 'ELSE', 'CLASS', 'PUBLIC', 'RETURN', 'VOID', 'USING', 'GET', 'SET', 'TRUE', 'FALSE',
-    'AND', 'OR'
+    'FOR', 'IF', 'ELSE', 'CLASS', 'PUBLIC', 'RETURN', 'VOID', 'USING', 'TRUE', 'FALSE',
+    'AND', 'OR', 'NEW', 'PRIVATE', 'PROTECTED',
+    'PLUSPLUS', 'MINUSMINUS', 'PLUSEQUAL', 'MINUSEQUAL',
+    'LBRACKET', 'RBRACKET', 'COLON', 'ADD', 'PARSE',
+    'INT_CONST', 'FLOAT_CONST', 'STRING_CONST'
 )
 
 reserved = {
@@ -34,13 +37,14 @@ reserved = {
     'return': 'RETURN',
     'void': 'VOID',
     'using': 'USING',
-    'get': 'GET',
-    'set': 'SET',
     'true': 'TRUE',
     'false': 'FALSE',
     'Console': 'CONSOLE',
     'WriteLine': 'WRITELINE',
-    'ReadLine': 'READLINE'
+    'ReadLine': 'READLINE',
+    'new': 'NEW',
+    'private': 'PRIVATE',
+    'protected': 'PROTECTED'
 }
 
 # No sumes los tokens de reserved, ya están incluidos arriba
@@ -49,7 +53,7 @@ t_PLUS        = r'\+'
 t_MINUS       = r'-'
 t_TIMES       = r'\*'
 t_DIVIDE      = r'/'
-t_EQUALS      = r'='
+t_ASSIGN      = r'='
 t_LPAREN      = r'\('
 t_RPAREN      = r'\)'
 t_LBRACE      = r'\{'
@@ -67,35 +71,38 @@ t_EQ          = r'=='
 t_NE          = r'!='
 t_AND         = r'&&'
 t_OR          = r'\|\|'
+t_PLUSPLUS    = r'\+\+'
+t_MINUSMINUS  = r'--'
+t_PLUSEQUAL   = r'\+='
+t_MINUSEQUAL  = r'-='
+t_LBRACKET    = r'\['
+t_RBRACKET    = r'\]'
+t_COLON       = r':'
+t_ADD         = r'Add'
+t_PARSE       = r'Parse'
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
     t.type = reserved.get(t.value, 'ID')
+    t.lineno = t.lexer.lineno  # Asegura que todos los tokens, incluidos los reservados, tengan número de línea
     return t
 
-def t_FLOAT(t):
-    r'\d+\.\d+'
-    t.value = float(t.value)
+def t_FLOAT_CONST(t):
+    r'\d+\.\d+([fF])?'
+    t.value = float(t.value[:-1]) if t.value.endswith(('f', 'F')) else float(t.value)
+    t.lineno = t.lexer.lineno
     return t
 
-def t_DOUBLE(t):
-    r'\d+\.\d+'
-    t.value = float(t.value)
-    return t
-
-def t_INT(t):
+def t_INT_CONST(t):
     r'\d+'
     t.value = int(t.value)
+    t.lineno = t.lexer.lineno
     return t
 
-def t_STRING(t):
+def t_STRING_CONST(t):
     r'"[^"\n]*"'
     t.value = t.value[1:-1]
-    return t
-
-def t_CHAR(t):
-    r"\'([^\\']|\\.)\'"
-    t.value = t.value[1:-1]  # Quita las comillas simples
+    t.lineno = t.lexer.lineno
     return t
 
 def t_ignore_whitespace(t):

@@ -1,0 +1,16 @@
+Sintaxis:
+Línea 1: using_statement : USING System SEMICOLON
+Error de sintaxis en token VOID ('void') línea 5
+Error de sintaxis en token LBRACE ('{') línea 6
+Línea 7: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 8: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 9: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 10: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 13: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 14: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 15: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 18: expresion : x ++
+Línea 18: expresion_instruccion : expresion SEMICOLON
+Línea 19: expresion : y --
+Error de sintaxis en token PLUSPLUS ('++') línea 20
+Línea 21: expresion_instruccion : expresion SEMICOLON

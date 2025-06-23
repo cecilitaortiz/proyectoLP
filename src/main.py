@@ -63,11 +63,10 @@ def guardar_log_sintactico(resultado):
     return nombre_archivo
 
 def analizar_sintactico(entrada):
-    """Analiza la sintaxis del código ingresado y retorna los errores o éxito."""
+    from syntax import parser
     resultado = []
     from lexer import lexer
-    lexer.lineno = 1  # Reinicia el contador de líneas antes de analizar
-    # Limpia el buffer del lexer si existe
+    lexer.lineno = 1
     if hasattr(lexer, 'input'):
         lexer.input('')
     import io
@@ -79,13 +78,15 @@ def analizar_sintactico(entrada):
     except Exception as e:
         resultado.append(f"Excepción: {e}")
     sys.stdout = old_stdout
-    salida = mystdout.getvalue().splitlines()
-    # Filtra mensajes de error de caracter no definido para que NO aparezcan en sintáctico
-    for linea in salida:
-        if "Este caracter no está definido" not in linea:
-            resultado.append(linea)
+    reglas_y_errores = mystdout.getvalue().splitlines()
+    for regla in reglas_y_errores:
+        print(regla)
+    resultado.extend(reglas_y_errores)
     if not resultado:
         resultado.append("Análisis sintáctico exitoso.")
+    else:
+        if not any("Error de sintaxis" in r or "Excepción" in r for r in resultado):
+            resultado.append("Análisis sintáctico exitoso.")
     return resultado
 
 def analizar_archivo_prueba():
@@ -127,5 +128,14 @@ if __name__ == "__main__":
     with open("archivo.cs") as f:
         data = f.read()
 
-    lexer.lineno = 1  # Reinicia el contador de líneas antes de analizar
-    parser.parse(data, lexer=lexer)
+   
+    # Permite ejecutar el análisis sintáctico directamente desde terminal
+    import sys
+    if len(sys.argv) > 1:
+        archivo = sys.argv[1]
+        with open(archivo, encoding="utf-8") as f:
+            data = f.read()
+        lexer.lineno = 1  # Reinicia el contador de líneas antes de analizar
+        parser.parse(data, lexer=lexer)
+    else:
+        print("Uso: python src/main.py <archivo.cs>")

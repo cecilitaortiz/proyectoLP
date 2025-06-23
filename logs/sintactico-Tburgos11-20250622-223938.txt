@@ -1,0 +1,8 @@
+Sintaxis:
+Línea 2: expresion : b ++
+Línea 2: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
+Línea 3: expresion : i --
+Línea 4: incremento : ++
+Error de sintaxis en token DOT ('.') línea 4
+Línea 5: incremento : +=
+Error de sintaxis en token DOT ('.') línea 5

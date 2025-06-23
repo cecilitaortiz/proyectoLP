@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'startAND BOOL CHAR CLASS COMMA CONSOLE DIVIDE DOT DOUBLE ELSE EQ EQUALS FALSE FLOAT FOR GE GET GT ID IF INT LBRACE LE LIST LPAREN LT MINUS MOD NE NOT OR PLUS PUBLIC RBRACE READLINE RETURN RPAREN SEMICOLON SET STRING STRINGTYPE TIMES TRUE USING VAR VOID WRITELINEstart : var_declsvar_decls : var_decls var_decl\n                 | var_decltype : INT\n            | DOUBLE\n            | FLOAT\n            | BOOL\n            | STRINGTYPE\n            | CHAR\n            | VAR\n            | LISTexpr : INTexpr : FLOATexpr : DOUBLEexpr : STRINGexpr : CHARexpr : TRUEexpr : FALSEexpr : IDvar_decl : type ID EQUALS expr SEMICOLON\n                | type ID SEMICOLON'
+_lr_signature = 'leftPLUSMINUSleftTIMESDIVIDEADD AND ASSIGN BOOL CHAR CLASS COLON COMMA CONSOLE DIVIDE DOT DOUBLE ELSE EQ FALSE FLOAT FLOAT_CONST FOR GE GT ID IF INT INT_CONST LBRACE LBRACKET LE LIST LPAREN LT MINUS MINUSEQUAL MINUSMINUS MOD NE NEW NOT OR PARSE PLUS PLUSEQUAL PLUSPLUS PRIVATE PROTECTED PUBLIC RBRACE RBRACKET READLINE RETURN RPAREN SEMICOLON STRING STRINGTYPE STRING_CONST TIMES TRUE USING VAR VOID WRITELINEprogram : declarationsdeclarations : declarations declarationdeclarations : declarationdeclaration : type ID ASSIGN expression SEMICOLONdeclaration : type ID SEMICOLONtype : INT\n           | FLOAT\n           | BOOL\n           | STRINGTYPEexpression : expression PLUS expression\n                 | expression MINUS expression\n                 | expression TIMES expression\n                 | expression DIVIDE expressionexpression : LPAREN expression RPARENexpression : INT_CONST\n                 | FLOAT_CONSTexpression : TRUE\n                 | FALSEexpression : STRING_CONSTexpression : ID'
     
-_lr_action_items = {'INT':([0,2,3,13,15,16,26,],[5,5,-3,-2,19,-21,-20,]),'DOUBLE':([0,2,3,13,15,16,26,],[6,6,-3,-2,21,-21,-20,]),'FLOAT':([0,2,3,13,15,16,26,],[7,7,-3,-2,20,-21,-20,]),'BOOL':([0,2,3,13,16,26,],[8,8,-3,-2,-21,-20,]),'STRINGTYPE':([0,2,3,13,16,26,],[9,9,-3,-2,-21,-20,]),'CHAR':([0,2,3,13,15,16,26,],[10,10,-3,-2,23,-21,-20,]),'VAR':([0,2,3,13,16,26,],[11,11,-3,-2,-21,-20,]),'LIST':([0,2,3,13,16,26,],[12,12,-3,-2,-21,-20,]),'$end':([1,2,3,13,16,26,],[0,-1,-3,-2,-21,-20,]),'ID':([4,5,6,7,8,9,10,11,12,15,],[14,-4,-5,-6,-7,-8,-9,-10,-11,17,]),'EQUALS':([14,],[15,]),'SEMICOLON':([14,17,18,19,20,21,22,23,24,25,],[16,-19,26,-12,-13,-14,-15,-16,-17,-18,]),'STRING':([15,],[22,]),'TRUE':([15,],[24,]),'FALSE':([15,],[25,]),}
+_lr_action_items = {'INT':([0,2,3,9,12,21,],[5,5,-3,-2,-5,-4,]),'FLOAT':([0,2,3,9,12,21,],[6,6,-3,-2,-5,-4,]),'BOOL':([0,2,3,9,12,21,],[7,7,-3,-2,-5,-4,]),'STRINGTYPE':([0,2,3,9,12,21,],[8,8,-3,-2,-5,-4,]),'$end':([1,2,3,9,12,21,],[0,-1,-3,-2,-5,-4,]),'ID':([4,5,6,7,8,11,15,22,23,24,25,],[10,-6,-7,-8,-9,13,13,13,13,13,13,]),'ASSIGN':([10,],[11,]),'SEMICOLON':([10,13,14,16,17,18,19,20,27,28,29,30,31,],[12,-20,21,-15,-16,-17,-18,-19,-10,-11,-12,-13,-14,]),'LPAREN':([11,15,22,23,24,25,],[15,15,15,15,15,15,]),'INT_CONST':([11,15,22,23,24,25,],[16,16,16,16,16,16,]),'FLOAT_CONST':([11,15,22,23,24,25,],[17,17,17,17,17,17,]),'TRUE':([11,15,22,23,24,25,],[18,18,18,18,18,18,]),'FALSE':([11,15,22,23,24,25,],[19,19,19,19,19,19,]),'STRING_CONST':([11,15,22,23,24,25,],[20,20,20,20,20,20,]),'PLUS':([13,14,16,17,18,19,20,26,27,28,29,30,31,],[-20,22,-15,-16,-17,-18,-19,22,-10,-11,-12,-13,-14,]),'MINUS':([13,14,16,17,18,19,20,26,27,28,29,30,31,],[-20,23,-15,-16,-17,-18,-19,23,-10,-11,-12,-13,-14,]),'TIMES':([13,14,16,17,18,19,20,26,27,28,29,30,31,],[-20,24,-15,-16,-17,-18,-19,24,24,24,-12,-13,-14,]),'DIVIDE':([13,14,16,17,18,19,20,26,27,28,29,30,31,],[-20,25,-15,-16,-17,-18,-19,25,25,25,-12,-13,-14,]),'RPAREN':([13,16,17,18,19,20,26,27,28,29,30,31,],[-20,-15,-16,-17,-18,-19,31,-10,-11,-12,-13,-14,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'start':([0,],[1,]),'var_decls':([0,],[2,]),'var_decl':([0,2,],[3,13,]),'type':([0,2,],[4,4,]),'expr':([15,],[18,]),}
+_lr_goto_items = {'program':([0,],[1,]),'declarations':([0,],[2,]),'declaration':([0,2,],[3,9,]),'type':([0,2,],[4,4,]),'expression':([11,15,22,23,24,25,],[14,26,27,28,29,30,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,26 +26,25 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> start","S'",1,None,None,None),
-  ('start -> var_decls','start',1,'p_start','syntax.py',5),
-  ('var_decls -> var_decls var_decl','var_decls',2,'p_var_decls','syntax.py',9),
-  ('var_decls -> var_decl','var_decls',1,'p_var_decls','syntax.py',10),
-  ('type -> INT','type',1,'p_type','syntax.py',14),
-  ('type -> DOUBLE','type',1,'p_type','syntax.py',15),
-  ('type -> FLOAT','type',1,'p_type','syntax.py',16),
-  ('type -> BOOL','type',1,'p_type','syntax.py',17),
-  ('type -> STRINGTYPE','type',1,'p_type','syntax.py',18),
-  ('type -> CHAR','type',1,'p_type','syntax.py',19),
-  ('type -> VAR','type',1,'p_type','syntax.py',20),
-  ('type -> LIST','type',1,'p_type','syntax.py',21),
-  ('expr -> INT','expr',1,'p_expr_int','syntax.py',26),
-  ('expr -> FLOAT','expr',1,'p_expr_float','syntax.py',31),
-  ('expr -> DOUBLE','expr',1,'p_expr_double','syntax.py',36),
-  ('expr -> STRING','expr',1,'p_expr_string','syntax.py',41),
-  ('expr -> CHAR','expr',1,'p_expr_char','syntax.py',46),
-  ('expr -> TRUE','expr',1,'p_expr_true','syntax.py',51),
-  ('expr -> FALSE','expr',1,'p_expr_false','syntax.py',56),
-  ('expr -> ID','expr',1,'p_expr_id','syntax.py',61),
-  ('var_decl -> type ID EQUALS expr SEMICOLON','var_decl',5,'p_var_decl','syntax.py',66),
-  ('var_decl -> type ID SEMICOLON','var_decl',3,'p_var_decl','syntax.py',67),
+  ("S' -> program","S'",1,None,None,None),
+  ('program -> declarations','program',1,'p_program','syntax.py',22),
+  ('declarations -> declarations declaration','declarations',2,'p_declarations_multiple','syntax.py',28),
+  ('declarations -> declaration','declarations',1,'p_declarations_single','syntax.py',32),
+  ('declaration -> type ID ASSIGN expression SEMICOLON','declaration',5,'p_declaration_init','syntax.py',38),
+  ('declaration -> type ID SEMICOLON','declaration',3,'p_declaration_noinit','syntax.py',43),
+  ('type -> INT','type',1,'p_type','syntax.py',50),
+  ('type -> FLOAT','type',1,'p_type','syntax.py',51),
+  ('type -> BOOL','type',1,'p_type','syntax.py',52),
+  ('type -> STRINGTYPE','type',1,'p_type','syntax.py',53),
+  ('expression -> expression PLUS expression','expression',3,'p_expression_binop','syntax.py',59),
+  ('expression -> expression MINUS expression','expression',3,'p_expression_binop','syntax.py',60),
+  ('expression -> expression TIMES expression','expression',3,'p_expression_binop','syntax.py',61),
+  ('expression -> expression DIVIDE expression','expression',3,'p_expression_binop','syntax.py',62),
+  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','syntax.py',66),
+  ('expression -> INT_CONST','expression',1,'p_expression_number','syntax.py',70),
+  ('expression -> FLOAT_CONST','expression',1,'p_expression_number','syntax.py',71),
+  ('expression -> TRUE','expression',1,'p_expression_bool','syntax.py',75),
+  ('expression -> FALSE','expression',1,'p_expression_bool','syntax.py',76),
+  ('expression -> STRING_CONST','expression',1,'p_expression_string','syntax.py',80),
+  ('expression -> ID','expression',1,'p_expression_id','syntax.py',84),
 ]

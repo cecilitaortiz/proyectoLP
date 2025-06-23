@@ -1,0 +1,11 @@
+Sintaxis:
+Línea 0: declaracion_variable : int a
+Línea 0: declaracion_variable : float b = 3.14
+Línea 0: declaracion_variable : bool c = true
+Línea 0: declaracion_variable : string d = hola
+Línea 0: declaracion_variable : int e = ('+', 1, ('*', 2, 3))
+Línea 0: declaracion_variable : float f = ('/', ('-', 4.5, 2.5), 2)
+Línea 0: declaracion_variable : bool g = false
+Línea 0: declaracion_variable : string h
+Línea 0: declaracion_variable : int i = ('+', 'a', 5)
+Análisis sintáctico exitoso.
