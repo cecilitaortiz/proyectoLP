@@ -1,0 +1,22 @@
+Sintaxis:
+Error de sintaxis en la línea 1: token 'using'
+Línea 3: declaracion_variable : int a = 5
+Línea 5: impresion : Console.WriteLine(a)
+Línea 4: if : if (('>', 'a', 0)) { ... } }
+Error de sintaxis en la línea 8: token '-'
+Línea 10: impresion : Console.WriteLine(b)
+Línea 12: impresion : Console.WriteLine(0)
+Línea 11: else : else { ... }
+Línea 9: if : if (('>', 'b', 0)) { ... } }
+Línea 15: declaracion_variable : int c = 0
+Línea 17: impresion : Console.WriteLine(positivo)
+Línea 19: impresion : Console.WriteLine(cero)
+Error de sintaxis en la línea 20: token '-'
+Línea 21: impresion : Console.WriteLine(menos uno)
+Error de sintaxis en la línea 22: token '}'
+Línea 23: impresion : Console.WriteLine(negativo)
+Error de sintaxis en la línea 24: token '}'
+Línea 27: impresion : Console.WriteLine(i)
+Línea 26: for : for (('decl_var_init', 'int', 'i', 0); ('<', 'i', 3); ('assign', 'i', ('+', 'i', 1))) { ... }
+Línea 31: impresion : Console.WriteLine(j)
+Línea 30: for : for (('assign', 'j', 10); ('>', 'j', 0); ('assign', 'j', ('-', 'j', 1))) { ... }

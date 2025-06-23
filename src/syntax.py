@@ -81,6 +81,52 @@ def p_else_part_empty(p):
     '''else_part : '''
     p[0] = None
 
+# Estructura for
+
+def p_declaration_for(p):
+    '''declaration : FOR LPAREN for_init SEMICOLON for_cond SEMICOLON for_iter RPAREN LBRACE declarations RBRACE'''
+    _msg(p, f"for : for ({p[3]}; {p[5]}; {p[7]}) {{ ... }}")
+    p[0] = ('for', p[3], p[5], p[7], p[10])
+
+# Inicialización del for (puede ser declaración, asignación o expresión vacía)
+def p_for_init_decl(p):
+    '''for_init : type ID ASSIGN expression'''
+    p[0] = ('decl_var_init', p[1], p[2], p[4])
+
+def p_for_init_assign(p):
+    '''for_init : ID ASSIGN expression'''
+    p[0] = ('assign', p[1], p[3])
+
+def p_for_init_expr(p):
+    '''for_init : expression'''
+    p[0] = p[1]
+
+def p_for_init_empty(p):
+    '''for_init : '''
+    p[0] = None
+
+# Condición del for (puede ser expresión o vacía)
+def p_for_cond_expr(p):
+    '''for_cond : expression'''
+    p[0] = p[1]
+
+def p_for_cond_empty(p):
+    '''for_cond : '''
+    p[0] = None
+
+# Iteración del for (puede ser asignación, expresión o vacía)
+def p_for_iter_assign(p):
+    '''for_iter : ID ASSIGN expression'''
+    p[0] = ('assign', p[1], p[3])
+
+def p_for_iter_expr(p):
+    '''for_iter : expression'''
+    p[0] = p[1]
+
+def p_for_iter_empty(p):
+    '''for_iter : '''
+    p[0] = None
+
 # Tipos soportados
 
 def p_type(p):

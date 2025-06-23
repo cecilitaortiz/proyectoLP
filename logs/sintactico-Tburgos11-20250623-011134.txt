@@ -1,0 +1,4 @@
+Sintaxis:
+Error de sintaxis en la línea 1: token '='
+Línea 2: impresion : Console.WriteLine(i)
+Error de sintaxis en la línea 3: token '}'

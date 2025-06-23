@@ -1,0 +1,26 @@
+Tokens reconocidos:
+Línea 1: FOR -> for
+Línea 1: LPAREN -> (
+Línea 1: ID -> i
+Línea 1: ASSIGN -> =
+Línea 1: INT_CONST -> 0
+Línea 1: SEMICOLON -> ;
+Línea 1: ID -> i
+Línea 1: LT -> <
+Línea 1: INT_CONST -> 10
+Línea 1: SEMICOLON -> ;
+Línea 1: ID -> i
+Línea 1: ASSIGN -> =
+Línea 1: ID -> i
+Línea 1: PLUS -> +
+Línea 1: INT_CONST -> 1
+Línea 1: RPAREN -> )
+Línea 1: LBRACE -> {
+Línea 2: CONSOLE -> Console
+Línea 2: DOT -> .
+Línea 2: WRITELINE -> WriteLine
+Línea 2: LPAREN -> (
+Línea 2: ID -> i
+Línea 2: RPAREN -> )
+Línea 2: SEMICOLON -> ;
+Línea 3: RBRACE -> }
