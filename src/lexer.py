@@ -81,6 +81,12 @@ t_COLON       = r':'
 t_ADD         = r'Add'
 t_PARSE       = r'Parse'
 
+def t_STRING_CONST(t):
+    r'"([^"\n])*"'
+    t.value = t.value[1:-1]
+    t.lineno = t.lexer.lineno
+    return t
+
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
     t.type = reserved.get(t.value, 'ID')
@@ -96,12 +102,6 @@ def t_FLOAT_CONST(t):
 def t_INT_CONST(t):
     r'\d+'
     t.value = int(t.value)
-    t.lineno = t.lexer.lineno
-    return t
-
-def t_STRING_CONST(t):
-    r'"[^"\n]*"'
-    t.value = t.value[1:-1]
     t.lineno = t.lexer.lineno
     return t
 

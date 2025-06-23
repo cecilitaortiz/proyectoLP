@@ -1,0 +1,17 @@
+Sintaxis:
+Línea 1: declaracion_variable : int a = 5
+Línea 3: impresion : Console.WriteLine(a)
+Línea 2: if : if (('>', 'a', 0)) { ... } }
+Error de sintaxis en la línea 5: token '-'
+Línea 7: impresion : Console.WriteLine(a)
+Línea 9: impresion : Console.WriteLine(0)
+Línea 8: else : else { ... }
+Línea 6: if : if (('>', 'a', 0)) { ... } }
+Línea 11: declaracion_variable : int a = 0
+Línea 13: impresion : Console.WriteLine(positivo)
+Línea 15: impresion : Console.WriteLine(cero)
+Error de sintaxis en la línea 16: token '-'
+Línea 17: impresion : Console.WriteLine(menos uno)
+Error de sintaxis en la línea 18: token '}'
+Línea 19: impresion : Console.WriteLine(negativo)
+Error de sintaxis en la línea 20: token '}'

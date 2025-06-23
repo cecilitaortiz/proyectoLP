@@ -1,0 +1,5 @@
+Sintaxis:
+Error de sintaxis en la línea 1: token '>'
+Línea 2: declaracion_variable : int b = 2
+Línea 3: impresion : Console.WriteLine(b)
+Error de sintaxis en la línea 4: token '}'
