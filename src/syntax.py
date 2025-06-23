@@ -3,6 +3,9 @@ from lexer import tokens
 
 # Precedencia para expresiones simples
 precedence = (
+    ('left', 'OR'),
+    ('left', 'AND'),
+    ('right', 'NOT'),
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE'),
     ('right', 'UMINUS'),
@@ -181,6 +184,31 @@ def p_expression_id(p):
 def p_expression_negative(p):
     '''expression : MINUS expression %prec UMINUS'''
     p[0] = ('neg', p[2])
+
+# Ingreso de datos por teclado: Console.ReadLine()
+def p_expression_readline(p):
+    '''expression : CONSOLE DOT READLINE LPAREN RPAREN'''
+    p[0] = ('readline',)
+
+# Parseo de entrada: int.Parse(Console.ReadLine())
+def p_expression_parse_readline(p):
+    '''expression : INT DOT PARSE LPAREN expression RPAREN'''
+    p[0] = ('parse', 'int', p[5])
+
+# Operador lógico AND
+def p_expression_and(p):
+    '''expression : expression AND expression'''
+    p[0] = ('and', p[1], p[3])
+
+# Operador lógico OR
+def p_expression_or(p):
+    '''expression : expression OR expression'''
+    p[0] = ('or', p[1], p[3])
+
+# Operador lógico NOT
+def p_expression_not(p):
+    '''expression : NOT expression'''
+    p[0] = ('not', p[2])
 
 # Declaración de función
 

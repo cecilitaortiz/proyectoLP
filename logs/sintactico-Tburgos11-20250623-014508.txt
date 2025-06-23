@@ -1,0 +1,9 @@
+Sintaxis:
+Línea 1: declaracion_variable : int a = 3
+Línea 2: declaracion_variable : int b = 5
+Línea 3: declaracion_variable : bool c = false
+Error de sintaxis en la línea 5: token '&&'
+Línea 6: impresion : Console.WriteLine(Condición lógica compuesta verdadera)
+Error de sintaxis en la línea 7: token '}'
+Línea 8: impresion : Console.WriteLine(Condición lógica compuesta falsa)
+Error de sintaxis en la línea 9: token '}'

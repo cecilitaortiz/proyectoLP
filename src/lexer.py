@@ -44,7 +44,8 @@ reserved = {
     'ReadLine': 'READLINE',
     'new': 'NEW',
     'private': 'PRIVATE',
-    'protected': 'PROTECTED'
+    'protected': 'PROTECTED',
+    'Parse': 'PARSE'
 }
 
 # No sumes los tokens de reserved, ya están incluidos arriba
