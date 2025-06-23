@@ -1,0 +1,4 @@
+Sintaxis:
+Línea 2: return : return ('+', 'a', 'b')
+Línea 1: funcion : int Sumar([('int', 'a'), ('int', 'b')]) { ... }
+Error de sintaxis en la línea 5: token '('

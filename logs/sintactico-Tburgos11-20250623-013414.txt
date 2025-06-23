@@ -1,0 +1,29 @@
+Sintaxis:
+Línea 2: return : return ('+', 'a', 'b')
+Línea 1: funcion : int Sumar([('int', 'a'), ('int', 'b')]) { ... }
+Línea 5: declaracion_variable : int resultado = ('func_call', 'Sumar', [10, ('neg', 3)])
+Línea 6: impresion : Console.WriteLine(resultado)
+Línea 8: declaracion_variable : int otro = ('func_call', 'Sumar', [('func_call', 'Sumar', [1, 2]), 5])
+Línea 9: impresion : Console.WriteLine(otro)
+Línea 11: declaracion_variable : int a = 5
+Línea 13: impresion : Console.WriteLine(a)
+Línea 12: if : if (('>', 'a', 0)) { ... } }
+Línea 16: declaracion_variable : int b = ('neg', 1)
+Línea 18: impresion : Console.WriteLine(b)
+Línea 20: impresion : Console.WriteLine(0)
+Línea 19: else : else { ... }
+Línea 17: if : if (('>', 'b', 0)) { ... } }
+Línea 23: declaracion_variable : int c = 0
+Línea 25: impresion : Console.WriteLine(positivo)
+Línea 27: impresion : Console.WriteLine(cero)
+Línea 29: impresion : Console.WriteLine(menos uno)
+Línea 31: impresion : Console.WriteLine(negativo)
+Línea 30: else : else { ... }
+Línea 28: else if : else if (('==', 'c', ('neg', 1))) { ... } }
+Línea 26: else if : else if (('==', 'c', 0)) { ... } }
+Línea 24: if : if (('>', 'c', 0)) { ... } }
+Línea 35: impresion : Console.WriteLine(i)
+Línea 34: for : for (('decl_var_init', 'int', 'i', 0); ('<', 'i', 3); ('assign', 'i', ('+', 'i', 1))) { ... }
+Línea 39: impresion : Console.WriteLine(j)
+Línea 38: for : for (('assign', 'j', 10); ('>', 'j', 0); ('assign', 'j', ('-', 'j', 1))) { ... }
+Análisis sintáctico exitoso.

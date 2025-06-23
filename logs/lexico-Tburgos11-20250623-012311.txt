@@ -1,0 +1,27 @@
+Tokens reconocidos:
+Línea 1: INT -> int
+Línea 1: ID -> Sumar
+Línea 1: LPAREN -> (
+Línea 1: INT -> int
+Línea 1: ID -> a
+Línea 1: COMMA -> ,
+Línea 1: INT -> int
+Línea 1: ID -> b
+Línea 1: RPAREN -> )
+Línea 1: LBRACE -> {
+Línea 2: RETURN -> return
+Línea 2: ID -> a
+Línea 2: PLUS -> +
+Línea 2: ID -> b
+Línea 2: SEMICOLON -> ;
+Línea 3: RBRACE -> }
+Línea 5: INT -> int
+Línea 5: ID -> resultado
+Línea 5: ASSIGN -> =
+Línea 5: ID -> Sumar
+Línea 5: LPAREN -> (
+Línea 5: INT_CONST -> 2
+Línea 5: COMMA -> ,
+Línea 5: INT_CONST -> 3
+Línea 5: RPAREN -> )
+Línea 5: SEMICOLON -> ;

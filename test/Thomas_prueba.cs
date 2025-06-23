@@ -1,4 +1,12 @@
-using System;
+int Sumar(int a, int b) {
+    return a + b;
+}
+
+int resultado = Sumar(10, -3);
+Console.WriteLine(resultado);
+
+int otro = Sumar(Sumar(1, 2), 5);
+Console.WriteLine(otro);
 
 int a = 5;
 if (a > 0) {

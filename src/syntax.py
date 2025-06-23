@@ -5,6 +5,7 @@ from lexer import tokens
 precedence = (
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE'),
+    ('right', 'UMINUS'),
 )
 
 # Regla inicial: lista de declaraciones
@@ -175,6 +176,66 @@ def p_expression_string(p):
 def p_expression_id(p):
     '''expression : ID'''
     p[0] = p[1]
+
+# Reconocer números negativos (operador unario menos) en expresiones
+def p_expression_negative(p):
+    '''expression : MINUS expression %prec UMINUS'''
+    p[0] = ('neg', p[2])
+
+# Declaración de función
+
+def p_declaration_function(p):
+    '''declaration : type ID LPAREN params RPAREN LBRACE declarations RBRACE'''
+    _msg(p, f"funcion : {p[1]} {p[2]}({p[4]}) {{ ... }}")
+    p[0] = ('function', p[1], p[2], p[4], p[7])
+
+def p_params_multiple(p):
+    '''params : params COMMA param'''
+    p[0] = p[1] + [p[3]]
+
+def p_params_single(p):
+    '''params : param'''
+    p[0] = [p[1]]
+
+def p_params_empty(p):
+    '''params : '''
+    p[0] = []
+
+def p_param(p):
+    '''param : type ID'''
+    p[0] = (p[1], p[2])
+
+# Llamada a función como expresión (debe ir junto a las reglas de expresión)
+def p_expression_func_call(p):
+    '''expression : ID LPAREN args RPAREN'''
+    p[0] = ('func_call', p[1], p[3])
+
+# Definición de argumentos para funciones y llamadas
+
+def p_args_multiple(p):
+    '''args : args COMMA expression'''
+    p[0] = p[1] + [p[3]]
+
+def p_args_single(p):
+    '''args : expression'''
+    p[0] = [p[1]]
+
+def p_args_empty(p):
+    '''args : '''
+    p[0] = []
+
+# Llamada a función como declaración (opcional, pero puede causar conflicto si no se usa correctamente)
+def p_declaration_func_call(p):
+    '''declaration : ID LPAREN args RPAREN SEMICOLON'''
+    _msg(p, f"llamada_funcion : {p[1]}({p[3]})")
+    p[0] = ('func_call', p[1], p[3])
+
+# Regla para return
+
+def p_declaration_return(p):
+    '''declaration : RETURN expression SEMICOLON'''
+    _msg(p, f"return : return {p[2]}")
+    p[0] = ('return', p[2])
 
 # Manejo de errores
 
