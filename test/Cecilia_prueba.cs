@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 public class CeciliaPrueba
 {
     public int MiMetodo(int a, int b)

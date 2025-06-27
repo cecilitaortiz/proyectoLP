@@ -137,8 +137,57 @@ def p_type(p):
     '''type : INT
            | FLOAT
            | BOOL
-           | STRINGTYPE'''
+           | STRINGTYPE
+           | CHAR
+           | VAR
+           | DOUBLE
+           | list_type'''
     p[0] = p[1]
+
+# Tipo de lista (List<tipo>)
+def p_list_type(p):
+    '''list_type : LIST LT type GT'''
+    p[0] = ('list_type', p[3])
+
+# Inicialización de lista vacía: new List<tipo>()
+def p_expression_new_list(p):
+    '''expression : NEW LIST LT type GT LPAREN RPAREN'''
+    p[0] = ('new_list', p[4])
+
+# Inicialización de lista con elementos: new List<tipo> { elem1, elem2, ... }
+def p_expression_new_list_init(p):
+    '''expression : NEW LIST LT type GT LBRACE list_elements RBRACE'''
+    p[0] = ('new_list_init', p[4], p[7])
+
+# Elementos de la lista
+def p_list_elements_multiple(p):
+    '''list_elements : list_elements COMMA expression'''
+    p[0] = p[1] + [p[3]]
+
+def p_list_elements_single(p):
+    '''list_elements : expression'''
+    p[0] = [p[1]]
+
+def p_list_elements_empty(p):
+    '''list_elements : '''
+    p[0] = []
+
+# Acceso a elemento de lista: lista[indice]
+def p_expression_list_access(p):
+    '''expression : ID LBRACKET expression RBRACKET'''
+    p[0] = ('list_access', p[1], p[3])
+
+# Asignación a elemento de lista: lista[indice] = valor
+def p_declaration_list_assign(p):
+    '''declaration : ID LBRACKET expression RBRACKET ASSIGN expression SEMICOLON'''
+    _msg(p, f"asignacion_lista : {p[1]}[{p[3]}] = {p[6]}")
+    p[0] = ('list_assign', p[1], p[3], p[6])
+
+# Métodos de lista: lista.Add(elemento)
+def p_declaration_list_add(p):
+    '''declaration : ID DOT ADD LPAREN expression RPAREN SEMICOLON'''
+    _msg(p, f"agregar_lista : {p[1]}.Add({p[5]})")
+    p[0] = ('list_add', p[1], p[5])
 
 # Expresiones simples
 
@@ -264,6 +313,100 @@ def p_declaration_return(p):
     '''declaration : RETURN expression SEMICOLON'''
     _msg(p, f"return : return {p[2]}")
     p[0] = ('return', p[2])
+
+# Reglas para definición de clases
+
+def p_declaration_class(p):
+    '''declaration : access_modifier CLASS ID LBRACE class_members RBRACE'''
+    _msg(p, f"clase : {p[1]} class {p[3]} {{ ... }}")
+    p[0] = ('class', p[1], p[3], p[5])
+
+def p_declaration_class_no_modifier(p):
+    '''declaration : CLASS ID LBRACE class_members RBRACE'''
+    _msg(p, f"clase : class {p[2]} {{ ... }}")
+    p[0] = ('class', None, p[2], p[4])
+
+# Modificadores de acceso
+
+def p_access_modifier(p):
+    '''access_modifier : PUBLIC
+                      | PRIVATE
+                      | PROTECTED'''
+    p[0] = p[1]
+def p_access_modifier_empty(p):
+    '''access_modifier : '''
+    p[0] = None
+# Miembros de clase (pueden ser múltiples)
+
+def p_class_members_multiple(p):
+    '''class_members : class_members class_member'''
+    p[0] = p[1] + [p[2]]
+
+def p_class_members_single(p):
+    '''class_members : class_member'''
+    p[0] = [p[1]]
+
+def p_class_members_empty(p):
+    '''class_members : '''
+    p[0] = []
+
+# Miembros individuales de la clase
+
+def p_class_member_field(p):
+    '''class_member : access_modifier type ID SEMICOLON'''
+    _msg(p, f"campo : {p[1]} {p[2]} {p[3]}")
+    p[0] = ('field', p[1], p[2], p[3])
+
+def p_class_member_field_init(p):
+    '''class_member : access_modifier type ID ASSIGN expression SEMICOLON'''
+    _msg(p, f"campo_inicializado : {p[1]} {p[2]} {p[3]} = {p[5]}")
+    p[0] = ('field_init', p[1], p[2], p[3], p[5])
+
+def p_class_member_field_no_modifier(p):
+    '''class_member : type ID SEMICOLON'''
+    _msg(p, f"campo : {p[1]} {p[2]}")
+    p[0] = ('field', None, p[1], p[2])
+
+def p_class_member_field_init_no_modifier(p):
+    '''class_member : type ID ASSIGN expression SEMICOLON'''
+    _msg(p, f"campo_inicializado : {p[1]} {p[2]} = {p[4]}")
+    p[0] = ('field_init', None, p[1], p[2], p[4])
+
+# Métodos de clase
+
+def p_class_member_method(p):
+    '''class_member : access_modifier type ID LPAREN params RPAREN LBRACE declarations RBRACE'''
+    _msg(p, f"metodo : {p[1]} {p[2]} {p[3]}({p[5]}) {{ ... }}")
+    p[0] = ('method', p[1], p[2], p[3], p[5], p[8])
+
+def p_class_member_method_no_modifier(p):
+    '''class_member : type ID LPAREN params RPAREN LBRACE declarations RBRACE'''
+    _msg(p, f"metodo : {p[1]} {p[2]}({p[4]}) {{ ... }}")
+    p[0] = ('method', None, p[1], p[2], p[4], p[7])
+
+# Métodos void
+
+def p_class_member_void_method(p):
+    '''class_member : access_modifier VOID ID LPAREN params RPAREN LBRACE declarations RBRACE'''
+    _msg(p, f"metodo_void : {p[1]} void {p[3]}({p[5]}) {{ ... }}")
+    p[0] = ('method', p[1], 'void', p[3], p[5], p[8])
+
+def p_class_member_void_method_no_modifier(p):
+    '''class_member : VOID ID LPAREN params RPAREN LBRACE declarations RBRACE'''
+    _msg(p, f"metodo_void : void {p[2]}({p[4]}) {{ ... }}")
+    p[0] = ('method', None, 'void', p[2], p[4], p[7])
+
+# Constructores de clase
+
+def p_class_member_constructor(p):
+    '''class_member : access_modifier ID LPAREN params RPAREN LBRACE declarations RBRACE'''
+    _msg(p, f"constructor : {p[1]} {p[2]}({p[4]}) {{ ... }}")
+    p[0] = ('constructor', p[1], p[2], p[4], p[7])
+
+def p_class_member_constructor_no_modifier(p):
+    '''class_member : ID LPAREN params RPAREN LBRACE declarations RBRACE'''
+    _msg(p, f"constructor : {p[1]}({p[3]}) {{ ... }}")
+    p[0] = ('constructor', None, p[1], p[3], p[6])
 
 # Manejo de errores
 
