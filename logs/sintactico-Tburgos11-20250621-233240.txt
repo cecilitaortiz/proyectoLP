@@ -1,5 +1,0 @@
-Sintaxis:
-Error de sintaxis en 'using' línea 24
-Error de sintaxis en '&&' línea 36
-Error de sintaxis en '||' línea 37
-Error de sintaxis en '!' línea 38

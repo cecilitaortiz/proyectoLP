@@ -1,5 +1,0 @@
-Sintaxis:
-Línea 2: declaracion_variable : int b = 2
-Línea 3: impresion : Console.WriteLine(b)
-Línea 1: if : if (('>', 'a', 0)) { ... }
-Análisis sintáctico exitoso.

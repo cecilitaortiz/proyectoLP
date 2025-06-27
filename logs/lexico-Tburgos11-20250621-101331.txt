@@ -1,4 +1,0 @@
-Tokens reconocidos:
-Línea 1: ID -> dsgdgdfg
-Línea 1: ID -> sdfsdf
-Línea 1: ID -> edfsf

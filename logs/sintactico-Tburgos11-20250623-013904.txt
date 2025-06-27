@@ -1,3 +1,0 @@
-Sintaxis:
-Línea 1: declaracion_variable : string entrada = ('readline',)
-Error de sintaxis en la línea 2: token 'Parse'

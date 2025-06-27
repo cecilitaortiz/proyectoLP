@@ -1,9 +1,0 @@
-Sintaxis:
-Línea 1: incremento : ++
-Línea 3: declaracion_inicializada : tipo ID EQUALS expresion SEMICOLON
-Línea 1: bloque : LBRACE instrucciones_opt RBRACE
-Línea 1: estructura_for : FOR ... (línea 1)
-Línea 5: incremento : +=
-Línea 5: bloque : LBRACE instrucciones_opt RBRACE
-Línea 5: estructura_for : FOR ... (línea 5)
-Análisis sintáctico exitoso.

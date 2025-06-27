@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public class CeciliaPrueba
 {
-    public int MiMetodo(int a, double b)
+    public int MiMetodo(int a, int b)
     {
-        int resultado = a + (int)b;
+        int resultado = a + b;
         if (resultado > 10)
         {
             return resultado;
@@ -23,7 +23,6 @@ public class CeciliaPrueba
         float flotante = 2.5f;
         bool bandera = true;
         string texto = "Hola mundo";
-        char letra = 'A';
         var variable = 100;
         List<int> lista = new List<int>();
     }
