@@ -1,5 +1,0 @@
-Sintaxis:
-Línea 5: else : else { ... }
-Línea 3: else if : else if (('==', 'a', 0)) { ... } }
-Línea 1: if : if (('>', 'a', 0)) { ... } }
-Análisis sintáctico exitoso.

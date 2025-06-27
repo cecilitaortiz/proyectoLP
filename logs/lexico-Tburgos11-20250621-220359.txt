@@ -1,3 +1,0 @@
-Tokens reconocidos:
-Línea 1: ID -> hola
-Línea 20: ID -> fsf

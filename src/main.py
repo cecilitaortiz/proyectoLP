@@ -1,8 +1,8 @@
 from datetime import datetime
 import os
 import subprocess
-from lexer import lexer  # Importa el lexer desde lexer.py
-from syntax import parser  # Importa el parser desde syntax.py
+from lexer import lexer
+from syntax import parser
 
 # ---------------------------
 # Obtener nombre de usuario de Git

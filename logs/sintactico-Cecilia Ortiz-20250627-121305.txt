@@ -1,0 +1,16 @@
+Sintaxis:
+Error de sintaxis en la línea 1: token 'using'
+Error de sintaxis en la línea 6: token 'double'
+Error de sintaxis en la línea 8: token ')'
+Línea 11: return : return resultado
+Línea 15: return : return 0
+Línea 13: else : else { ... }
+Línea 9: if : if (('>', 'resultado', 10)) { ... } }
+Error de sintaxis en la línea 17: token '}'
+Error de sintaxis en la línea 20: token '{'
+Error de sintaxis en la línea 22: token 'double'
+Línea 23: declaracion_variable : float flotante = 2.5
+Línea 24: declaracion_variable : bool bandera = true
+Error de sintaxis en la línea 26: token 'char'
+Este caracter no está definido: ''' en la línea 26
+Este caracter no está definido: ''' en la línea 26

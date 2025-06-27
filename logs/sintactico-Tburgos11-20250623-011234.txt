@@ -1,4 +1,0 @@
-Sintaxis:
-Línea 2: impresion : Console.WriteLine(i)
-Línea 1: for : for (('assign', 'i', 0); ('<', 'i', 10); ('assign', 'i', ('+', 'i', 1))) { ... }
-Análisis sintáctico exitoso.

@@ -1,4 +1,0 @@
-Sintaxis:
-Línea 1: declaracion_variable : string entrada = ('readline',)
-Línea 2: declaracion_variable : int num = ('parse', 'int', ('readline',))
-Análisis sintáctico exitoso.

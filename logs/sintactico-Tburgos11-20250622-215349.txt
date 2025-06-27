@@ -1,2 +1,0 @@
-Sintaxis:
-Error de sintaxis en token NUMBER ('4') línea 1

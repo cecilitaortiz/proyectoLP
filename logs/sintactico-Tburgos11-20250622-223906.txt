@@ -1,7 +1,0 @@
-Sintaxis:
-Error de sintaxis en token ID ('b') línea 1
-Línea 2: expresion : i --
-Línea 3: incremento : ++
-Error de sintaxis en token DOT ('.') línea 3
-Línea 4: incremento : +=
-Error de sintaxis en token DOT ('.') línea 4
