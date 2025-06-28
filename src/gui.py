@@ -11,6 +11,8 @@ from main import (
     guardar_log_lexico,
     analizar_sintactico,
     guardar_log_sintactico,
+    analizar_semantico,
+    guardar_log_semantico
 )
 
 def listar_archivos_test():
@@ -149,24 +151,30 @@ class AnalizadorApp(QMainWindow):
             self._ultimo_resultado_lexico = []
             self._ultimo_resultado_sintactico = []
             self._ultimo_resultado_semantico = []
+            
             # Análisis léxico
             resultado_lexico = analizar_lexico(entrada)
-            # Si algún resultado contiene HTML, usa setHtml, si no, usa setPlainText
             self._ultimo_resultado_lexico = resultado_lexico
             if any("<span style='color:red;'>" in linea or "<span style=\"color:red;\">" in linea for linea in resultado_lexico):
                 self.resultado_tokens.setHtml("<br>".join(resultado_lexico))
             else:
                 self.resultado_tokens.setPlainText("\n".join(resultado_lexico))
             log_path_lexico = guardar_log_lexico(resultado_lexico)
+            
             # Análisis sintáctico
             resultado_sintactico = analizar_sintactico(entrada)
             self._ultimo_resultado_sintactico = resultado_sintactico
             self.resultado_sintactico.setPlainText("\n".join(resultado_sintactico))
             log_path_sintactico = guardar_log_sintactico(resultado_sintactico)
-            self._ultimo_resultado_semantico = []  # O el resultado real si tienes análisis semántico
-            self.resultado_semantico.setPlainText("\n".join(self._ultimo_resultado_semantico))
+            
+            # Análisis semántico
+            resultado_semantico = analizar_semantico(entrada)
+            self._ultimo_resultado_semantico = resultado_semantico
+            self.resultado_semantico.setPlainText("\n".join(resultado_semantico))
+            log_path_semantico = guardar_log_semantico(resultado_semantico)
+            
             self.mensaje_log.setText(
-                f"✅ Logs guardados:\nLéxico: '{log_path_lexico}'\nSintáctico: '{log_path_sintactico}'"
+                f"✅ Logs guardados:\nLéxico: '{log_path_lexico}'\nSintáctico: '{log_path_sintactico}'\nSemántico: '{log_path_semantico}'"
             )
             self.mostrar_tokens()
         except Exception as e:
