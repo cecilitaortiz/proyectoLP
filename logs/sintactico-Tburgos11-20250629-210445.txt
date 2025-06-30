@@ -1,0 +1,4 @@
+Sintaxis:
+Error de sintaxis en la línea 1: token 'semantic'
+Error de sintaxis en la línea 4: token 'validar_declaracion_variable'
+Error de sintaxis al final del archivo

@@ -1,0 +1,26 @@
+Tokens reconocidos:
+Línea 1: INT -> int
+Línea 1: ID -> x
+Línea 1: ASSIGN -> =
+Línea 1: INT_CONST -> 5
+Línea 1: SEMICOLON -> ;
+Línea 2: STRINGTYPE -> string
+Línea 2: ID -> nombre
+Línea 2: ASSIGN -> =
+Línea 2: STRING_CONST -> Ana
+Línea 2: SEMICOLON -> ;
+Línea 3: FLOAT -> float
+Línea 3: ID -> pi
+Línea 3: ASSIGN -> =
+Línea 3: FLOAT_CONST -> 3.14
+Línea 3: SEMICOLON -> ;
+Línea 4: DOUBLE -> double
+Línea 4: ID -> d
+Línea 4: ASSIGN -> =
+Línea 4: FLOAT_CONST -> 2.0
+Línea 4: SEMICOLON -> ;
+Línea 5: VAR -> var
+Línea 5: ID -> z
+Línea 5: ASSIGN -> =
+Línea 5: ID -> x
+Línea 5: SEMICOLON -> ;

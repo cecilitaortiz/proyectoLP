@@ -1,0 +1,8 @@
+Análisis Semántico:
+Línea 1: Tipo 'int' detectado
+Línea 1: Error semántico: La variable 'y' usada en la inicialización de 'x' no está declarada.
+
+--- Errores Semánticos ---
+Línea 1: Error semántico: La variable 'y' usada en la inicialización de 'x' no está declarada.
+
+Análisis semántico completado con 1 error(es).

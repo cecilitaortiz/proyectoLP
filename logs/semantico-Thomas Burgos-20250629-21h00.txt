@@ -1,0 +1,12 @@
+Variable declarada correctamente: int x = 5
+Error semántico: No se puede asignar valor 'hola' de tipo str a variable int 'y'.
+Error semántico: La variable 'z' no ha sido declarada.
+Función declarada correctamente: public int Sumar([('int', 'a'), ('int', 'b')])
+Retorno correcto en función 'Sumar': 10
+Error semántico: La función 'Sumar' debe retornar int, pero retorna str.
+Variable declarada correctamente: int x = 5
+Error semántico: No se puede asignar valor 'hola' de tipo str a variable int 'y'.
+Error semántico: La variable 'z' no ha sido declarada.
+Función declarada correctamente: public int Sumar([('int', 'a'), ('int', 'b')])
+Retorno correcto en función 'Sumar': 10
+Error semántico: La función 'Sumar' debe retornar int, pero retorna str.

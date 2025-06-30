@@ -1,0 +1,8 @@
+Sintaxis:
+Línea 1: declaracion_variable : int x = 5
+Línea 2: declaracion_variable : float y = x
+Línea 3: declaracion_variable : double d = 4
+Línea 4: declaracion_variable : int x = 10
+Línea 5: declaracion_variable : string s = 5
+Línea 6: declaracion_variable : float f = hola
+Análisis sintáctico exitoso.

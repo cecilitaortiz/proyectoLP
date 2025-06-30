@@ -1,0 +1,53 @@
+Análisis Semántico:
+Línea 3: Tipo 'int' detectado
+Línea 3: Variable 'x' declarada como int
+Línea 3: Variable 'Correcto' declarada como int
+Línea 4: Variable 'validar_declaracion_variable' declarada como int
+Línea 4: Tipo 'int' detectado
+Línea 4: Variable 'x' declarada como int
+Línea 4: Variable 'Error' declarada como int
+Línea 4: Variable 'ya' declarada como int
+Línea 4: Variable 'declarada' declarada como int
+Línea 5: Variable 'validar_declaracion_variable' declarada como int
+Línea 5: Variable 'persona' declarada como int
+Línea 5: Variable 'y' declarada como int
+Línea 5: Variable 'Error' declarada como int
+Línea 5: Variable 'tipo' declarada como int
+Línea 5: Variable 'no' declarada como int
+Línea 5: Variable 'v' declarada como int
+Línea 5: Variable 'lido' declarada como int
+Advertencia línea 4: Variable 'ya' declarada pero no usada
+Advertencia línea 5: Variable 'Error' declarada pero no usada
+Advertencia línea 5: Variable 'validar_declaracion_variable' declarada pero no usada
+Advertencia línea 5: Variable 'lido' declarada pero no usada
+Advertencia línea 5: Variable 'no' declarada pero no usada
+Advertencia línea 4: Variable 'x' declarada pero no usada
+Advertencia línea 5: Variable 'y' declarada pero no usada
+Advertencia línea 5: Variable 'v' declarada pero no usada
+Advertencia línea 5: Variable 'persona' declarada pero no usada
+Advertencia línea 4: Variable 'declarada' declarada pero no usada
+Advertencia línea 5: Variable 'tipo' declarada pero no usada
+Advertencia línea 3: Variable 'Correcto' declarada pero no usada
+
+--- Tabla de Símbolos ---
+x: int (línea 4) - no inicializada
+Correcto: int (línea 3) - no inicializada
+validar_declaracion_variable: int (línea 5) - no inicializada
+Error: int (línea 5) - no inicializada
+ya: int (línea 4) - no inicializada
+declarada: int (línea 4) - no inicializada
+persona: int (línea 5) - no inicializada
+y: int (línea 5) - no inicializada
+tipo: int (línea 5) - no inicializada
+no: int (línea 5) - no inicializada
+v: int (línea 5) - no inicializada
+lido: int (línea 5) - no inicializada
+
+--- Errores Semánticos ---
+Línea 1: Variable 'from' no declarada
+Línea 1: Variable 'semantic' no declarada
+Línea 1: Variable 'import' no declarada
+Línea 1: Variable 'validar_declaracion_variable' no declarada
+Línea 3: Variable 'validar_declaracion_variable' no declarada
+
+Análisis semántico completado con 5 error(es).

@@ -1,0 +1,8 @@
+Sintaxis:
+Línea 1: declaracion_variable : ('list_type', 'int') numeros
+Línea 2: declaracion_variable : ('list_type', 'int') nums = ('new_list', 'int')
+Error de sintaxis en la línea 3: token 'Add'
+Línea 5: declaracion_variable : int x = ('list_access', 'nums', 0)
+Línea 6: asignacion_lista : nums[1] = 99
+Línea 7: impresion : Console.WriteLine(('list_access', 'nums', 0))
+Línea 8: impresion : Console.WriteLine(('list_access', 'nums', 1))

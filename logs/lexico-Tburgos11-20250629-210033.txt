@@ -1,0 +1,9 @@
+Tokens reconocidos:
+Línea 1: ID -> validar_declaracion_variable
+Línea 1: LPAREN -> (
+Línea 1: INT -> int
+Línea 1: COMMA -> ,
+Línea 1: ID -> x
+Línea 1: COMMA -> ,
+Línea 1: INT_CONST -> 5
+Línea 1: RPAREN -> )

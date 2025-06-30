@@ -1,0 +1,5 @@
+Sintaxis:
+Línea 1: declaracion_variable : int x = 5
+Línea 2: declaracion_variable : string nombre = 2
+Línea 3: declaracion_variable : float pi = 3.14
+Análisis sintáctico exitoso.

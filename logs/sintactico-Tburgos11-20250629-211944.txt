@@ -1,0 +1,5 @@
+Sintaxis:
+Línea 1: llamada_funcion : validar_declaracion_variable(['int', 'x', 5])
+Línea 2: llamada_funcion : validar_declaracion_variable(['int', 'x', 10])
+Línea 3: llamada_funcion : validar_declaracion_variable(['persona', 'y', 1])
+Análisis sintáctico exitoso.

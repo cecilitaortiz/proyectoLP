@@ -1,0 +1,13 @@
+Análisis Semántico:
+Línea 1: Tipo 'int' detectado
+Línea 2: Tipo 'string' detectado
+Línea 2: Variable 'nombre' declarada como string
+Línea 2: Variable 'nombre' inicializada con valor Ana
+Línea 3: Tipo 'float' detectado
+Línea 3: Variable 'pi' declarada como float
+Línea 3: Variable 'pi' inicializada con valor 3.14
+
+--- Errores Semánticos ---
+Línea 1: Error en declaración de variable 'x'
+
+Análisis semántico completado con 1 error(es).

@@ -1,0 +1,15 @@
+Análisis Semántico:
+Línea 1: Tipo 'int' detectado
+Línea 1: Variable declarada correctamente: int a = 5
+Línea 2: Tipo 'float' detectado
+Línea 2: Casting implícito: Variable 'b' de tipo float inicializada con variable int 'a'. Se convierte automáticamente a float.
+Línea 2: Variable declarada correctamente: float b = a
+Línea 3: Tipo 'double' detectado
+Línea 3: Casting implícito: Variable 'c' de tipo double inicializada con variable int 'a'. Se convierte automáticamente a double.
+Línea 3: Variable declarada correctamente: double c = a
+Línea 4: Tipo 'string' detectado
+Línea 4: Variable declarada correctamente: string s = hola
+Línea 5: Tipo 'bool' detectado
+Línea 5: Variable declarada correctamente: bool flag = True
+
+Análisis semántico exitoso - No se encontraron errores.

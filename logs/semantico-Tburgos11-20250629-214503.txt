@@ -1,0 +1,6 @@
+Análisis Semántico:
+Línea 1: Tipo 'int' detectado
+Línea 1: Variable 'x' declarada como int
+Línea 1: Variable 'x' inicializada con valor 5
+
+Análisis semántico exitoso - No se encontraron errores.

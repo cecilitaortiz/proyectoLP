@@ -1,0 +1,21 @@
+Análisis Semántico:
+
+--- Errores Semánticos ---
+Línea 1: Variable 'from' no declarada
+Línea 1: Variable 'semantic' no declarada
+Línea 1: Variable 'import' no declarada
+Línea 1: Variable 'validar_declaracion_variable' no declarada
+Línea 3: Variable 'validar_declaracion_variable' no declarada
+Línea 3: Variable 'Correcto' no declarada
+Línea 4: Variable 'validar_declaracion_variable' no declarada
+Línea 4: Variable 'Error' no declarada
+Línea 4: Variable 'ya' no declarada
+Línea 4: Variable 'declarada' no declarada
+Línea 5: Variable 'validar_declaracion_variable' no declarada
+Línea 5: Variable 'Error' no declarada
+Línea 5: Variable 'tipo' no declarada
+Línea 5: Variable 'no' no declarada
+Línea 5: Variable 'v' no declarada
+Línea 5: Variable 'lido' no declarada
+
+Análisis semántico completado con 16 error(es).

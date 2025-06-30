@@ -1,0 +1,3 @@
+Sintaxis:
+Error de sintaxis en la línea 2: token 'validar_declaracion_variable'
+Error de sintaxis al final del archivo

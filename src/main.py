@@ -3,6 +3,7 @@ import os
 import subprocess
 from lexer import lexer
 from syntax import parser
+from semantic import validar_declaracion_variable, symbol_table
 
 # ---------------------------
 # Obtener nombre de usuario de Git
@@ -107,111 +108,126 @@ def guardar_log_semantico(resultado):
     return nombre_archivo
 
 def analizar_semantico(entrada):
-    """Realiza análisis semántico del código ingresado."""
+    """Realiza análisis semántico del código ingresado usando las reglas de semantic.py."""
+    symbol_table.clear()
     resultado = []
-    tabla_simbolos = {}
     errores_semanticos = []
-    
-    # Primero verificamos que la sintaxis sea correcta
     try:
         lexer.lineno = 1
         lexer.input(entrada)
-      
         tokens = []
         while True:
             tok = lexer.token()
             if not tok:
                 break
             tokens.append(tok)
-        
-        # Reiniciar lexer para análisis semántico
-        lexer.input(entrada)
-        
-        # Variables para el análisis semántico
-        variables_declaradas = set()
-        variables_usadas = set()
-        funciones_declaradas = set()
-        funciones_usadas = set()
         tipo_actual = None
         en_declaracion = False
-        
-        i = 0
-        while i < len(tokens):
-            tok = tokens[i]
-            
-            # Detectar declaraciones de variables
-            if tok.type in ['INT', 'FLOAT', 'STRING', 'BOOL', 'CHAR']:
-                tipo_actual = tok.value
-                en_declaracion = True
-                resultado.append(f"Línea {tok.lineno}: Tipo '{tipo_actual}' detectado")
-                
-            elif tok.type == 'ID' and en_declaracion:
-                variables_declaradas.add(tok.value)
-                tabla_simbolos[tok.value] = {
-                    'tipo': tipo_actual,
-                    'linea': tok.lineno,
-                    'inicializada': False
-                }
-                resultado.append(f"Línea {tok.lineno}: Variable '{tok.value}' declarada como {tipo_actual}")
-                
-                # Verificar si hay inicialización
-                if i + 1 < len(tokens) and tokens[i + 1].type == 'ASSIGN':
-                    tabla_simbolos[tok.value]['inicializada'] = True
-                    resultado.append(f"Línea {tok.lineno}: Variable '{tok.value}' inicializada")
-                
-            elif tok.type == 'ID' and not en_declaracion:
-                # Uso de variable
-                if tok.value in tabla_simbolos:
-                    variables_usadas.add(tok.value)
-                    if not tabla_simbolos[tok.value]['inicializada']:
-                        errores_semanticos.append(f"Línea {tok.lineno}: Variable '{tok.value}' usada sin inicializar")
+        nombre = None
+        valor = None
+        valor_tipo = None
+        for i, tok in enumerate(tokens):
+            # Detectar declaraciones de variables para cualquier tipo de dato reconocido por el lexer
+            if tok.type in ["ID", "INT", "FLOAT", "STRING", "STRINGTYPE", "BOOL", "CHAR", "DOUBLE", "VAR"]:
+                # Si es palabra reservada de tipo, usar su valor como tipo_actual
+                if tok.type in ["INT", "FLOAT", "BOOL", "CHAR", "DOUBLE"]:
+                    tipo_actual = tok.value
+                    en_declaracion = True
+                    resultado.append(f"Línea {tok.lineno}: Tipo '{tipo_actual}' detectado")
+                elif tok.type == "STRINGTYPE":
+                    tipo_actual = "string"
+                    en_declaracion = True
+                    resultado.append(f"Línea {tok.lineno}: Tipo 'string' detectado")
+                elif tok.type == "VAR":
+                    tipo_actual = "var"
+                    en_declaracion = True
+                    resultado.append(f"Línea {tok.lineno}: Tipo 'var' detectado")
+                # Si es un identificador y estamos en declaración, es el nombre de la variable
+                elif en_declaracion and tok.type == "ID":
+                    nombre = tok.value
+                    valor = None
+                    valor_tipo = None
+                    # Busca inicialización en los siguientes tokens hasta el próximo punto y coma
+                    j = i + 1
+                    while j < len(tokens) and tokens[j].type != "SEMICOLON":
+                        if tokens[j].type == "ASSIGN" and j + 1 < len(tokens):
+                            siguiente = tokens[j + 1]
+                            # Si es una expresión, intenta reconstruirla (solo para parser avanzado)
+                            if siguiente.type in ["INT_CONST", "FLOAT_CONST", "STRING_CONST", "ID", "TRUE", "FALSE"]:
+                                valor = siguiente.value
+                                valor_tipo = siguiente.type if siguiente.type not in ["TRUE", "FALSE"] else "BOOL_CONST"
+                            else:
+                                # Si es una expresión compleja, reconstruir el AST (requiere integración con parser)
+                                valor = siguiente.value
+                                valor_tipo = 'EXPR'
+                            break
+                        j += 1
+                    # Recoge todos los mensajes de validación semántica
+                    mensajes = validar_declaracion_variable(tipo_actual, nombre, valor, valor_tipo)
+                    if mensajes:
+                        # Si es string, conviértelo a lista
+                        if isinstance(mensajes, str):
+                            mensajes = [mensajes]
+                        for msg in mensajes:
+                            if msg and ("error" in msg.lower() or "no permitido" in msg.lower() or "no declarada" in msg.lower()):
+                                errores_semanticos.append(f"Línea {tok.lineno}: {msg}")
+                            resultado.append(f"Línea {tok.lineno}: {msg}")
                     else:
-                        resultado.append(f"Línea {tok.lineno}: Variable '{tok.value}' usada correctamente")
+                        resultado.append(f"Línea {tok.lineno}: Variable '{nombre}' declarada como {tipo_actual}")
+                        if valor is not None:
+                            resultado.append(f"Línea {tok.lineno}: Variable '{nombre}' inicializada con valor {valor}")
+                    en_declaracion = False
+                    tipo_actual = None
+            # Validar asignaciones fuera de declaración
+            if tok.type == "ID" and i + 1 < len(tokens) and tokens[i + 1].type == "ASSIGN":
+                nombre = tok.value
+                if nombre in symbol_table:
+                    valor = None
+                    valor_tipo = None
+                    siguiente = tokens[i + 2] if i + 2 < len(tokens) else None
+                    if siguiente:
+                        if siguiente.type in ["INT_CONST", "FLOAT_CONST", "STRING_CONST", "ID", "TRUE", "FALSE"]:
+                            valor = siguiente.value
+                            valor_tipo = siguiente.type if siguiente.type not in ["TRUE", "FALSE"] else "BOOL_CONST"
+                        else:
+                            valor = siguiente.value
+                            valor_tipo = 'EXPR'
+                        # Validar tipo de asignación
+                        tipo_var = symbol_table[nombre]["tipo"]
+                        from semantic import inferir_tipo_expresion
+                        tipo_valor = None
+                        if valor_tipo == 'EXPR':
+                            tipo_valor = inferir_tipo_expresion(valor)
+                        elif valor_tipo == "ID":
+                            tipo_valor = symbol_table[valor]["tipo"] if valor in symbol_table else None
+                        elif valor_tipo == "INT_CONST":
+                            tipo_valor = "int"
+                        elif valor_tipo == "FLOAT_CONST":
+                            tipo_valor = "float"
+                        elif valor_tipo == "STRING_CONST":
+                            tipo_valor = "string"
+                        elif valor_tipo == "BOOL_CONST":
+                            tipo_valor = "bool"
+                        else:
+                            tipo_valor = valor_tipo
+                        if tipo_var == "float" and tipo_valor == "int":
+                            resultado.append(f"Línea {tok.lineno}: Casting implícito: Variable '{nombre}' de tipo float asignada con int. Se convierte automáticamente a float.")
+                        elif tipo_var == "double" and tipo_valor == "int":
+                            resultado.append(f"Línea {tok.lineno}: Casting implícito: Variable '{nombre}' de tipo double asignada con int. Se convierte automáticamente a double.")
+                        elif tipo_var != tipo_valor:
+                            errores_semanticos.append(f"Línea {tok.lineno}: Error semántico: No se puede asignar valor de tipo {tipo_valor} a variable {tipo_var} '{nombre}'.")
+                        else:
+                            resultado.append(f"Línea {tok.lineno}: Asignación correcta: {nombre} = {valor}")
                 else:
-                    errores_semanticos.append(f"Línea {tok.lineno}: Variable '{tok.value}' no declarada")
-            
-            # Detectar funciones
-            elif tok.type == 'ID' and i + 1 < len(tokens) and tokens[i + 1].type == 'LPAREN':
-                if tok.value in ['Console', 'WriteLine', 'Write']:  # Funciones built-in
-                    resultado.append(f"Línea {tok.lineno}: Llamada a función built-in '{tok.value}'")
-                else:
-                    funciones_usadas.add(tok.value)
-                    if tok.value not in funciones_declaradas:
-                        errores_semanticos.append(f"Línea {tok.lineno}: Función '{tok.value}' no declarada")
-            
-            # Reset en punto y coma o llaves
-            if tok.type in ['SEMICOLON', 'LBRACE']:
-                en_declaracion = False
-                tipo_actual = None
-                
-            i += 1
-        
-        # Verificar variables declaradas pero no usadas
-        variables_no_usadas = variables_declaradas - variables_usadas
-        for var in variables_no_usadas:
-            linea = tabla_simbolos[var]['linea']
-            resultado.append(f"Advertencia línea {linea}: Variable '{var}' declarada pero no usada")
-        
-        # Agregar tabla de símbolos al resultado
-        if tabla_simbolos:
-            resultado.append("\n--- Tabla de Símbolos ---")
-            for nombre, info in tabla_simbolos.items():
-                estado = "inicializada" if info['inicializada'] else "no inicializada"
-                resultado.append(f"{nombre}: {info['tipo']} (línea {info['linea']}) - {estado}")
-        
-        # Agregar errores semánticos
+                    errores_semanticos.append(f"Línea {tok.lineno}: Error semántico: Variable '{nombre}' no declarada antes de la asignación.")
         if errores_semanticos:
             resultado.extend(["\n--- Errores Semánticos ---"] + errores_semanticos)
-        
-        # Resumen
         if not errores_semanticos:
             resultado.append("\nAnálisis semántico exitoso - No se encontraron errores.")
         else:
             resultado.append(f"\nAnálisis semántico completado con {len(errores_semanticos)} error(es).")
-            
     except Exception as e:
         resultado.append(f"Error durante el análisis semántico: {str(e)}")
-    
     return resultado
 
 

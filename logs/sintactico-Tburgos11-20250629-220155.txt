@@ -1,0 +1,4 @@
+Sintaxis:
+Línea 1: declaracion_variable : float f = 10
+Línea 2: declaracion_variable : int i = 3.14
+Análisis sintáctico exitoso.

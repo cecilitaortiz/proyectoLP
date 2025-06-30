@@ -1,0 +1,11 @@
+Análisis Semántico:
+Línea 1: Tipo 'float' detectado
+Línea 1: Casting implícito: Variable 'f' de tipo float inicializada con int 10. Se convierte automáticamente a float.
+Línea 1: Variable declarada correctamente: float f = 10
+Línea 2: Tipo 'int' detectado
+Línea 2: Error semántico: Se esperaba un valor de tipo int para la variable 'i', pero se recibió '3.14' de tipo float.
+
+--- Errores Semánticos ---
+Línea 2: Error semántico: Se esperaba un valor de tipo int para la variable 'i', pero se recibió '3.14' de tipo float.
+
+Análisis semántico completado con 1 error(es).

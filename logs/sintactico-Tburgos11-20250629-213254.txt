@@ -1,0 +1,5 @@
+Sintaxis:
+Error de sintaxis en la línea 1: token '='
+Línea 2: declaracion_variable : int x = a
+Línea 3: declaracion_variable : string nombre = Ana
+Línea 4: declaracion_variable : float pi = 3.14

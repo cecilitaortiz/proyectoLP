@@ -1,0 +1,18 @@
+Análisis Semántico:
+Línea 1: Tipo 'int' detectado
+Línea 1: Variable 'x' declarada como int
+Línea 1: Variable 'x' inicializada con valor 5
+Línea 2: Tipo 'string' detectado
+Línea 2: Variable 'nombre' declarada como string
+Línea 2: Variable 'nombre' inicializada con valor Ana
+Línea 3: Tipo 'float' detectado
+Línea 3: Variable 'pi' declarada como float
+Línea 3: Variable 'pi' inicializada con valor 3.14
+Línea 4: Tipo 'double' detectado
+Línea 5: Tipo 'var' detectado
+
+--- Errores Semánticos ---
+Línea 4: Error en declaración de variable 'd'
+Línea 5: Error en declaración de variable 'z'
+
+Análisis semántico completado con 2 error(es).

@@ -1,0 +1,3 @@
+Sintaxis:
+Línea 1: declaracion_variable : int x = 5
+Análisis sintáctico exitoso.
