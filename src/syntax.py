@@ -408,6 +408,12 @@ def p_class_member_constructor_no_modifier(p):
     _msg(p, f"constructor : {p[1]}({p[3]}) {{ ... }}")
     p[0] = ('constructor', None, p[1], p[3], p[6])
 
+# Asignación simple (después de las reglas de declaración existentes)
+def p_declaration_assign(p):
+    '''declaration : ID ASSIGN expression SEMICOLON'''
+    _msg(p, f"asignacion : {p[1]} = {p[3]}")
+    p[0] = ('assign', p[1], p[3])
+
 # Manejo de errores
 
 def p_error(p):
