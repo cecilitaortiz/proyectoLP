@@ -1,0 +1,4 @@
+Análisis Semántico:
+Línea 1: Tipo 'string' detectado
+
+Análisis semántico exitoso - No se encontraron errores.

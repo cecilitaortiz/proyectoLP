@@ -137,7 +137,7 @@ def p_type(p):
     '''type : INT
            | FLOAT
            | BOOL
-           | STRINGTYPE
+           | STRING
            | CHAR
            | VAR
            | DOUBLE

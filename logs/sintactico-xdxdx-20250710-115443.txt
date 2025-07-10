@@ -1,0 +1,2 @@
+Sintaxis:
+Error de sintaxis al final del archivo

@@ -8,11 +8,11 @@ from ply import lex
 # Solo define los tokens que realmente usas en las reglas del parser
 tokens = (
     'ID', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
-    'ASSIGN', 'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'SEMICOLON', 'STRING', 'LT', 'GT',
+    'ASSIGN', 'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'SEMICOLON', 'LT', 'GT',
     'COMMA', 'MOD', 'NOT', 'DOT',
     'LE', 'GE', 'EQ', 'NE',
     'CONSOLE', 'WRITELINE', 'READLINE',
-    'INT', 'DOUBLE', 'FLOAT', 'BOOL', 'STRINGTYPE', 'CHAR', 'VAR', 'LIST',
+    'INT', 'DOUBLE', 'FLOAT', 'BOOL', 'STRING', 'CHAR', 'VAR', 'LIST',
     'FOR', 'IF', 'ELSE', 'CLASS', 'PUBLIC', 'RETURN', 'VOID', 'USING', 'TRUE', 'FALSE',
     'AND', 'OR', 'NEW', 'PRIVATE', 'PROTECTED',
     'PLUSPLUS', 'MINUSMINUS', 'PLUSEQUAL', 'MINUSEQUAL',
@@ -25,7 +25,7 @@ reserved = {
     'double': 'DOUBLE',
     'float': 'FLOAT',
     'bool': 'BOOL',
-    'string': 'STRINGTYPE',
+    'string': 'STRING',
     'char': 'CHAR',
     'var': 'VAR',
     'List': 'LIST',

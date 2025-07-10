@@ -1,0 +1,6 @@
+Tokens reconocidos:
+Línea 1: ID -> String
+Línea 1: ID -> palabra
+Línea 1: ASSIGN -> =
+Línea 1: STRING_CONST -> hola
+Línea 1: SEMICOLON -> ;

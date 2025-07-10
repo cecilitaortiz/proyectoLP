@@ -8,7 +8,6 @@ Unused terminals:
     MOD
     PLUSEQUAL
     PLUSPLUS
-    STRING
     USING
 
 Grammar
@@ -38,7 +37,7 @@ Rule 21    for_iter -> <empty>
 Rule 22    type -> INT
 Rule 23    type -> FLOAT
 Rule 24    type -> BOOL
-Rule 25    type -> STRINGTYPE
+Rule 25    type -> STRING
 Rule 26    type -> CHAR
 Rule 27    type -> VAR
 Rule 28    type -> DOUBLE
@@ -159,8 +158,7 @@ READLINE             : 57
 RETURN               : 72
 RPAREN               : 7 8 10 12 31 38 49 57 58 62 67 71 86 87 88 89 90 91
 SEMICOLON            : 5 6 7 12 12 37 38 71 72 82 83 84 85
-STRING               : 
-STRINGTYPE           : 25
+STRING               : 25
 STRING_CONST         : 54
 TIMES                : 41
 TRUE                 : 52
@@ -214,7 +212,7 @@ state 0
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -234,7 +232,7 @@ state 0
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -253,7 +251,7 @@ state 0
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -271,7 +269,7 @@ state 0
   ! INT             [ reduce using rule 4 (declarations -> .) ]
   ! FLOAT           [ reduce using rule 4 (declarations -> .) ]
   ! BOOL            [ reduce using rule 4 (declarations -> .) ]
-  ! STRINGTYPE      [ reduce using rule 4 (declarations -> .) ]
+  ! STRING          [ reduce using rule 4 (declarations -> .) ]
   ! CHAR            [ reduce using rule 4 (declarations -> .) ]
   ! VAR             [ reduce using rule 4 (declarations -> .) ]
   ! DOUBLE          [ reduce using rule 4 (declarations -> .) ]
@@ -313,7 +311,7 @@ state 2
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -335,7 +333,7 @@ state 2
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -364,7 +362,7 @@ state 3
     INT             reduce using rule 3 (declarations -> declaration .)
     FLOAT           reduce using rule 3 (declarations -> declaration .)
     BOOL            reduce using rule 3 (declarations -> declaration .)
-    STRINGTYPE      reduce using rule 3 (declarations -> declaration .)
+    STRING          reduce using rule 3 (declarations -> declaration .)
     CHAR            reduce using rule 3 (declarations -> declaration .)
     VAR             reduce using rule 3 (declarations -> declaration .)
     DOUBLE          reduce using rule 3 (declarations -> declaration .)
@@ -503,10 +501,10 @@ state 14
 
 state 15
 
-    (25) type -> STRINGTYPE .
+    (25) type -> STRING .
 
-    ID              reduce using rule 25 (type -> STRINGTYPE .)
-    GT              reduce using rule 25 (type -> STRINGTYPE .)
+    ID              reduce using rule 25 (type -> STRING .)
+    GT              reduce using rule 25 (type -> STRING .)
 
 
 state 16
@@ -551,7 +549,7 @@ state 20
     INT             reduce using rule 75 (access_modifier -> PUBLIC .)
     FLOAT           reduce using rule 75 (access_modifier -> PUBLIC .)
     BOOL            reduce using rule 75 (access_modifier -> PUBLIC .)
-    STRINGTYPE      reduce using rule 75 (access_modifier -> PUBLIC .)
+    STRING          reduce using rule 75 (access_modifier -> PUBLIC .)
     CHAR            reduce using rule 75 (access_modifier -> PUBLIC .)
     VAR             reduce using rule 75 (access_modifier -> PUBLIC .)
     DOUBLE          reduce using rule 75 (access_modifier -> PUBLIC .)
@@ -568,7 +566,7 @@ state 21
     INT             reduce using rule 76 (access_modifier -> PRIVATE .)
     FLOAT           reduce using rule 76 (access_modifier -> PRIVATE .)
     BOOL            reduce using rule 76 (access_modifier -> PRIVATE .)
-    STRINGTYPE      reduce using rule 76 (access_modifier -> PRIVATE .)
+    STRING          reduce using rule 76 (access_modifier -> PRIVATE .)
     CHAR            reduce using rule 76 (access_modifier -> PRIVATE .)
     VAR             reduce using rule 76 (access_modifier -> PRIVATE .)
     DOUBLE          reduce using rule 76 (access_modifier -> PRIVATE .)
@@ -585,7 +583,7 @@ state 22
     INT             reduce using rule 77 (access_modifier -> PROTECTED .)
     FLOAT           reduce using rule 77 (access_modifier -> PROTECTED .)
     BOOL            reduce using rule 77 (access_modifier -> PROTECTED .)
-    STRINGTYPE      reduce using rule 77 (access_modifier -> PROTECTED .)
+    STRING          reduce using rule 77 (access_modifier -> PROTECTED .)
     CHAR            reduce using rule 77 (access_modifier -> PROTECTED .)
     VAR             reduce using rule 77 (access_modifier -> PROTECTED .)
     DOUBLE          reduce using rule 77 (access_modifier -> PROTECTED .)
@@ -612,7 +610,7 @@ state 24
     INT             reduce using rule 2 (declarations -> declarations declaration .)
     FLOAT           reduce using rule 2 (declarations -> declarations declaration .)
     BOOL            reduce using rule 2 (declarations -> declarations declaration .)
-    STRINGTYPE      reduce using rule 2 (declarations -> declarations declaration .)
+    STRING          reduce using rule 2 (declarations -> declarations declaration .)
     CHAR            reduce using rule 2 (declarations -> declarations declaration .)
     VAR             reduce using rule 2 (declarations -> declarations declaration .)
     DOUBLE          reduce using rule 2 (declarations -> declarations declaration .)
@@ -803,7 +801,7 @@ state 31
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -842,7 +840,7 @@ state 31
     INT             shift and go to state 61
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -1216,7 +1214,7 @@ state 47
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -1226,7 +1224,7 @@ state 47
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -1294,7 +1292,7 @@ state 49
     INT             reduce using rule 6 (declaration -> type ID SEMICOLON .)
     FLOAT           reduce using rule 6 (declaration -> type ID SEMICOLON .)
     BOOL            reduce using rule 6 (declaration -> type ID SEMICOLON .)
-    STRINGTYPE      reduce using rule 6 (declaration -> type ID SEMICOLON .)
+    STRING          reduce using rule 6 (declaration -> type ID SEMICOLON .)
     CHAR            reduce using rule 6 (declaration -> type ID SEMICOLON .)
     VAR             reduce using rule 6 (declaration -> type ID SEMICOLON .)
     DOUBLE          reduce using rule 6 (declaration -> type ID SEMICOLON .)
@@ -1316,7 +1314,7 @@ state 50
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -1328,7 +1326,7 @@ state 50
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -1548,7 +1546,7 @@ state 62
     INT             reduce using rule 72 (declaration -> RETURN expression SEMICOLON .)
     FLOAT           reduce using rule 72 (declaration -> RETURN expression SEMICOLON .)
     BOOL            reduce using rule 72 (declaration -> RETURN expression SEMICOLON .)
-    STRINGTYPE      reduce using rule 72 (declaration -> RETURN expression SEMICOLON .)
+    STRING          reduce using rule 72 (declaration -> RETURN expression SEMICOLON .)
     CHAR            reduce using rule 72 (declaration -> RETURN expression SEMICOLON .)
     VAR             reduce using rule 72 (declaration -> RETURN expression SEMICOLON .)
     DOUBLE          reduce using rule 72 (declaration -> RETURN expression SEMICOLON .)
@@ -2389,7 +2387,7 @@ state 84
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -2406,7 +2404,7 @@ state 84
   ! reduce/reduce conflict for INT resolved using rule 78 (access_modifier -> .)
   ! reduce/reduce conflict for FLOAT resolved using rule 78 (access_modifier -> .)
   ! reduce/reduce conflict for BOOL resolved using rule 78 (access_modifier -> .)
-  ! reduce/reduce conflict for STRINGTYPE resolved using rule 78 (access_modifier -> .)
+  ! reduce/reduce conflict for STRING resolved using rule 78 (access_modifier -> .)
   ! reduce/reduce conflict for CHAR resolved using rule 78 (access_modifier -> .)
   ! reduce/reduce conflict for VAR resolved using rule 78 (access_modifier -> .)
   ! reduce/reduce conflict for DOUBLE resolved using rule 78 (access_modifier -> .)
@@ -2414,7 +2412,7 @@ state 84
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -2428,7 +2426,7 @@ state 84
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -2442,7 +2440,7 @@ state 84
   ! INT             [ reduce using rule 81 (class_members -> .) ]
   ! FLOAT           [ reduce using rule 81 (class_members -> .) ]
   ! BOOL            [ reduce using rule 81 (class_members -> .) ]
-  ! STRINGTYPE      [ reduce using rule 81 (class_members -> .) ]
+  ! STRING          [ reduce using rule 81 (class_members -> .) ]
   ! CHAR            [ reduce using rule 81 (class_members -> .) ]
   ! VAR             [ reduce using rule 81 (class_members -> .) ]
   ! DOUBLE          [ reduce using rule 81 (class_members -> .) ]
@@ -2452,7 +2450,7 @@ state 84
   ! INT             [ reduce using rule 78 (access_modifier -> .) ]
   ! FLOAT           [ reduce using rule 78 (access_modifier -> .) ]
   ! BOOL            [ reduce using rule 78 (access_modifier -> .) ]
-  ! STRINGTYPE      [ reduce using rule 78 (access_modifier -> .) ]
+  ! STRING          [ reduce using rule 78 (access_modifier -> .) ]
   ! CHAR            [ reduce using rule 78 (access_modifier -> .) ]
   ! VAR             [ reduce using rule 78 (access_modifier -> .) ]
   ! DOUBLE          [ reduce using rule 78 (access_modifier -> .) ]
@@ -3443,7 +3441,7 @@ state 111
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -3453,7 +3451,7 @@ state 111
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -3562,7 +3560,7 @@ state 117
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -3579,7 +3577,7 @@ state 117
   ! reduce/reduce conflict for INT resolved using rule 78 (access_modifier -> .)
   ! reduce/reduce conflict for FLOAT resolved using rule 78 (access_modifier -> .)
   ! reduce/reduce conflict for BOOL resolved using rule 78 (access_modifier -> .)
-  ! reduce/reduce conflict for STRINGTYPE resolved using rule 78 (access_modifier -> .)
+  ! reduce/reduce conflict for STRING resolved using rule 78 (access_modifier -> .)
   ! reduce/reduce conflict for CHAR resolved using rule 78 (access_modifier -> .)
   ! reduce/reduce conflict for VAR resolved using rule 78 (access_modifier -> .)
   ! reduce/reduce conflict for DOUBLE resolved using rule 78 (access_modifier -> .)
@@ -3587,7 +3585,7 @@ state 117
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -3601,7 +3599,7 @@ state 117
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -3615,7 +3613,7 @@ state 117
   ! INT             [ reduce using rule 81 (class_members -> .) ]
   ! FLOAT           [ reduce using rule 81 (class_members -> .) ]
   ! BOOL            [ reduce using rule 81 (class_members -> .) ]
-  ! STRINGTYPE      [ reduce using rule 81 (class_members -> .) ]
+  ! STRING          [ reduce using rule 81 (class_members -> .) ]
   ! CHAR            [ reduce using rule 81 (class_members -> .) ]
   ! VAR             [ reduce using rule 81 (class_members -> .) ]
   ! DOUBLE          [ reduce using rule 81 (class_members -> .) ]
@@ -3625,7 +3623,7 @@ state 117
   ! INT             [ reduce using rule 78 (access_modifier -> .) ]
   ! FLOAT           [ reduce using rule 78 (access_modifier -> .) ]
   ! BOOL            [ reduce using rule 78 (access_modifier -> .) ]
-  ! STRINGTYPE      [ reduce using rule 78 (access_modifier -> .) ]
+  ! STRING          [ reduce using rule 78 (access_modifier -> .) ]
   ! CHAR            [ reduce using rule 78 (access_modifier -> .) ]
   ! VAR             [ reduce using rule 78 (access_modifier -> .) ]
   ! DOUBLE          [ reduce using rule 78 (access_modifier -> .) ]
@@ -3665,7 +3663,7 @@ state 119
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -3677,7 +3675,7 @@ state 119
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -3691,7 +3689,7 @@ state 119
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -3702,7 +3700,7 @@ state 119
   ! INT             [ reduce using rule 78 (access_modifier -> .) ]
   ! FLOAT           [ reduce using rule 78 (access_modifier -> .) ]
   ! BOOL            [ reduce using rule 78 (access_modifier -> .) ]
-  ! STRINGTYPE      [ reduce using rule 78 (access_modifier -> .) ]
+  ! STRING          [ reduce using rule 78 (access_modifier -> .) ]
   ! CHAR            [ reduce using rule 78 (access_modifier -> .) ]
   ! VAR             [ reduce using rule 78 (access_modifier -> .) ]
   ! DOUBLE          [ reduce using rule 78 (access_modifier -> .) ]
@@ -3726,7 +3724,7 @@ state 120
     INT             reduce using rule 80 (class_members -> class_member .)
     FLOAT           reduce using rule 80 (class_members -> class_member .)
     BOOL            reduce using rule 80 (class_members -> class_member .)
-    STRINGTYPE      reduce using rule 80 (class_members -> class_member .)
+    STRING          reduce using rule 80 (class_members -> class_member .)
     CHAR            reduce using rule 80 (class_members -> class_member .)
     VAR             reduce using rule 80 (class_members -> class_member .)
     DOUBLE          reduce using rule 80 (class_members -> class_member .)
@@ -3743,7 +3741,7 @@ state 121
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -3755,7 +3753,7 @@ state 121
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -3801,7 +3799,7 @@ state 125
     INT             reduce using rule 5 (declaration -> type ID ASSIGN expression SEMICOLON .)
     FLOAT           reduce using rule 5 (declaration -> type ID ASSIGN expression SEMICOLON .)
     BOOL            reduce using rule 5 (declaration -> type ID ASSIGN expression SEMICOLON .)
-    STRINGTYPE      reduce using rule 5 (declaration -> type ID ASSIGN expression SEMICOLON .)
+    STRING          reduce using rule 5 (declaration -> type ID ASSIGN expression SEMICOLON .)
     CHAR            reduce using rule 5 (declaration -> type ID ASSIGN expression SEMICOLON .)
     VAR             reduce using rule 5 (declaration -> type ID ASSIGN expression SEMICOLON .)
     DOUBLE          reduce using rule 5 (declaration -> type ID ASSIGN expression SEMICOLON .)
@@ -3835,7 +3833,7 @@ state 128
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -3845,7 +3843,7 @@ state 128
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -3945,7 +3943,7 @@ state 131
     INT             reduce using rule 71 (declaration -> ID LPAREN args RPAREN SEMICOLON .)
     FLOAT           reduce using rule 71 (declaration -> ID LPAREN args RPAREN SEMICOLON .)
     BOOL            reduce using rule 71 (declaration -> ID LPAREN args RPAREN SEMICOLON .)
-    STRINGTYPE      reduce using rule 71 (declaration -> ID LPAREN args RPAREN SEMICOLON .)
+    STRING          reduce using rule 71 (declaration -> ID LPAREN args RPAREN SEMICOLON .)
     CHAR            reduce using rule 71 (declaration -> ID LPAREN args RPAREN SEMICOLON .)
     VAR             reduce using rule 71 (declaration -> ID LPAREN args RPAREN SEMICOLON .)
     DOUBLE          reduce using rule 71 (declaration -> ID LPAREN args RPAREN SEMICOLON .)
@@ -4041,7 +4039,7 @@ state 134
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -4061,7 +4059,7 @@ state 134
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -4080,7 +4078,7 @@ state 134
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -4098,7 +4096,7 @@ state 134
   ! INT             [ reduce using rule 4 (declarations -> .) ]
   ! FLOAT           [ reduce using rule 4 (declarations -> .) ]
   ! BOOL            [ reduce using rule 4 (declarations -> .) ]
-  ! STRINGTYPE      [ reduce using rule 4 (declarations -> .) ]
+  ! STRING          [ reduce using rule 4 (declarations -> .) ]
   ! CHAR            [ reduce using rule 4 (declarations -> .) ]
   ! VAR             [ reduce using rule 4 (declarations -> .) ]
   ! DOUBLE          [ reduce using rule 4 (declarations -> .) ]
@@ -4357,7 +4355,7 @@ state 144
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -4369,7 +4367,7 @@ state 144
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -4383,7 +4381,7 @@ state 144
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -4394,7 +4392,7 @@ state 144
   ! INT             [ reduce using rule 78 (access_modifier -> .) ]
   ! FLOAT           [ reduce using rule 78 (access_modifier -> .) ]
   ! BOOL            [ reduce using rule 78 (access_modifier -> .) ]
-  ! STRINGTYPE      [ reduce using rule 78 (access_modifier -> .) ]
+  ! STRING          [ reduce using rule 78 (access_modifier -> .) ]
   ! CHAR            [ reduce using rule 78 (access_modifier -> .) ]
   ! VAR             [ reduce using rule 78 (access_modifier -> .) ]
   ! DOUBLE          [ reduce using rule 78 (access_modifier -> .) ]
@@ -4415,7 +4413,7 @@ state 145
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -4427,7 +4425,7 @@ state 145
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -4451,7 +4449,7 @@ state 146
     INT             reduce using rule 74 (declaration -> CLASS ID LBRACE class_members RBRACE .)
     FLOAT           reduce using rule 74 (declaration -> CLASS ID LBRACE class_members RBRACE .)
     BOOL            reduce using rule 74 (declaration -> CLASS ID LBRACE class_members RBRACE .)
-    STRINGTYPE      reduce using rule 74 (declaration -> CLASS ID LBRACE class_members RBRACE .)
+    STRING          reduce using rule 74 (declaration -> CLASS ID LBRACE class_members RBRACE .)
     CHAR            reduce using rule 74 (declaration -> CLASS ID LBRACE class_members RBRACE .)
     VAR             reduce using rule 74 (declaration -> CLASS ID LBRACE class_members RBRACE .)
     DOUBLE          reduce using rule 74 (declaration -> CLASS ID LBRACE class_members RBRACE .)
@@ -4476,7 +4474,7 @@ state 147
     INT             reduce using rule 79 (class_members -> class_members class_member .)
     FLOAT           reduce using rule 79 (class_members -> class_members class_member .)
     BOOL            reduce using rule 79 (class_members -> class_members class_member .)
-    STRINGTYPE      reduce using rule 79 (class_members -> class_members class_member .)
+    STRING          reduce using rule 79 (class_members -> class_members class_member .)
     CHAR            reduce using rule 79 (class_members -> class_members class_member .)
     VAR             reduce using rule 79 (class_members -> class_members class_member .)
     DOUBLE          reduce using rule 79 (class_members -> class_members class_member .)
@@ -4545,7 +4543,7 @@ state 153
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -4565,7 +4563,7 @@ state 153
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -4584,7 +4582,7 @@ state 153
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -4602,7 +4600,7 @@ state 153
   ! INT             [ reduce using rule 4 (declarations -> .) ]
   ! FLOAT           [ reduce using rule 4 (declarations -> .) ]
   ! BOOL            [ reduce using rule 4 (declarations -> .) ]
-  ! STRINGTYPE      [ reduce using rule 4 (declarations -> .) ]
+  ! STRING          [ reduce using rule 4 (declarations -> .) ]
   ! CHAR            [ reduce using rule 4 (declarations -> .) ]
   ! VAR             [ reduce using rule 4 (declarations -> .) ]
   ! DOUBLE          [ reduce using rule 4 (declarations -> .) ]
@@ -4690,7 +4688,7 @@ state 158
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -4712,7 +4710,7 @@ state 158
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -4886,7 +4884,7 @@ state 164
     INT             reduce using rule 73 (declaration -> access_modifier CLASS ID LBRACE class_members RBRACE .)
     FLOAT           reduce using rule 73 (declaration -> access_modifier CLASS ID LBRACE class_members RBRACE .)
     BOOL            reduce using rule 73 (declaration -> access_modifier CLASS ID LBRACE class_members RBRACE .)
-    STRINGTYPE      reduce using rule 73 (declaration -> access_modifier CLASS ID LBRACE class_members RBRACE .)
+    STRING          reduce using rule 73 (declaration -> access_modifier CLASS ID LBRACE class_members RBRACE .)
     CHAR            reduce using rule 73 (declaration -> access_modifier CLASS ID LBRACE class_members RBRACE .)
     VAR             reduce using rule 73 (declaration -> access_modifier CLASS ID LBRACE class_members RBRACE .)
     DOUBLE          reduce using rule 73 (declaration -> access_modifier CLASS ID LBRACE class_members RBRACE .)
@@ -4928,7 +4926,7 @@ state 167
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -4940,7 +4938,7 @@ state 167
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -4971,7 +4969,7 @@ state 169
     INT             reduce using rule 84 (class_member -> type ID SEMICOLON .)
     FLOAT           reduce using rule 84 (class_member -> type ID SEMICOLON .)
     BOOL            reduce using rule 84 (class_member -> type ID SEMICOLON .)
-    STRINGTYPE      reduce using rule 84 (class_member -> type ID SEMICOLON .)
+    STRING          reduce using rule 84 (class_member -> type ID SEMICOLON .)
     CHAR            reduce using rule 84 (class_member -> type ID SEMICOLON .)
     VAR             reduce using rule 84 (class_member -> type ID SEMICOLON .)
     DOUBLE          reduce using rule 84 (class_member -> type ID SEMICOLON .)
@@ -5034,7 +5032,7 @@ state 171
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -5046,7 +5044,7 @@ state 171
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -5067,7 +5065,7 @@ state 172
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -5079,7 +5077,7 @@ state 172
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -5109,7 +5107,7 @@ state 173
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -5131,7 +5129,7 @@ state 173
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -5160,7 +5158,7 @@ state 174
     INT             reduce using rule 37 (declaration -> ID LBRACKET expression RBRACKET ASSIGN expression SEMICOLON .)
     FLOAT           reduce using rule 37 (declaration -> ID LBRACKET expression RBRACKET ASSIGN expression SEMICOLON .)
     BOOL            reduce using rule 37 (declaration -> ID LBRACKET expression RBRACKET ASSIGN expression SEMICOLON .)
-    STRINGTYPE      reduce using rule 37 (declaration -> ID LBRACKET expression RBRACKET ASSIGN expression SEMICOLON .)
+    STRING          reduce using rule 37 (declaration -> ID LBRACKET expression RBRACKET ASSIGN expression SEMICOLON .)
     CHAR            reduce using rule 37 (declaration -> ID LBRACKET expression RBRACKET ASSIGN expression SEMICOLON .)
     VAR             reduce using rule 37 (declaration -> ID LBRACKET expression RBRACKET ASSIGN expression SEMICOLON .)
     DOUBLE          reduce using rule 37 (declaration -> ID LBRACKET expression RBRACKET ASSIGN expression SEMICOLON .)
@@ -5185,7 +5183,7 @@ state 175
     INT             reduce using rule 38 (declaration -> ID DOT ADD LPAREN expression RPAREN SEMICOLON .)
     FLOAT           reduce using rule 38 (declaration -> ID DOT ADD LPAREN expression RPAREN SEMICOLON .)
     BOOL            reduce using rule 38 (declaration -> ID DOT ADD LPAREN expression RPAREN SEMICOLON .)
-    STRINGTYPE      reduce using rule 38 (declaration -> ID DOT ADD LPAREN expression RPAREN SEMICOLON .)
+    STRING          reduce using rule 38 (declaration -> ID DOT ADD LPAREN expression RPAREN SEMICOLON .)
     CHAR            reduce using rule 38 (declaration -> ID DOT ADD LPAREN expression RPAREN SEMICOLON .)
     VAR             reduce using rule 38 (declaration -> ID DOT ADD LPAREN expression RPAREN SEMICOLON .)
     DOUBLE          reduce using rule 38 (declaration -> ID DOT ADD LPAREN expression RPAREN SEMICOLON .)
@@ -5210,7 +5208,7 @@ state 176
     INT             reduce using rule 7 (declaration -> CONSOLE DOT WRITELINE LPAREN expression RPAREN SEMICOLON .)
     FLOAT           reduce using rule 7 (declaration -> CONSOLE DOT WRITELINE LPAREN expression RPAREN SEMICOLON .)
     BOOL            reduce using rule 7 (declaration -> CONSOLE DOT WRITELINE LPAREN expression RPAREN SEMICOLON .)
-    STRINGTYPE      reduce using rule 7 (declaration -> CONSOLE DOT WRITELINE LPAREN expression RPAREN SEMICOLON .)
+    STRING          reduce using rule 7 (declaration -> CONSOLE DOT WRITELINE LPAREN expression RPAREN SEMICOLON .)
     CHAR            reduce using rule 7 (declaration -> CONSOLE DOT WRITELINE LPAREN expression RPAREN SEMICOLON .)
     VAR             reduce using rule 7 (declaration -> CONSOLE DOT WRITELINE LPAREN expression RPAREN SEMICOLON .)
     DOUBLE          reduce using rule 7 (declaration -> CONSOLE DOT WRITELINE LPAREN expression RPAREN SEMICOLON .)
@@ -5239,7 +5237,7 @@ state 177
     INT             reduce using rule 11 (else_part -> .)
     FLOAT           reduce using rule 11 (else_part -> .)
     BOOL            reduce using rule 11 (else_part -> .)
-    STRINGTYPE      reduce using rule 11 (else_part -> .)
+    STRING          reduce using rule 11 (else_part -> .)
     CHAR            reduce using rule 11 (else_part -> .)
     VAR             reduce using rule 11 (else_part -> .)
     DOUBLE          reduce using rule 11 (else_part -> .)
@@ -5417,7 +5415,7 @@ state 185
     INT             reduce using rule 82 (class_member -> access_modifier type ID SEMICOLON .)
     FLOAT           reduce using rule 82 (class_member -> access_modifier type ID SEMICOLON .)
     BOOL            reduce using rule 82 (class_member -> access_modifier type ID SEMICOLON .)
-    STRINGTYPE      reduce using rule 82 (class_member -> access_modifier type ID SEMICOLON .)
+    STRING          reduce using rule 82 (class_member -> access_modifier type ID SEMICOLON .)
     CHAR            reduce using rule 82 (class_member -> access_modifier type ID SEMICOLON .)
     VAR             reduce using rule 82 (class_member -> access_modifier type ID SEMICOLON .)
     DOUBLE          reduce using rule 82 (class_member -> access_modifier type ID SEMICOLON .)
@@ -5480,7 +5478,7 @@ state 187
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -5492,7 +5490,7 @@ state 187
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -5522,7 +5520,7 @@ state 189
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -5534,7 +5532,7 @@ state 189
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -5607,7 +5605,7 @@ state 193
     INT             reduce using rule 62 (declaration -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     FLOAT           reduce using rule 62 (declaration -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     BOOL            reduce using rule 62 (declaration -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
-    STRINGTYPE      reduce using rule 62 (declaration -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
+    STRING          reduce using rule 62 (declaration -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     CHAR            reduce using rule 62 (declaration -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     VAR             reduce using rule 62 (declaration -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     DOUBLE          reduce using rule 62 (declaration -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
@@ -5632,7 +5630,7 @@ state 194
     INT             reduce using rule 8 (declaration -> IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
     FLOAT           reduce using rule 8 (declaration -> IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
     BOOL            reduce using rule 8 (declaration -> IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
-    STRINGTYPE      reduce using rule 8 (declaration -> IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
+    STRING          reduce using rule 8 (declaration -> IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
     CHAR            reduce using rule 8 (declaration -> IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
     VAR             reduce using rule 8 (declaration -> IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
     DOUBLE          reduce using rule 8 (declaration -> IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
@@ -5791,7 +5789,7 @@ state 201
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -5811,7 +5809,7 @@ state 201
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -5830,7 +5828,7 @@ state 201
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -5848,7 +5846,7 @@ state 201
   ! INT             [ reduce using rule 4 (declarations -> .) ]
   ! FLOAT           [ reduce using rule 4 (declarations -> .) ]
   ! BOOL            [ reduce using rule 4 (declarations -> .) ]
-  ! STRINGTYPE      [ reduce using rule 4 (declarations -> .) ]
+  ! STRING          [ reduce using rule 4 (declarations -> .) ]
   ! CHAR            [ reduce using rule 4 (declarations -> .) ]
   ! VAR             [ reduce using rule 4 (declarations -> .) ]
   ! DOUBLE          [ reduce using rule 4 (declarations -> .) ]
@@ -5933,7 +5931,7 @@ state 206
     INT             reduce using rule 85 (class_member -> type ID ASSIGN expression SEMICOLON .)
     FLOAT           reduce using rule 85 (class_member -> type ID ASSIGN expression SEMICOLON .)
     BOOL            reduce using rule 85 (class_member -> type ID ASSIGN expression SEMICOLON .)
-    STRINGTYPE      reduce using rule 85 (class_member -> type ID ASSIGN expression SEMICOLON .)
+    STRING          reduce using rule 85 (class_member -> type ID ASSIGN expression SEMICOLON .)
     CHAR            reduce using rule 85 (class_member -> type ID ASSIGN expression SEMICOLON .)
     VAR             reduce using rule 85 (class_member -> type ID ASSIGN expression SEMICOLON .)
     DOUBLE          reduce using rule 85 (class_member -> type ID ASSIGN expression SEMICOLON .)
@@ -5975,7 +5973,7 @@ state 209
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -5995,7 +5993,7 @@ state 209
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -6014,7 +6012,7 @@ state 209
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -6032,7 +6030,7 @@ state 209
   ! INT             [ reduce using rule 4 (declarations -> .) ]
   ! FLOAT           [ reduce using rule 4 (declarations -> .) ]
   ! BOOL            [ reduce using rule 4 (declarations -> .) ]
-  ! STRINGTYPE      [ reduce using rule 4 (declarations -> .) ]
+  ! STRING          [ reduce using rule 4 (declarations -> .) ]
   ! CHAR            [ reduce using rule 4 (declarations -> .) ]
   ! VAR             [ reduce using rule 4 (declarations -> .) ]
   ! DOUBLE          [ reduce using rule 4 (declarations -> .) ]
@@ -6076,7 +6074,7 @@ state 211
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -6096,7 +6094,7 @@ state 211
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -6115,7 +6113,7 @@ state 211
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -6133,7 +6131,7 @@ state 211
   ! INT             [ reduce using rule 4 (declarations -> .) ]
   ! FLOAT           [ reduce using rule 4 (declarations -> .) ]
   ! BOOL            [ reduce using rule 4 (declarations -> .) ]
-  ! STRINGTYPE      [ reduce using rule 4 (declarations -> .) ]
+  ! STRING          [ reduce using rule 4 (declarations -> .) ]
   ! CHAR            [ reduce using rule 4 (declarations -> .) ]
   ! VAR             [ reduce using rule 4 (declarations -> .) ]
   ! DOUBLE          [ reduce using rule 4 (declarations -> .) ]
@@ -6268,7 +6266,7 @@ state 215
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -6290,7 +6288,7 @@ state 215
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -6319,7 +6317,7 @@ state 216
     INT             reduce using rule 83 (class_member -> access_modifier type ID ASSIGN expression SEMICOLON .)
     FLOAT           reduce using rule 83 (class_member -> access_modifier type ID ASSIGN expression SEMICOLON .)
     BOOL            reduce using rule 83 (class_member -> access_modifier type ID ASSIGN expression SEMICOLON .)
-    STRINGTYPE      reduce using rule 83 (class_member -> access_modifier type ID ASSIGN expression SEMICOLON .)
+    STRING          reduce using rule 83 (class_member -> access_modifier type ID ASSIGN expression SEMICOLON .)
     CHAR            reduce using rule 83 (class_member -> access_modifier type ID ASSIGN expression SEMICOLON .)
     VAR             reduce using rule 83 (class_member -> access_modifier type ID ASSIGN expression SEMICOLON .)
     DOUBLE          reduce using rule 83 (class_member -> access_modifier type ID ASSIGN expression SEMICOLON .)
@@ -6354,7 +6352,7 @@ state 218
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -6374,7 +6372,7 @@ state 218
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -6393,7 +6391,7 @@ state 218
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -6411,7 +6409,7 @@ state 218
   ! INT             [ reduce using rule 4 (declarations -> .) ]
   ! FLOAT           [ reduce using rule 4 (declarations -> .) ]
   ! BOOL            [ reduce using rule 4 (declarations -> .) ]
-  ! STRINGTYPE      [ reduce using rule 4 (declarations -> .) ]
+  ! STRING          [ reduce using rule 4 (declarations -> .) ]
   ! CHAR            [ reduce using rule 4 (declarations -> .) ]
   ! VAR             [ reduce using rule 4 (declarations -> .) ]
   ! DOUBLE          [ reduce using rule 4 (declarations -> .) ]
@@ -6455,7 +6453,7 @@ state 220
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -6475,7 +6473,7 @@ state 220
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -6494,7 +6492,7 @@ state 220
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -6512,7 +6510,7 @@ state 220
   ! INT             [ reduce using rule 4 (declarations -> .) ]
   ! FLOAT           [ reduce using rule 4 (declarations -> .) ]
   ! BOOL            [ reduce using rule 4 (declarations -> .) ]
-  ! STRINGTYPE      [ reduce using rule 4 (declarations -> .) ]
+  ! STRING          [ reduce using rule 4 (declarations -> .) ]
   ! CHAR            [ reduce using rule 4 (declarations -> .) ]
   ! VAR             [ reduce using rule 4 (declarations -> .) ]
   ! DOUBLE          [ reduce using rule 4 (declarations -> .) ]
@@ -6549,7 +6547,7 @@ state 221
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -6569,7 +6567,7 @@ state 221
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -6588,7 +6586,7 @@ state 221
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -6606,7 +6604,7 @@ state 221
   ! INT             [ reduce using rule 4 (declarations -> .) ]
   ! FLOAT           [ reduce using rule 4 (declarations -> .) ]
   ! BOOL            [ reduce using rule 4 (declarations -> .) ]
-  ! STRINGTYPE      [ reduce using rule 4 (declarations -> .) ]
+  ! STRING          [ reduce using rule 4 (declarations -> .) ]
   ! CHAR            [ reduce using rule 4 (declarations -> .) ]
   ! VAR             [ reduce using rule 4 (declarations -> .) ]
   ! DOUBLE          [ reduce using rule 4 (declarations -> .) ]
@@ -6641,7 +6639,7 @@ state 222
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -6663,7 +6661,7 @@ state 222
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -6744,7 +6742,7 @@ state 224
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -6766,7 +6764,7 @@ state 224
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -6827,7 +6825,7 @@ state 226
     INT             reduce using rule 91 (class_member -> ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     FLOAT           reduce using rule 91 (class_member -> ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     BOOL            reduce using rule 91 (class_member -> ID LPAREN params RPAREN LBRACE declarations RBRACE .)
-    STRINGTYPE      reduce using rule 91 (class_member -> ID LPAREN params RPAREN LBRACE declarations RBRACE .)
+    STRING          reduce using rule 91 (class_member -> ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     CHAR            reduce using rule 91 (class_member -> ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     VAR             reduce using rule 91 (class_member -> ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     DOUBLE          reduce using rule 91 (class_member -> ID LPAREN params RPAREN LBRACE declarations RBRACE .)
@@ -6855,7 +6853,7 @@ state 227
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -6875,7 +6873,7 @@ state 227
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -6894,7 +6892,7 @@ state 227
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -6912,7 +6910,7 @@ state 227
   ! INT             [ reduce using rule 4 (declarations -> .) ]
   ! FLOAT           [ reduce using rule 4 (declarations -> .) ]
   ! BOOL            [ reduce using rule 4 (declarations -> .) ]
-  ! STRINGTYPE      [ reduce using rule 4 (declarations -> .) ]
+  ! STRING          [ reduce using rule 4 (declarations -> .) ]
   ! CHAR            [ reduce using rule 4 (declarations -> .) ]
   ! VAR             [ reduce using rule 4 (declarations -> .) ]
   ! DOUBLE          [ reduce using rule 4 (declarations -> .) ]
@@ -6947,7 +6945,7 @@ state 228
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -6969,7 +6967,7 @@ state 228
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -7006,7 +7004,7 @@ state 229
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -7026,7 +7024,7 @@ state 229
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -7045,7 +7043,7 @@ state 229
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -7063,7 +7061,7 @@ state 229
   ! INT             [ reduce using rule 4 (declarations -> .) ]
   ! FLOAT           [ reduce using rule 4 (declarations -> .) ]
   ! BOOL            [ reduce using rule 4 (declarations -> .) ]
-  ! STRINGTYPE      [ reduce using rule 4 (declarations -> .) ]
+  ! STRING          [ reduce using rule 4 (declarations -> .) ]
   ! CHAR            [ reduce using rule 4 (declarations -> .) ]
   ! VAR             [ reduce using rule 4 (declarations -> .) ]
   ! DOUBLE          [ reduce using rule 4 (declarations -> .) ]
@@ -7098,7 +7096,7 @@ state 230
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -7120,7 +7118,7 @@ state 230
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -7155,7 +7153,7 @@ state 231
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -7177,7 +7175,7 @@ state 231
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -7206,7 +7204,7 @@ state 232
     INT             reduce using rule 9 (else_part -> ELSE LBRACE declarations RBRACE .)
     FLOAT           reduce using rule 9 (else_part -> ELSE LBRACE declarations RBRACE .)
     BOOL            reduce using rule 9 (else_part -> ELSE LBRACE declarations RBRACE .)
-    STRINGTYPE      reduce using rule 9 (else_part -> ELSE LBRACE declarations RBRACE .)
+    STRING          reduce using rule 9 (else_part -> ELSE LBRACE declarations RBRACE .)
     CHAR            reduce using rule 9 (else_part -> ELSE LBRACE declarations RBRACE .)
     VAR             reduce using rule 9 (else_part -> ELSE LBRACE declarations RBRACE .)
     DOUBLE          reduce using rule 9 (else_part -> ELSE LBRACE declarations RBRACE .)
@@ -7262,7 +7260,7 @@ state 234
     INT             reduce using rule 12 (declaration -> FOR LPAREN for_init SEMICOLON for_cond SEMICOLON for_iter RPAREN LBRACE declarations RBRACE .)
     FLOAT           reduce using rule 12 (declaration -> FOR LPAREN for_init SEMICOLON for_cond SEMICOLON for_iter RPAREN LBRACE declarations RBRACE .)
     BOOL            reduce using rule 12 (declaration -> FOR LPAREN for_init SEMICOLON for_cond SEMICOLON for_iter RPAREN LBRACE declarations RBRACE .)
-    STRINGTYPE      reduce using rule 12 (declaration -> FOR LPAREN for_init SEMICOLON for_cond SEMICOLON for_iter RPAREN LBRACE declarations RBRACE .)
+    STRING          reduce using rule 12 (declaration -> FOR LPAREN for_init SEMICOLON for_cond SEMICOLON for_iter RPAREN LBRACE declarations RBRACE .)
     CHAR            reduce using rule 12 (declaration -> FOR LPAREN for_init SEMICOLON for_cond SEMICOLON for_iter RPAREN LBRACE declarations RBRACE .)
     VAR             reduce using rule 12 (declaration -> FOR LPAREN for_init SEMICOLON for_cond SEMICOLON for_iter RPAREN LBRACE declarations RBRACE .)
     DOUBLE          reduce using rule 12 (declaration -> FOR LPAREN for_init SEMICOLON for_cond SEMICOLON for_iter RPAREN LBRACE declarations RBRACE .)
@@ -7293,7 +7291,7 @@ state 235
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -7315,7 +7313,7 @@ state 235
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -7344,7 +7342,7 @@ state 236
     INT             reduce using rule 90 (class_member -> access_modifier ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     FLOAT           reduce using rule 90 (class_member -> access_modifier ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     BOOL            reduce using rule 90 (class_member -> access_modifier ID LPAREN params RPAREN LBRACE declarations RBRACE .)
-    STRINGTYPE      reduce using rule 90 (class_member -> access_modifier ID LPAREN params RPAREN LBRACE declarations RBRACE .)
+    STRING          reduce using rule 90 (class_member -> access_modifier ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     CHAR            reduce using rule 90 (class_member -> access_modifier ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     VAR             reduce using rule 90 (class_member -> access_modifier ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     DOUBLE          reduce using rule 90 (class_member -> access_modifier ID LPAREN params RPAREN LBRACE declarations RBRACE .)
@@ -7370,7 +7368,7 @@ state 237
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -7392,7 +7390,7 @@ state 237
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -7421,7 +7419,7 @@ state 238
     INT             reduce using rule 87 (class_member -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     FLOAT           reduce using rule 87 (class_member -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     BOOL            reduce using rule 87 (class_member -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
-    STRINGTYPE      reduce using rule 87 (class_member -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
+    STRING          reduce using rule 87 (class_member -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     CHAR            reduce using rule 87 (class_member -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     VAR             reduce using rule 87 (class_member -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     DOUBLE          reduce using rule 87 (class_member -> type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
@@ -7441,7 +7439,7 @@ state 239
     INT             reduce using rule 89 (class_member -> VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     FLOAT           reduce using rule 89 (class_member -> VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     BOOL            reduce using rule 89 (class_member -> VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
-    STRINGTYPE      reduce using rule 89 (class_member -> VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
+    STRING          reduce using rule 89 (class_member -> VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     CHAR            reduce using rule 89 (class_member -> VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     VAR             reduce using rule 89 (class_member -> VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     DOUBLE          reduce using rule 89 (class_member -> VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
@@ -7468,7 +7466,7 @@ state 241
     INT             reduce using rule 86 (class_member -> access_modifier type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     FLOAT           reduce using rule 86 (class_member -> access_modifier type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     BOOL            reduce using rule 86 (class_member -> access_modifier type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
-    STRINGTYPE      reduce using rule 86 (class_member -> access_modifier type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
+    STRING          reduce using rule 86 (class_member -> access_modifier type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     CHAR            reduce using rule 86 (class_member -> access_modifier type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     VAR             reduce using rule 86 (class_member -> access_modifier type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     DOUBLE          reduce using rule 86 (class_member -> access_modifier type ID LPAREN params RPAREN LBRACE declarations RBRACE .)
@@ -7488,7 +7486,7 @@ state 242
     INT             reduce using rule 88 (class_member -> access_modifier VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     FLOAT           reduce using rule 88 (class_member -> access_modifier VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     BOOL            reduce using rule 88 (class_member -> access_modifier VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
-    STRINGTYPE      reduce using rule 88 (class_member -> access_modifier VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
+    STRING          reduce using rule 88 (class_member -> access_modifier VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     CHAR            reduce using rule 88 (class_member -> access_modifier VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     VAR             reduce using rule 88 (class_member -> access_modifier VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
     DOUBLE          reduce using rule 88 (class_member -> access_modifier VOID ID LPAREN params RPAREN LBRACE declarations RBRACE .)
@@ -7516,7 +7514,7 @@ state 243
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -7536,7 +7534,7 @@ state 243
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for BOOL resolved as shift
-  ! shift/reduce conflict for STRINGTYPE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for VAR resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
@@ -7555,7 +7553,7 @@ state 243
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -7573,7 +7571,7 @@ state 243
   ! INT             [ reduce using rule 4 (declarations -> .) ]
   ! FLOAT           [ reduce using rule 4 (declarations -> .) ]
   ! BOOL            [ reduce using rule 4 (declarations -> .) ]
-  ! STRINGTYPE      [ reduce using rule 4 (declarations -> .) ]
+  ! STRING          [ reduce using rule 4 (declarations -> .) ]
   ! CHAR            [ reduce using rule 4 (declarations -> .) ]
   ! VAR             [ reduce using rule 4 (declarations -> .) ]
   ! DOUBLE          [ reduce using rule 4 (declarations -> .) ]
@@ -7608,7 +7606,7 @@ state 244
     (22) type -> . INT
     (23) type -> . FLOAT
     (24) type -> . BOOL
-    (25) type -> . STRINGTYPE
+    (25) type -> . STRING
     (26) type -> . CHAR
     (27) type -> . VAR
     (28) type -> . DOUBLE
@@ -7630,7 +7628,7 @@ state 244
     INT             shift and go to state 12
     FLOAT           shift and go to state 13
     BOOL            shift and go to state 14
-    STRINGTYPE      shift and go to state 15
+    STRING          shift and go to state 15
     CHAR            shift and go to state 16
     VAR             shift and go to state 17
     DOUBLE          shift and go to state 18
@@ -7663,7 +7661,7 @@ state 245
     INT             reduce using rule 11 (else_part -> .)
     FLOAT           reduce using rule 11 (else_part -> .)
     BOOL            reduce using rule 11 (else_part -> .)
-    STRINGTYPE      reduce using rule 11 (else_part -> .)
+    STRING          reduce using rule 11 (else_part -> .)
     CHAR            reduce using rule 11 (else_part -> .)
     VAR             reduce using rule 11 (else_part -> .)
     DOUBLE          reduce using rule 11 (else_part -> .)
@@ -7689,7 +7687,7 @@ state 246
     INT             reduce using rule 10 (else_part -> ELSE IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
     FLOAT           reduce using rule 10 (else_part -> ELSE IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
     BOOL            reduce using rule 10 (else_part -> ELSE IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
-    STRINGTYPE      reduce using rule 10 (else_part -> ELSE IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
+    STRING          reduce using rule 10 (else_part -> ELSE IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
     CHAR            reduce using rule 10 (else_part -> ELSE IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
     VAR             reduce using rule 10 (else_part -> ELSE IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
     DOUBLE          reduce using rule 10 (else_part -> ELSE IF LPAREN expression RPAREN LBRACE declarations RBRACE else_part .)
@@ -7712,7 +7710,7 @@ WARNING: shift/reduce conflict for CLASS in state 0 resolved as shift
 WARNING: shift/reduce conflict for INT in state 0 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 0 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 0 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 0 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 0 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 0 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 0 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 0 resolved as shift
@@ -7732,7 +7730,7 @@ WARNING: shift/reduce conflict for ID in state 84 resolved as shift
 WARNING: shift/reduce conflict for INT in state 84 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 84 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 84 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 84 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 84 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 84 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 84 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 84 resolved as shift
@@ -7819,7 +7817,7 @@ WARNING: shift/reduce conflict for ID in state 117 resolved as shift
 WARNING: shift/reduce conflict for INT in state 117 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 117 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 117 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 117 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 117 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 117 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 117 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 117 resolved as shift
@@ -7829,7 +7827,7 @@ WARNING: shift/reduce conflict for ID in state 119 resolved as shift
 WARNING: shift/reduce conflict for INT in state 119 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 119 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 119 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 119 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 119 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 119 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 119 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 119 resolved as shift
@@ -7843,7 +7841,7 @@ WARNING: shift/reduce conflict for CLASS in state 134 resolved as shift
 WARNING: shift/reduce conflict for INT in state 134 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 134 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 134 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 134 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 134 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 134 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 134 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 134 resolved as shift
@@ -7857,7 +7855,7 @@ WARNING: shift/reduce conflict for ID in state 144 resolved as shift
 WARNING: shift/reduce conflict for INT in state 144 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 144 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 144 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 144 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 144 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 144 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 144 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 144 resolved as shift
@@ -7871,7 +7869,7 @@ WARNING: shift/reduce conflict for CLASS in state 153 resolved as shift
 WARNING: shift/reduce conflict for INT in state 153 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 153 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 153 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 153 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 153 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 153 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 153 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 153 resolved as shift
@@ -7891,7 +7889,7 @@ WARNING: shift/reduce conflict for CLASS in state 201 resolved as shift
 WARNING: shift/reduce conflict for INT in state 201 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 201 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 201 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 201 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 201 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 201 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 201 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 201 resolved as shift
@@ -7909,7 +7907,7 @@ WARNING: shift/reduce conflict for CLASS in state 209 resolved as shift
 WARNING: shift/reduce conflict for INT in state 209 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 209 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 209 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 209 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 209 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 209 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 209 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 209 resolved as shift
@@ -7927,7 +7925,7 @@ WARNING: shift/reduce conflict for CLASS in state 211 resolved as shift
 WARNING: shift/reduce conflict for INT in state 211 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 211 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 211 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 211 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 211 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 211 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 211 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 211 resolved as shift
@@ -7946,7 +7944,7 @@ WARNING: shift/reduce conflict for CLASS in state 218 resolved as shift
 WARNING: shift/reduce conflict for INT in state 218 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 218 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 218 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 218 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 218 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 218 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 218 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 218 resolved as shift
@@ -7964,7 +7962,7 @@ WARNING: shift/reduce conflict for CLASS in state 220 resolved as shift
 WARNING: shift/reduce conflict for INT in state 220 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 220 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 220 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 220 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 220 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 220 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 220 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 220 resolved as shift
@@ -7982,7 +7980,7 @@ WARNING: shift/reduce conflict for CLASS in state 221 resolved as shift
 WARNING: shift/reduce conflict for INT in state 221 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 221 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 221 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 221 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 221 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 221 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 221 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 221 resolved as shift
@@ -8002,7 +8000,7 @@ WARNING: shift/reduce conflict for CLASS in state 227 resolved as shift
 WARNING: shift/reduce conflict for INT in state 227 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 227 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 227 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 227 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 227 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 227 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 227 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 227 resolved as shift
@@ -8021,7 +8019,7 @@ WARNING: shift/reduce conflict for CLASS in state 229 resolved as shift
 WARNING: shift/reduce conflict for INT in state 229 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 229 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 229 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 229 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 229 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 229 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 229 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 229 resolved as shift
@@ -8043,7 +8041,7 @@ WARNING: shift/reduce conflict for CLASS in state 243 resolved as shift
 WARNING: shift/reduce conflict for INT in state 243 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 243 resolved as shift
 WARNING: shift/reduce conflict for BOOL in state 243 resolved as shift
-WARNING: shift/reduce conflict for STRINGTYPE in state 243 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 243 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 243 resolved as shift
 WARNING: shift/reduce conflict for VAR in state 243 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 243 resolved as shift
