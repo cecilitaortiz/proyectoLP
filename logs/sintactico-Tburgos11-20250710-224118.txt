@@ -1,3 +1,0 @@
-Sintaxis:
-Línea 1: declaracion_variable : string a = hola
-Análisis sintáctico exitoso.

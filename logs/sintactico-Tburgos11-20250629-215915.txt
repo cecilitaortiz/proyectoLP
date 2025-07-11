@@ -1,8 +1,0 @@
-Sintaxis:
-Línea 1: declaracion_variable : int a = 5
-Línea 2: declaracion_variable : int a = 10
-Línea 3: declaracion_variable : float b = texto
-Línea 4: declaracion_variable : bool flag = 123
-Línea 5: declaracion_variable : double d = x
-Línea 6: declaracion_variable : char c = true
-Análisis sintáctico exitoso.

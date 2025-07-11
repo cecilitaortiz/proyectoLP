@@ -1,9 +1,0 @@
-Análisis Semántico:
-Línea 1: Tipo 'int' detectado
-Línea 1: Variable declarada correctamente: int a = 1
-Línea 1: Asignación correcta: a = 1
-
---- Errores Semánticos ---
-Línea 2: Error semántico: No se puede asignar valor de tipo string a variable int 'a'.
-
-Análisis semántico completado con 1 error(es).

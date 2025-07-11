@@ -1,4 +1,0 @@
-Sintaxis:
-Línea 1: declaracion_variable : int a = 1
-Línea 2: asignacion : a = hola
-Análisis sintáctico exitoso.

@@ -1,3 +1,0 @@
-Sintaxis:
-Error de sintaxis en '.' línea 62
-Error de sintaxis en 'f' línea 83

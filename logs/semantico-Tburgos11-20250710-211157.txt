@@ -1,6 +1,0 @@
-Análisis Semántico:
-Línea 1: Tipo 'int' detectado
-Línea 1: Variable declarada correctamente: int a = None
-Línea 2: Asignación correcta: a = 3
-
-Análisis semántico exitoso - No se encontraron errores.

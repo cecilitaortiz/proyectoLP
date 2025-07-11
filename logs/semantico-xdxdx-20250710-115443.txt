@@ -1,3 +1,0 @@
-Análisis Semántico:
-
-Análisis semántico exitoso - No se encontraron errores.

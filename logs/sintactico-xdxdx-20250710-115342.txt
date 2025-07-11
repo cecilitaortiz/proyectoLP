@@ -1,2 +1,0 @@
-Sintaxis:
-Error de sintaxis en la línea 1: token 'palabra'

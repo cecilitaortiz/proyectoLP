@@ -1,27 +1,40 @@
+
+# -------------------------------------------------------------
+# main.py - Módulo principal del Analizador C# en Python (usando PLY)
+#
+# Este archivo orquesta el análisis léxico, sintáctico y semántico,
+# gestiona la interfaz gráfica y el registro de logs.
+# Incluye funciones para analizar código fuente, guardar resultados
+# y ejecutar pruebas automáticas.
+# -------------------------------------------------------------
+
 from datetime import datetime
 import os
 import subprocess
-from lexer import lexer
-from syntax import parser
-from semantic import validar_declaracion_variable, symbol_table
+from lexer import lexer  # Analizador léxico (definido en lexer.py)
+from syntax import parser  # Analizador sintáctico (definido en syntax.py)
+from semantic import validar_declaracion_variable, symbol_table  # Funciones y tabla semántica
+
 
 # ---------------------------
-# Obtener nombre de usuario de Git
+# Obtener nombre de usuario de Git para logs
 # ---------------------------
-
 try:
     usuario_git = subprocess.check_output(["git", "config", "user.name"]).strip().decode('utf-8')
 except subprocess.CalledProcessError:
     usuario_git = "desconocido"
 
+
 # ---------------------------
 # Funciones de análisis y log
 # ---------------------------
 
-#------------Lexico-------------------
-
+# ------------ Léxico -------------------
 def guardar_log_lexico(resultado):
-    """Guarda el resultado del análisis léxico en un archivo de log."""
+    """
+    Guarda el resultado del análisis léxico en un archivo de log.
+    El nombre del archivo incluye el usuario y la fecha/hora.
+    """
     if not os.path.exists("logs"):
         os.makedirs("logs")
     fecha_hora = datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -32,7 +45,10 @@ def guardar_log_lexico(resultado):
     return nombre_archivo
 
 def analizar_lexico(entrada):
-    """Analiza el código ingresado y retorna los tokens."""
+    """
+    Analiza el código fuente recibido y retorna una lista de tokens reconocidos.
+    Si encuentra caracteres no definidos, los reporta con su línea.
+    """
     lexer.lineno = 1
     lexer.input(entrada)
     resultado = []
@@ -55,10 +71,13 @@ def analizar_lexico(entrada):
     return resultado
 
 
-# ------------Sintactico-------------------
 
+# ------------ Sintáctico -------------------
 def guardar_log_sintactico(resultado):
-    """Guarda el resultado del análisis sintáctico en un archivo de log."""
+    """
+    Guarda el resultado del análisis sintáctico en un archivo de log.
+    El nombre del archivo incluye el usuario y la fecha/hora.
+    """
     if not os.path.exists("logs"):
         os.makedirs("logs")
     fecha_hora = datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -69,6 +88,10 @@ def guardar_log_sintactico(resultado):
     return nombre_archivo
 
 def analizar_sintactico(entrada):
+    """
+    Realiza el análisis sintáctico del código fuente usando el parser de syntax.py.
+    Captura reglas reconocidas y errores, y retorna el resultado como lista de strings.
+    """
     from syntax import parser
     resultado = []
     from lexer import lexer
@@ -93,11 +116,13 @@ def analizar_sintactico(entrada):
             resultado.append("Análisis sintáctico exitoso.")
     return resultado
 
-# ------------Semantico-------------------
 
-
+# ------------ Semántico -------------------
 def guardar_log_semantico(resultado):
-    """Guarda el resultado del análisis semántico en un archivo de log."""
+    """
+    Guarda el resultado del análisis semántico en un archivo de log.
+    El nombre del archivo incluye el usuario y la fecha/hora.
+    """
     if not os.path.exists("logs"):
         os.makedirs("logs")
     fecha_hora = datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -108,7 +133,11 @@ def guardar_log_semantico(resultado):
     return nombre_archivo
 
 def analizar_semantico(entrada):
-    """Realiza análisis semántico del código ingresado usando las reglas de semantic.py."""
+    """
+    Realiza el análisis semántico del código fuente recibido.
+    Valida declaraciones, inferencias de tipo, asignaciones y reporta errores.
+    Utiliza la tabla de símbolos y funciones de semantic.py.
+    """
     symbol_table.clear()
     resultado = []
     errores_semanticos = []
@@ -254,8 +283,13 @@ def analizar_semantico(entrada):
     return resultado
 
 
+
+# ------------ Pruebas automáticas -------------------
 def analizar_archivo_prueba():
-    """Lee y analiza los archivos de prueba Thomas_prueba.cs y Cecilia_prueba.cs."""
+    """
+    Lee y analiza los archivos de prueba Thomas_prueba.cs y Cecilia_prueba.cs.
+    Retorna el contenido y los tokens reconocidos para cada archivo.
+    """
     archivo1 = "src/Thomas_prueba.cs"
     archivo2 = "src/Cecilia_prueba.cs"
     archivos = [archivo1, archivo2]
@@ -280,11 +314,11 @@ def analizar_archivo_prueba():
     return contenido_total, resultado_total
 
 
-
-
-
-
+# ---------------------------
+# Ejecución principal y GUI
+# ---------------------------
 if __name__ == "__main__":
+    # Si se ejecuta como script principal, lanza la interfaz gráfica (PyQt5)
     from PyQt5.QtWidgets import QApplication
     from gui import AnalizadorApp
     import sys
@@ -293,12 +327,9 @@ if __name__ == "__main__":
     ventana.show()
     sys.exit(app.exec_())
 
-    with open("archivo.cs") as f:
-        data = f.read()
-
-   
-    # Permite ejecutar el análisis sintáctico directamente desde terminal
-    import sys
+    # --- Ejecución por terminal (opcional) ---
+    # Permite ejecutar el análisis sintáctico directamente desde terminal:
+    # python src/main.py archivo.cs
     if len(sys.argv) > 1:
         archivo = sys.argv[1]
         with open(archivo, encoding="utf-8") as f:

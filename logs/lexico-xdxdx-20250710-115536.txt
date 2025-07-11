@@ -1,2 +1,0 @@
-Tokens reconocidos:
-Línea 1: STRINGTYPE -> string

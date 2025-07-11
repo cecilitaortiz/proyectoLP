@@ -1,2 +1,0 @@
-Sintaxis:
-Error de sintaxis en 'class' línea 49

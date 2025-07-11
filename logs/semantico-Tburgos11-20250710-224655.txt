@@ -1,9 +1,0 @@
-Análisis Semántico:
-Línea 1: Tipo 'string' detectado
-Línea 1: Variable declarada correctamente: string a = None
-Línea 3: Asignación correcta: a = sola
-
---- Errores Semánticos ---
-Línea 2: Error semántico: No se puede asignar valor de tipo int a variable string 'a'.
-
-Análisis semántico completado con 1 error(es).

@@ -1,6 +1,0 @@
-Sintaxis:
-Este caracter no está definido: ''' en la línea 1
-Este caracter no está definido: ''' en la línea 1
-Error de sintaxis en la línea 1: token ','
-Este caracter no está definido: ''' en la línea 1
-Este caracter no está definido: ''' en la línea 1

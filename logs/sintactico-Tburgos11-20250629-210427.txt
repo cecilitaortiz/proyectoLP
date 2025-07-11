@@ -1,8 +1,0 @@
-Sintaxis:
-Error de sintaxis en la línea 1: token 'semantic'
-Este caracter no está definido: '#' en la línea 3
-Error de sintaxis en la línea 3: token 'Correcto'
-Este caracter no está definido: '#' en la línea 4
-Error de sintaxis en la línea 4: token 'Error'
-Este caracter no está definido: '#' en la línea 5
-Error de sintaxis en la línea 5: token 'Error'

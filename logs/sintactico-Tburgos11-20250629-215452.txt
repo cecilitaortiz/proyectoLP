@@ -1,7 +1,0 @@
-Sintaxis:
-Línea 1: declaracion_variable : int a = 5
-Línea 2: declaracion_variable : float b = a
-Línea 3: declaracion_variable : double c = a
-Línea 4: declaracion_variable : string s = hola
-Línea 5: declaracion_variable : bool flag = true
-Análisis sintáctico exitoso.

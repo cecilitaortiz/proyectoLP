@@ -1,3 +1,0 @@
-Sintaxis:
-Error de sintaxis en '.' línea 32
-Error de sintaxis en ';' línea 53

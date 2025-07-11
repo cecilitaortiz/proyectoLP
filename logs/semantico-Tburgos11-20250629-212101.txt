@@ -1,9 +1,0 @@
-Análisis Semántico:
-Línea 1: Tipo 'int' detectado
-Línea 3: Tipo 'float' detectado
-
---- Errores Semánticos ---
-Línea 1: Error en declaración de variable 'x'
-Línea 3: Error en declaración de variable 'pi'
-
-Análisis semántico completado con 2 error(es).
