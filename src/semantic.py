@@ -4,13 +4,26 @@ from datetime import datetime
 symbol_table = {}
 
 def validar_declaracion_variable(tipo, nombre, valor, valor_tipo=None):
-    from semantic import inferir_tipo_expresion
     tipos_validos = ["int", "float", "bool", "string", "char", "var", "double"]
     mensajes = []
+    # Permitir tipos de lista: ('list_type', tipo_interno)
+    es_lista = False
+    tipo_lista_str = None
+    if isinstance(tipo, tuple) and tipo[0] == 'list_type':
+        es_lista = True
+        tipo_interno = tipo[1]
+        # Permitir solo listas de tipos válidos simples (no listas de listas)
+        if isinstance(tipo_interno, tuple) and tipo_interno[0] == 'list_type':
+            mensajes.append(f"Error semántico: No se permiten listas de listas para la variable '{nombre}'.")
+            return mensajes
+        if tipo_interno not in tipos_validos:
+            mensajes.append(f"Error semántico: Tipo de elemento '{tipo_interno}' no válido en la lista para variable '{nombre}'.")
+            return mensajes
+        tipo_lista_str = f"list<{tipo_interno}>"
     if nombre in symbol_table:
         mensajes.append(f"Error semántico: La variable '{nombre}' ya está declarada. No se permite redeclaración.")
         return mensajes
-    if tipo not in tipos_validos:
+    if not es_lista and tipo not in tipos_validos:
         mensajes.append(f"Error semántico: Tipo '{tipo}' no válido para variable '{nombre}'. Solo se permiten: {', '.join(tipos_validos)}.")
         return mensajes
     # Validación de tipo para literales, identificadores y expresiones
@@ -34,16 +47,32 @@ def validar_declaracion_variable(tipo, nombre, valor, valor_tipo=None):
             tipo_valor = "bool"
         else:
             tipo_valor = valor_tipo
-        # Permitir casting implícito de int a float/double
-        if tipo == "float" and tipo_valor == "int":
-            mensajes.append(f"Casting implícito: Variable '{nombre}' de tipo float inicializada con int. Se convierte automáticamente a float.")
-        elif tipo == "double" and tipo_valor == "int":
-            mensajes.append(f"Casting implícito: Variable '{nombre}' de tipo double inicializada con int. Se convierte automáticamente a double.")
-        elif tipo_valor != tipo:
-            mensajes.append(f"Error semántico: No se puede asignar valor de tipo {tipo_valor} a variable {tipo} '{nombre}'.")
-            return mensajes
-    symbol_table[nombre] = {"tipo": tipo, "valor": valor}
-    mensajes.append(f"Variable declarada correctamente: {tipo} {nombre} = {valor}")
+        # Validación para listas
+        if es_lista:
+            # Permitir solo asignación de listas del mismo tipo
+            if isinstance(tipo_valor, str) and tipo_valor.startswith("list<"):
+                if tipo_valor != tipo_lista_str:
+                    mensajes.append(f"Error semántico: No se puede asignar valor de tipo {tipo_valor} a variable {tipo_lista_str} '{nombre}'.")
+                    return mensajes
+            elif tipo_valor != tipo_interno:
+                mensajes.append(f"Error semántico: No se puede asignar valor de tipo {tipo_valor} a variable {tipo_lista_str} '{nombre}'. Solo se permiten listas del tipo correcto.")
+                return mensajes
+        else:
+            # Permitir casting implícito de int a float/double
+            if tipo == "float" and tipo_valor == "int":
+                mensajes.append(f"Casting implícito: Variable '{nombre}' de tipo float inicializada con int. Se convierte automáticamente a float.")
+            elif tipo == "double" and tipo_valor == "int":
+                mensajes.append(f"Casting implícito: Variable '{nombre}' de tipo double inicializada con int. Se convierte automáticamente a double.")
+            elif tipo_valor != tipo:
+                mensajes.append(f"Error semántico: No se puede asignar valor de tipo {tipo_valor} a variable {tipo} '{nombre}'.")
+                return mensajes
+    # Guardar en la tabla de símbolos
+    if es_lista:
+        symbol_table[nombre] = {"tipo": tipo_lista_str, "valor": valor}
+        mensajes.append(f"Variable declarada correctamente: {tipo_lista_str} {nombre} = {valor}")
+    else:
+        symbol_table[nombre] = {"tipo": tipo, "valor": valor}
+        mensajes.append(f"Variable declarada correctamente: {tipo} {nombre} = {valor}")
     return mensajes
 
 def inferir_tipo_expresion(expr):

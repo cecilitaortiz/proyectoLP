@@ -1,0 +1,17 @@
+Sintaxis:
+Línea 4: declaracion_variable : float f = 2.5
+Línea 5: declaracion_variable : ('list_type', 'double') listaDoubles = ('new_list_init', 'double', [1.1, 2.2])
+Línea 7: declaracion_variable : var autoVar
+Línea 8: asignacion : autoVar = auto
+Línea 11: declaracion_variable : var sinAsignar
+Línea 12: impresion : Console.WriteLine(sinAsignar)
+Línea 15: declaracion_variable : ('list_type', ('list_type', 'string')) listaDeListas
+Línea 19: return : return ('+', 'a', 'b')
+Línea 18: funcion : int Sumar([('int', 'a'), ('int', 'b')]) { ... }
+Línea 22: return : return 0
+Línea 21: funcion : bool Falso([]) { ... }
+Línea 27: impresion : Console.WriteLine(f es menor que 3)
+Línea 29: impresion : Console.WriteLine(f es mayor o igual que 3)
+Línea 28: else : else { ... }
+Línea 26: if : if (('<', 'f', 3.0)) { ... } }
+Análisis sintáctico exitoso.

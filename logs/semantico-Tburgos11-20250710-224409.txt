@@ -1,0 +1,5 @@
+Análisis Semántico:
+Línea 1: Tipo 'int' detectado
+Línea 1: Variable declarada correctamente: int a = None
+
+Análisis semántico exitoso - No se encontraron errores.

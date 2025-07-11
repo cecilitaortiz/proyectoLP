@@ -1,0 +1,4 @@
+Tokens reconocidos:
+Línea 1: ID -> String
+Línea 1: ID -> a
+Línea 1: SEMICOLON -> ;

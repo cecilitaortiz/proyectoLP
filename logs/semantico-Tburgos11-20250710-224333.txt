@@ -1,0 +1,6 @@
+Análisis Semántico:
+
+--- Errores Semánticos ---
+Línea 2: Error semántico: Variable 'a' no declarada antes de la asignación.
+
+Análisis semántico completado con 1 error(es).

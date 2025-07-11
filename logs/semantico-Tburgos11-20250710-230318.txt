@@ -1,0 +1,32 @@
+Análisis Semántico:
+Línea 4: Tipo 'string' detectado
+Línea 4: Variable declarada correctamente: string listaCadenas = None
+Línea 5: Asignación correcta: listaCadenas = new
+Línea 5: Tipo 'string' detectado
+Línea 7: Tipo 'var' detectado
+Línea 7: Línea 7: Variable 'var' declarada sin inicialización. El tipo se inferirá en la primera asignación.
+Línea 8: Tipo de 'var' inferido como string en la primera asignación a 'listaVar'.
+Línea 8: Asignación correcta: listaVar = new
+Línea 8: Tipo 'int' detectado
+Línea 10: Tipo 'int' detectado
+Línea 10: Variable declarada correctamente: int n = None
+Línea 11: Asignación correcta: n = 7
+Línea 12: Tipo 'bool' detectado
+Línea 12: Variable declarada correctamente: bool ok = false
+Línea 12: Asignación correcta: ok = false
+Línea 15: Tipo 'int' detectado
+Línea 15: Variable declarada correctamente: int listaDeListas = None
+Línea 18: Tipo 'int' detectado
+Línea 18: Error semántico: No se puede asignar valor de tipo string a variable int 'x'.
+Línea 21: Tipo 'var' detectado
+Línea 21: Línea 21: Variable 'var' declarada sin inicialización. El tipo se inferirá en la primera asignación.
+Línea 22: Tipo de 'var' inferido como bool en la primera asignación a 'sinTipo'.
+Línea 22: Asignación correcta: sinTipo = true
+Línea 25: Tipo 'string' detectado
+Línea 25: Variable declarada correctamente: string F = None
+
+--- Errores Semánticos ---
+Línea 18: Error semántico: No se puede asignar valor de tipo string a variable int 'x'.
+Línea 18: Error semántico: Variable 'x' no declarada antes de la asignación.
+
+Análisis semántico completado con 2 error(es).

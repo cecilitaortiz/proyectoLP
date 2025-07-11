@@ -1,0 +1,15 @@
+Sintaxis:
+Línea 4: declaracion_variable : ('list_type', 'string') listaCadenas
+Línea 5: asignacion : listaCadenas = ('new_list_init', 'string', ['uno', 'dos', 'tres'])
+Línea 7: declaracion_variable : var listaVar
+Línea 8: asignacion : listaVar = ('new_list_init', 'int', [4, 5, 6])
+Línea 10: declaracion_variable : int n
+Línea 11: asignacion : n = 7
+Línea 12: declaracion_variable : bool ok = false
+Línea 15: declaracion_variable : ('list_type', ('list_type', 'int')) listaDeListas
+Línea 18: declaracion_variable : int x = texto
+Línea 21: declaracion_variable : var sinTipo
+Línea 22: asignacion : sinTipo = true
+Línea 26: return : return 123
+Línea 25: funcion : string F([]) { ... }
+Análisis sintáctico exitoso.

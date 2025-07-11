@@ -1,0 +1,5 @@
+Análisis Semántico:
+Línea 1: Tipo 'string' detectado
+Línea 1: Variable declarada correctamente: string a = None
+
+Análisis semántico exitoso - No se encontraron errores.

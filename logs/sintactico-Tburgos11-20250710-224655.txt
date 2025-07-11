@@ -1,0 +1,5 @@
+Sintaxis:
+Línea 1: declaracion_variable : string a
+Línea 2: asignacion : a = 2
+Línea 3: asignacion : a = sola
+Análisis sintáctico exitoso.

@@ -1,0 +1,4 @@
+Sintaxis:
+Línea 1: declaracion_variable : ('list_type', 'int') listaEnteros
+Línea 2: declaracion_variable : ('list_type', 'string') listaCadenas
+Error de sintaxis en la línea 3: token 'listaDeListas'

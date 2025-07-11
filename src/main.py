@@ -128,13 +128,13 @@ def analizar_semantico(entrada):
         valor_tipo = None
         for i, tok in enumerate(tokens):
             # Detectar declaraciones de variables para cualquier tipo de dato reconocido por el lexer
-            if tok.type in ["ID", "INT", "FLOAT", "STRING", "STRINGTYPE", "BOOL", "CHAR", "DOUBLE", "VAR"]:
+            if tok.type in ["ID", "INT", "FLOAT", "BOOL", "CHAR", "DOUBLE", "VAR", "STRING"]:
                 # Si es palabra reservada de tipo, usar su valor como tipo_actual
                 if tok.type in ["INT", "FLOAT", "BOOL", "CHAR", "DOUBLE"]:
                     tipo_actual = tok.value
                     en_declaracion = True
                     resultado.append(f"Línea {tok.lineno}: Tipo '{tipo_actual}' detectado")
-                elif tok.type == "STRINGTYPE":
+                elif tok.type == "STRING":
                     tipo_actual = "string"
                     en_declaracion = True
                     resultado.append(f"Línea {tok.lineno}: Tipo 'string' detectado")
@@ -149,6 +149,7 @@ def analizar_semantico(entrada):
                     valor_tipo = None
                     # Busca inicialización en los siguientes tokens hasta el próximo punto y coma
                     j = i + 1
+                    tiene_inicializacion = False
                     while j < len(tokens) and tokens[j].type != "SEMICOLON":
                         if tokens[j].type == "ASSIGN" and j + 1 < len(tokens):
                             siguiente = tokens[j + 1]
@@ -160,12 +161,28 @@ def analizar_semantico(entrada):
                                 # Si es una expresión compleja, reconstruir el AST (requiere integración con parser)
                                 valor = siguiente.value
                                 valor_tipo = 'EXPR'
+                            tiene_inicializacion = True
                             break
                         j += 1
-                    # Recoge todos los mensajes de validación semántica
-                    mensajes = validar_declaracion_variable(tipo_actual, nombre, valor, valor_tipo)
+                    # Si no hay inicialización, igual registrar la variable
+                    if not tiene_inicializacion:
+                        valor = None
+                        valor_tipo = None
+                    # Si es var, permitir declaración sin inicialización (C#-like)
+                    if tipo_actual == "var":
+                        if valor is not None:
+                            from semantic import inferir_tipo_expresion
+                            tipo_inferido = inferir_tipo_expresion(valor)
+                            tipo_actual = tipo_inferido
+                            mensajes = validar_declaracion_variable(tipo_actual, nombre, valor, valor_tipo)
+                        else:
+                            # Registrar como pendiente de inferencia
+                            if nombre not in symbol_table:
+                                symbol_table[nombre] = {"tipo": "var", "valor": None, "pending_inference": True}
+                            mensajes = [f"Línea {tok.lineno}: Variable 'var' declarada sin inicialización. El tipo se inferirá en la primera asignación."]
+                    else:
+                        mensajes = validar_declaracion_variable(tipo_actual, nombre, valor, valor_tipo)
                     if mensajes:
-                        # Si es string, conviértelo a lista
                         if isinstance(mensajes, str):
                             mensajes = [mensajes]
                         for msg in mensajes:
@@ -210,6 +227,12 @@ def analizar_semantico(entrada):
                             tipo_valor = "bool"
                         else:
                             tipo_valor = valor_tipo
+                        # Si la variable es var y pendiente de inferencia, infiere el tipo en la primera asignación
+                        if tipo_var == "var" and symbol_table[nombre].get("pending_inference", False):
+                            symbol_table[nombre]["tipo"] = tipo_valor
+                            symbol_table[nombre]["pending_inference"] = False
+                            tipo_var = tipo_valor
+                            resultado.append(f"Línea {tok.lineno}: Tipo de 'var' inferido como {tipo_valor} en la primera asignación a '{nombre}'.")
                         if tipo_var == "float" and tipo_valor == "int":
                             resultado.append(f"Línea {tok.lineno}: Casting implícito: Variable '{nombre}' de tipo float asignada con int. Se convierte automáticamente a float.")
                         elif tipo_var == "double" and tipo_valor == "int":

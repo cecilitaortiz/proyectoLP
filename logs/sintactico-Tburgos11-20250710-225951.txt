@@ -1,0 +1,5 @@
+Sintaxis:
+Línea 1: declaracion_variable : ('list_type', 'int') listaEnteros
+Línea 2: declaracion_variable : ('list_type', 'string') listaCadenas
+Línea 3: declaracion_variable : ('list_type', ('list_type', 'int')) listaDeListas
+Análisis sintáctico exitoso.

@@ -1,0 +1,6 @@
+Tokens reconocidos:
+Línea 1: INT -> int
+Línea 1: ID -> a
+Línea 1: ASSIGN -> =
+Línea 1: INT_CONST -> 1
+Línea 1: SEMICOLON -> ;
