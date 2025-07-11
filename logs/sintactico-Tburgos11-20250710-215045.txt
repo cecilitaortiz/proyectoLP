@@ -1,0 +1,30 @@
+Sintaxis:
+Línea 2: declaracion_variable : int a = 5
+Línea 3: declaracion_variable : float b = 3.14
+Línea 4: declaracion_variable : bool flag = true
+Línea 5: declaracion_variable : string mensaje = Hola mundo
+Línea 8: declaracion_variable : ('list_type', 'int') numeros
+Línea 9: declaracion_variable : ('list_type', 'int') otros = ('new_list', 'int')
+Línea 10: asignacion : numeros = ('new_list', 'int')
+Línea 11: agregar_lista : numeros.Add(10)
+Línea 12: agregar_lista : numeros.Add(a)
+Línea 13: asignacion_lista : numeros[0] = 20
+Línea 14: declaracion_variable : int primero = ('list_access', 'numeros', 0)
+Línea 18: impresion : Console.WriteLine(a es positivo)
+Línea 20: impresion : Console.WriteLine(a es cero)
+Línea 22: impresion : Console.WriteLine(a es negativo)
+Línea 21: else : else { ... }
+Línea 19: else if : else if (('==', 'a', 0)) { ... } }
+Línea 17: if : if (('>', 'a', 0)) { ... } }
+Línea 27: agregar_lista : numeros.Add(i)
+Línea 28: impresion : Console.WriteLine(('list_access', 'numeros', 'i'))
+Línea 26: for : for (('decl_var_init', 'int', 'i', 0); ('<', 'i', 3); ('assign', 'i', ('+', 'i', 1))) { ... }
+Línea 33: declaracion_variable : int resultado = ('+', 'x', 'y')
+Línea 34: return : return resultado
+Línea 32: funcion : int Sumar([('int', 'x'), ('int', 'y')]) { ... }
+Línea 38: declaracion_variable : int suma = ('func_call', 'Sumar', ['a', 2])
+Línea 41: impresion : Console.WriteLine(Ingrese un número:)
+Línea 42: declaracion_variable : int n = ('parse', 'int', ('readline',))
+Línea 46: impresion : Console.WriteLine(n es no negativo y flag es true)
+Línea 45: if : if (('and', 'flag', ('>', 'n', ('==', ('or', 0, 'n'), 0)))) { ... } }
+Análisis sintáctico exitoso.

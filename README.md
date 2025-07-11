@@ -11,13 +11,13 @@ Este proyecto es un **analizador de código fuente en C#**, desarrollado en Pyth
 - ✅ **Análisis Semántico** básico para validación de tipos y declaraciones
 - ✅ **Interfaz gráfica** amigable con PyQt5
 - ✅ **Generación de logs automáticos** con nombre de usuario Git y timestamp
-- ✅ **Lectura de archivos de prueba** (`Thomas_prueba.cs`, `Cecilia_prueba.cs`)
+- ✅ **Lectura de archivos de prueba** (`Thomas_prueba.cs`, `Cecilia_prueba.cs`,´Prueba_final.cs´.)
 
 ---
 
 ##  Requisitos
 
-Asegúrate de tener Python 3.7 o superior.
+Tener Python 3.7 o superior.
 
 ### Instalar dependencias
 
