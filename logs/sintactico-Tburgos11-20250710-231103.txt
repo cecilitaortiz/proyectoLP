@@ -1,0 +1,21 @@
+Sintaxis:
+Línea 4: declaracion_variable : int a = 5
+Línea 5: declaracion_variable : double b = 3.14
+Línea 6: declaracion_variable : bool flag = true
+Línea 7: declaracion_variable : string texto = Hola
+Línea 8: declaracion_variable : char c = x
+Línea 10: declaracion_variable : ('list_type', 'int') listaEnteros
+Línea 11: asignacion : listaEnteros = ('new_list', 'int')
+Línea 12: asignacion : listaEnteros = ('new_list_init', 'int', [1, 2, 3])
+Línea 14: declaracion_variable : var x = 10
+Línea 15: declaracion_variable : var y = cadena
+Línea 16: declaracion_variable : var z
+Línea 17: asignacion : z = 2.5
+Línea 20: impresion : Console.WriteLine(a es mayor que 3)
+Línea 22: impresion : Console.WriteLine(a no es mayor que 3)
+Línea 21: else : else { ... }
+Línea 19: if : if (('>', 'a', 3)) { ... } }
+Línea 27: return : return ('+', 'p1', 'p2')
+Línea 26: funcion : double Sumar([('double', 'p1'), ('double', 'p2')]) { ... }
+Línea 29: declaracion_variable : double resultado = ('func_call', 'Sumar', [2.0, 3.0])
+Análisis sintáctico exitoso.

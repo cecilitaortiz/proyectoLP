@@ -1,0 +1,50 @@
+Análisis Semántico:
+Línea 4: Tipo 'float' detectado
+Línea 4: Variable declarada correctamente: float f = 2.5
+Línea 4: Asignación correcta: f = 2.5
+Línea 5: Tipo 'double' detectado
+Línea 5: Error semántico: No se puede asignar valor de tipo string a variable double 'listaDoubles'.
+Línea 5: Tipo 'double' detectado
+Línea 7: Tipo 'var' detectado
+Línea 7: Línea 7: Variable 'var' declarada sin inicialización. El tipo se inferirá en la primera asignación.
+Línea 8: Tipo de 'var' inferido como string en la primera asignación a 'autoVar'.
+Línea 8: Asignación correcta: autoVar = auto
+Línea 11: Tipo 'var' detectado
+Línea 11: Línea 11: Variable 'var' declarada sin inicialización. El tipo se inferirá en la primera asignación.
+Línea 15: Tipo 'string' detectado
+Línea 15: Variable declarada correctamente: string listaDeListas = None
+Línea 18: Tipo 'int' detectado
+Línea 18: Variable declarada correctamente: int Sumar = None
+Línea 18: Tipo 'int' detectado
+Línea 18: Variable declarada correctamente: int a = None
+Línea 18: Tipo 'int' detectado
+Línea 18: Variable declarada correctamente: int b = None
+Línea 21: Tipo 'bool' detectado
+Línea 21: Variable declarada correctamente: bool Falso = None
+Línea 27: Tipo 'string' detectado
+Línea 27: Variable declarada correctamente: string nombre = None
+Línea 28: Tipo 'int' detectado
+Línea 28: Variable declarada correctamente: int edad = None
+Línea 29: Tipo 'string' detectado
+Línea 29: Error semántico: La variable 'n' usada en la inicialización de 'n' no está declarada.
+Línea 29: Tipo 'int' detectado
+Línea 29: Error semántico: La variable 'n' usada en la inicialización de 'e' no está declarada.
+Línea 49: Tipo 'int' detectado
+Línea 49: Variable declarada correctamente: int i = 0
+Línea 49: Asignación correcta: i = 0
+Línea 49: Asignación correcta: i = i
+Línea 53: Tipo 'int' detectado
+Línea 53: Variable declarada correctamente: int j = 0
+Línea 53: Asignación correcta: j = 0
+Línea 55: Asignación correcta: j = j
+
+--- Errores Semánticos ---
+Línea 5: Error semántico: No se puede asignar valor de tipo string a variable double 'listaDoubles'.
+Línea 5: Error semántico: Variable 'listaDoubles' no declarada antes de la asignación.
+Línea 29: Error semántico: La variable 'n' usada en la inicialización de 'n' no está declarada.
+Línea 29: Error semántico: La variable 'n' usada en la inicialización de 'e' no está declarada.
+Línea 30: Error semántico: No se puede asignar valor de tipo None a variable string 'nombre'.
+Línea 31: Error semántico: No se puede asignar valor de tipo None a variable int 'edad'.
+Línea 38: Error semántico: Variable 'p' no declarada antes de la asignación.
+
+Análisis semántico completado con 7 error(es).

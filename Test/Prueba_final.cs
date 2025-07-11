@@ -22,9 +22,36 @@ bool Falso() {
     return 0;
 }
 
+// Clase simple con atributos y método
+class Persona {
+    string nombre;
+    int edad;
+    public Persona(string n, int e) {
+        nombre = n;
+        edad = e;
+    }
+    public void Saludar() {
+        Console.WriteLine("Hola, soy " + nombre);
+    }
+}
+
+Persona p = new Persona("Ana", 30);
+p.Saludar();
+
 // Control de flujo
 if (f < 3.0) {
     Console.WriteLine("f es menor que 3");
 } else {
     Console.WriteLine("f es mayor o igual que 3");
+}
+
+// Prueba de for y while
+for (int i = 0; i < 5; i = i + 1) {
+    Console.WriteLine(i);
+}
+
+int j = 0;
+while (j < 3) {
+    Console.WriteLine(j);
+    j = j + 1;
 }
