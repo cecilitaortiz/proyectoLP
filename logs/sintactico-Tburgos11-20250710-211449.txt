@@ -1,0 +1,33 @@
+Sintaxis:
+Línea 2: return : return ('+', 'a', 'b')
+Línea 1: funcion : int Sumar([('int', 'a'), ('int', 'b')]) { ... }
+Línea 6: return : return ('/', ('+', 'x', 'y'), 2.0)
+Línea 5: funcion : float Promedio([('int', 'x'), ('int', 'y')]) { ... }
+Línea 9: declaracion_variable : int resultado = ('func_call', 'Sumar', [10, ('neg', 3)])
+Línea 10: impresion : Console.WriteLine(resultado)
+Línea 12: declaracion_variable : int otro = ('func_call', 'Sumar', [('func_call', 'Sumar', [1, 2]), 5])
+Línea 13: impresion : Console.WriteLine(otro)
+Línea 15: declaracion_variable : int a = 5
+Línea 17: impresion : Console.WriteLine(a)
+Línea 16: if : if (('>', 'a', 0)) { ... } }
+Línea 20: declaracion_variable : int b = ('neg', 1)
+Línea 22: impresion : Console.WriteLine(b)
+Línea 24: impresion : Console.WriteLine(0)
+Línea 23: else : else { ... }
+Línea 21: if : if (('>', 'b', 0)) { ... } }
+Línea 27: declaracion_variable : int c = 0
+Línea 29: impresion : Console.WriteLine(positivo)
+Línea 31: impresion : Console.WriteLine(cero)
+Línea 33: impresion : Console.WriteLine(menos uno)
+Línea 35: impresion : Console.WriteLine(negativo)
+Línea 34: else : else { ... }
+Línea 32: else if : else if (('==', 'c', ('neg', 1))) { ... } }
+Línea 30: else if : else if (('==', 'c', 0)) { ... } }
+Línea 28: if : if (('>', 'c', 0)) { ... } }
+Línea 39: impresion : Console.WriteLine(i)
+Línea 38: for : for (('decl_var_init', 'int', 'i', 0); ('<', 'i', 3); ('assign', 'i', ('+', 'i', 1))) { ... }
+Línea 42: declaracion_variable : ('list_type', 'int') lista
+Línea 43: asignacion : lista = ('new_list', 'int')
+Error de sintaxis en la línea 45: token 'Add'
+Línea 47: asignacion_lista : lista[0] = 99
+Línea 48: impresion : Console.WriteLine(('list_access', 'lista', 0))

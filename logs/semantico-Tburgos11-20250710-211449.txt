@@ -1,0 +1,44 @@
+Análisis Semántico:
+Línea 1: Tipo 'int' detectado
+Línea 1: Variable declarada correctamente: int Sumar = None
+Línea 1: Tipo 'int' detectado
+Línea 1: Variable declarada correctamente: int a = None
+Línea 1: Tipo 'int' detectado
+Línea 1: Variable declarada correctamente: int b = None
+Línea 5: Tipo 'float' detectado
+Línea 5: Variable declarada correctamente: float Promedio = None
+Línea 5: Tipo 'int' detectado
+Línea 5: Variable declarada correctamente: int x = None
+Línea 5: Tipo 'int' detectado
+Línea 5: Variable declarada correctamente: int y = None
+Línea 9: Tipo 'int' detectado
+Línea 9: Variable declarada correctamente: int resultado = Sumar
+Línea 9: Asignación correcta: resultado = Sumar
+Línea 12: Tipo 'int' detectado
+Línea 12: Variable declarada correctamente: int otro = Sumar
+Línea 12: Asignación correcta: otro = Sumar
+Línea 15: Tipo 'int' detectado
+Línea 15: Error semántico: La variable 'a' ya está declarada. No se permite redeclaración.
+Línea 15: Asignación correcta: a = 5
+Línea 20: Tipo 'int' detectado
+Línea 20: Error semántico: La variable 'b' ya está declarada. No se permite redeclaración.
+Línea 27: Tipo 'int' detectado
+Línea 27: Variable declarada correctamente: int c = 0
+Línea 27: Asignación correcta: c = 0
+Línea 38: Tipo 'int' detectado
+Línea 38: Variable declarada correctamente: int i = 0
+Línea 38: Asignación correcta: i = 0
+Línea 38: Asignación correcta: i = i
+Línea 42: Tipo 'int' detectado
+Línea 42: Variable declarada correctamente: int lista = None
+Línea 43: Tipo 'int' detectado
+Línea 45: Error semántico: La variable 'lista' ya está declarada. No se permite redeclaración.
+
+--- Errores Semánticos ---
+Línea 15: Error semántico: La variable 'a' ya está declarada. No se permite redeclaración.
+Línea 20: Error semántico: La variable 'b' ya está declarada. No se permite redeclaración.
+Línea 20: Error semántico: No se puede asignar valor de tipo string a variable int 'b'.
+Línea 43: Error semántico: No se puede asignar valor de tipo string a variable int 'lista'.
+Línea 45: Error semántico: La variable 'lista' ya está declarada. No se permite redeclaración.
+
+Análisis semántico completado con 5 error(es).

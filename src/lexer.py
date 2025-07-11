@@ -79,12 +79,17 @@ t_MINUSEQUAL  = r'-='
 t_LBRACKET    = r'\['
 t_RBRACKET    = r'\]'
 t_COLON       = r':'
-t_ADD         = r'Add'
 t_PARSE       = r'Parse'
 
 def t_STRING_CONST(t):
     r'"([^"\n])*"'
     t.value = t.value[1:-1]
+    t.lineno = t.lexer.lineno
+    return t
+
+def t_ADD(t):
+    r'Add'
+    t.type = 'ADD'
     t.lineno = t.lexer.lineno
     return t
 
@@ -127,8 +132,6 @@ def t_ignore_unicode(t):
     pass
 
 def t_error(t):
-    if not re.match(r'\s', t.value[0]):
-        print(f"Este caracter no está definido: '{t.value[0]}' en la línea {t.lineno}")
     t.lexer.skip(1)
 
 lexer = lex.lex()

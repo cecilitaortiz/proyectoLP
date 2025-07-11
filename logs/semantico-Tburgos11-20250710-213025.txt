@@ -1,0 +1,59 @@
+Análisis Semántico:
+Línea 2: Tipo 'int' detectado
+Línea 2: Variable declarada correctamente: int a = 5
+Línea 2: Asignación correcta: a = 5
+Línea 3: Tipo 'float' detectado
+Línea 3: Variable declarada correctamente: float b = 3.14
+Línea 3: Asignación correcta: b = 3.14
+Línea 4: Tipo 'bool' detectado
+Línea 4: Variable declarada correctamente: bool flag = true
+Línea 4: Asignación correcta: flag = true
+Línea 8: Tipo 'int' detectado
+Línea 8: Variable declarada correctamente: int nums = None
+Línea 9: Tipo 'int' detectado
+Línea 9: Error semántico: No se puede asignar valor de tipo string a variable int 'otros'.
+Línea 9: Tipo 'int' detectado
+Línea 10: Error semántico: La variable 'nums' ya está declarada. No se permite redeclaración.
+Línea 10: Tipo 'int' detectado
+Línea 11: Error semántico: La variable 'nums' ya está declarada. No se permite redeclaración.
+Línea 14: Tipo 'int' detectado
+Línea 14: Variable declarada correctamente: int primer = nums
+Línea 14: Asignación correcta: primer = nums
+Línea 26: Tipo 'int' detectado
+Línea 26: Variable declarada correctamente: int i = 0
+Línea 26: Asignación correcta: i = 0
+Línea 26: Asignación correcta: i = i
+Línea 32: Tipo 'int' detectado
+Línea 32: Error semántico: La variable 'x' usada en la inicialización de 'Sumar' no está declarada.
+Línea 32: Tipo 'int' detectado
+Línea 32: Error semántico: La variable 'x' usada en la inicialización de 'x' no está declarada.
+Línea 32: Tipo 'int' detectado
+Línea 32: Error semántico: La variable 'x' usada en la inicialización de 'y' no está declarada.
+Línea 33: Tipo 'int' detectado
+Línea 33: Error semántico: La variable 'x' usada en la inicialización de 'resultado' no está declarada.
+Línea 38: Tipo 'int' detectado
+Línea 38: Error semántico: La variable 'Sumar' usada en la inicialización de 'suma' no está declarada.
+Línea 42: Tipo 'int' detectado
+Línea 42: Error semántico: No se puede asignar valor de tipo string a variable int 'n'.
+Línea 42: Tipo 'int' detectado
+Línea 45: Error semántico: La variable 'flag' ya está declarada. No se permite redeclaración.
+
+--- Errores Semánticos ---
+Línea 5: Error semántico: Variable 'mensaje' no declarada antes de la asignación.
+Línea 9: Error semántico: No se puede asignar valor de tipo string a variable int 'otros'.
+Línea 9: Error semántico: Variable 'otros' no declarada antes de la asignación.
+Línea 10: Error semántico: La variable 'nums' ya está declarada. No se permite redeclaración.
+Línea 10: Error semántico: No se puede asignar valor de tipo string a variable int 'nums'.
+Línea 11: Error semántico: La variable 'nums' ya está declarada. No se permite redeclaración.
+Línea 32: Error semántico: La variable 'x' usada en la inicialización de 'Sumar' no está declarada.
+Línea 32: Error semántico: La variable 'x' usada en la inicialización de 'x' no está declarada.
+Línea 32: Error semántico: La variable 'x' usada en la inicialización de 'y' no está declarada.
+Línea 33: Error semántico: La variable 'x' usada en la inicialización de 'resultado' no está declarada.
+Línea 33: Error semántico: Variable 'resultado' no declarada antes de la asignación.
+Línea 38: Error semántico: La variable 'Sumar' usada en la inicialización de 'suma' no está declarada.
+Línea 38: Error semántico: Variable 'suma' no declarada antes de la asignación.
+Línea 42: Error semántico: No se puede asignar valor de tipo string a variable int 'n'.
+Línea 42: Error semántico: Variable 'n' no declarada antes de la asignación.
+Línea 45: Error semántico: La variable 'flag' ya está declarada. No se permite redeclaración.
+
+Análisis semántico completado con 16 error(es).

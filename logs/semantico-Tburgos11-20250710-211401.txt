@@ -1,0 +1,48 @@
+Análisis Semántico:
+Línea 4: Tipo 'int' detectado
+Línea 4: Error semántico: No se puede asignar valor de tipo string a variable int 'b'.
+Línea 6: Tipo 'int' detectado
+Línea 6: Variable declarada correctamente: int Sumar = None
+Línea 6: Tipo 'int' detectado
+Línea 6: Variable declarada correctamente: int a = None
+Línea 6: Tipo 'int' detectado
+Línea 6: Variable declarada correctamente: int b = None
+Línea 10: Tipo 'float' detectado
+Línea 10: Variable declarada correctamente: float Promedio = None
+Línea 10: Tipo 'int' detectado
+Línea 10: Variable declarada correctamente: int x = None
+Línea 10: Tipo 'int' detectado
+Línea 10: Variable declarada correctamente: int y = None
+Línea 14: Tipo 'int' detectado
+Línea 14: Variable declarada correctamente: int resultado = Sumar
+Línea 14: Asignación correcta: resultado = Sumar
+Línea 17: Tipo 'int' detectado
+Línea 17: Variable declarada correctamente: int otro = Sumar
+Línea 17: Asignación correcta: otro = Sumar
+Línea 20: Tipo 'int' detectado
+Línea 20: Error semántico: La variable 'a' ya está declarada. No se permite redeclaración.
+Línea 20: Asignación correcta: a = 5
+Línea 25: Tipo 'int' detectado
+Línea 25: Error semántico: La variable 'b' ya está declarada. No se permite redeclaración.
+Línea 32: Tipo 'int' detectado
+Línea 32: Variable declarada correctamente: int c = 0
+Línea 32: Asignación correcta: c = 0
+Línea 43: Tipo 'int' detectado
+Línea 43: Variable declarada correctamente: int i = 0
+Línea 43: Asignación correcta: i = 0
+Línea 43: Asignación correcta: i = i
+Línea 47: Tipo 'int' detectado
+Línea 47: Variable declarada correctamente: int lista = None
+Línea 48: Tipo 'int' detectado
+Línea 49: Error semántico: La variable 'lista' ya está declarada. No se permite redeclaración.
+
+--- Errores Semánticos ---
+Línea 4: Error semántico: No se puede asignar valor de tipo string a variable int 'b'.
+Línea 4: Error semántico: Variable 'b' no declarada antes de la asignación.
+Línea 20: Error semántico: La variable 'a' ya está declarada. No se permite redeclaración.
+Línea 25: Error semántico: La variable 'b' ya está declarada. No se permite redeclaración.
+Línea 25: Error semántico: No se puede asignar valor de tipo string a variable int 'b'.
+Línea 48: Error semántico: No se puede asignar valor de tipo string a variable int 'lista'.
+Línea 49: Error semántico: La variable 'lista' ya está declarada. No se permite redeclaración.
+
+Análisis semántico completado con 7 error(es).

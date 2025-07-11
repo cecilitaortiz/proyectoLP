@@ -1,0 +1,19 @@
+Sintaxis:
+Línea 2: declaracion_variable : int resultado = ('+', 'a', 'b')
+Línea 3: return : return resultado
+Línea 1: funcion : int Sumar([('int', 'a'), ('int', 'b')]) { ... }
+Línea 6: declaracion_variable : ('list_type', 'int') numeros
+Línea 7: asignacion : numeros = ('new_list', 'int')
+Error de sintaxis en la línea 8: token 'Add'
+Línea 12: declaracion_variable : int suma = 0
+Línea 14: asignacion : suma = ('+', 'suma', ('list_access', 'numeros', 'i'))
+Línea 13: for : for (('decl_var_init', 'int', 'i', 0); ('<', 'i', 3); ('assign', 'i', ('+', 'i', 1))) { ... }
+Línea 17: impresion : Console.WriteLine(La suma es:)
+Línea 18: impresion : Console.WriteLine(suma)
+Línea 20: declaracion_variable : int resultado = ('func_call', 'Sumar', [('list_access', 'numeros', 0), ('list_access', 'numeros', 1)])
+Línea 21: impresion : Console.WriteLine(Suma de los dos primeros:)
+Línea 22: impresion : Console.WriteLine(resultado)
+Línea 24: asignacion_lista : numeros[1] = 50
+Línea 25: impresion : Console.WriteLine(Nuevo valor en la posición 1:)
+Línea 26: impresion : Console.WriteLine(('list_access', 'numeros', 1))
+Error de sintaxis en la línea 27: token '}'

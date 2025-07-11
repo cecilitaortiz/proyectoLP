@@ -1,0 +1,6 @@
+Sintaxis:
+Línea 1: declaracion_variable : ('list_type', 'int') nums
+Línea 2: asignacion : nums = ('new_list', 'int')
+Línea 3: agregar_lista : nums.Add(10)
+Línea 4: agregar_lista : nums.Add(20)
+Análisis sintáctico exitoso.
